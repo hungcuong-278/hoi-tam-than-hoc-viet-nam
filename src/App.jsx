@@ -156,8 +156,8 @@ export default function App() {
               : 'A platform connecting doctors, researchers, and experts in mental health across Vietnam.'}
           </p>
           <div className="mt-14 animate-btn-intro">
-            <a href="#timeline" className="inline-flex items-center justify-center uppercase transition-all hover:opacity-90 text-xs font-medium text-white tracking-[0.15em] rounded pt-4 pr-8 pb-4 pl-8 shadow-[0_0_0_1px_rgba(0,0,0,0.05),0_2px_4px_rgba(0,0,0,0.1)]" style={{ backgroundColor: '#0D3C1F' }}>
-              {isVi ? 'Xem thông tin sự kiện' : 'View event details'}
+            <a href="#dang-ky" className="inline-flex items-center justify-center uppercase transition-all hover:opacity-90 text-xs font-medium text-white tracking-[0.15em] rounded pt-4 pr-8 pb-4 pl-8 shadow-[0_0_0_1px_rgba(0,0,0,0.05),0_2px_4px_rgba(0,0,0,0.1)]" style={{ backgroundColor: '#0D3C1F' }}>
+              {isVi ? 'Đăng ký tham dự' : 'Register to attend'}
             </a>
           </div>
         </main>
