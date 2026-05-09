@@ -26,7 +26,7 @@ export default function App() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setFormStatus('loading');
-    const url = 'https://script.google.com/macros/s/AKfycbz8BJ4yoH2GKvkyG4RAByiZBlHhCe_ymQk4na9qqqaJyv8cniRmNAEsqoUiy1EbZ403/exec';
+    const url = 'https://script.google.com/macros/s/AKfycbxHFSa2ssS5qA5iFAp9byTjuxhjvUMd7-2aJmLb5ozhdDXJ64f-LeMh8F45NxkIqzo/exec';
     const payload = {
       ...formData,
       _timestamp: Date.now(),
