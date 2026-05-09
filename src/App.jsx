@@ -45,9 +45,13 @@ export default function App() {
       _timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
     };
     try {
-      await fetch(url + '?data=' + encodeURIComponent(JSON.stringify(payload)), {
-        method: 'GET',
+      const formParams = new URLSearchParams();
+      formParams.append("data", JSON.stringify(payload));
+      
+      await fetch(url, {
+        method: 'POST',
         mode: 'no-cors',
+        body: formParams
       });
       setFormStatus('success');
       setFormMessage('Đăng ký thành công! Ban Tổ chức sẽ xác nhận qua email của bạn.');
