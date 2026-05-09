@@ -81,3 +81,6 @@ body {
 .delay-100 { animation-delay: 100ms; }
 .delay-200 { animation-delay: 200ms; }
 .delay-300 { animation-delay: 300ms; }
+.custom-table-styles table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+.custom-table-styles th, .custom-table-styles td { border: 1px solid #E5EBE8; padding: 0.75rem; text-align: left; }
+.custom-table-styles tr:nth-child(even) { background-color: #F0F4F2; }

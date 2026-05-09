@@ -1,26 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { structuredTimeline } from './data/timelineStructured';
 
 export default function App() {
   const wordRef = useRef(null);
   const [language, setLanguage] = useState('vi');
   const isVi = language === 'vi';
-  const demoSchedule = isVi
-    ? [
-        { time: '07:30 - 08:00', title: 'Đón tiếp đại biểu', note: 'Check-in, nhận tài liệu hội nghị.' },
-        { time: '08:00 - 08:20', title: 'Khai mạc', note: 'Phát biểu của Ban Tổ chức.' },
-        { time: '08:20 - 10:00', title: 'Phiên báo cáo chuyên đề I', note: 'Cập nhật chẩn đoán và điều trị.' },
-        { time: '10:15 - 11:30', title: 'Thảo luận lâm sàng', note: 'Hỏi đáp trực tiếp cùng báo cáo viên.' },
-        { time: '13:30 - 15:00', title: 'Phiên báo cáo chuyên đề II', note: 'Các mô hình can thiệp cộng đồng.' },
-        { time: '15:00 - 16:00', title: 'Tổng kết', note: 'Công bố kế hoạch hoạt động tiếp theo.' }
-      ]
-    : [
-        { time: '07:30 - 08:00', title: 'Registration', note: 'Check-in and conference materials.' },
-        { time: '08:00 - 08:20', title: 'Opening session', note: 'Welcome speech from the organizing board.' },
-        { time: '08:20 - 10:00', title: 'Scientific session I', note: 'Updates on diagnosis and treatment.' },
-        { time: '10:15 - 11:30', title: 'Clinical discussion', note: 'Live Q&A with speakers.' },
-        { time: '13:30 - 15:00', title: 'Scientific session II', note: 'Community intervention models.' },
-        { time: '15:00 - 16:00', title: 'Closing summary', note: 'Next action plans and announcements.' }
-      ];
+  const [selectedDaySection, setSelectedDaySection] = useState("Ngày 31/5/2026");
+  const [expandedSessionId, setExpandedSessionId] = useState(null);
 
   // Setup scroll reveal observer matching the source script behavior
   useEffect(() => {
@@ -453,28 +439,60 @@ export default function App() {
         </div>
       </section>
 
-      {/* Demo Schedule Section */}
-      <section className="w-full bg-[#FAF9F6] py-24 md:py-[100px] px-6 flex justify-center relative z-20" id="lich-trinh-demo">
+      {/* Schedule Section */}
+      <section className="w-full bg-[#FAF9F6] py-24 md:py-[100px] px-6 flex justify-center relative z-20" id="lich-trinh">
         <div className="max-w-[1100px] w-full flex flex-col items-center">
           <h2 className="text-3xl md:text-5xl font-semibold text-[#0D3C1F] text-center max-w-3xl tracking-tight leading-tight reveal-up" style={{ fontFamily: '"Playfair Display", serif' }}>
-            {isVi ? 'Lịch trình demo' : 'Demo schedule'}
+            {isVi ? 'Chương trình chi tiết' : 'Detailed Agenda'}
           </h2>
           <p className="mt-6 text-[16px] text-[#4A6B5A] text-center max-w-[720px] leading-relaxed font-geist reveal-up delay-100">
             {isVi
-              ? 'Đây là mẫu lịch trình để điền nhanh cho phiên bản chính thức sau này. Bạn chỉ cần thay nội dung từng khung giờ.'
-              : 'This is a reusable schedule template. You can replace each time block with official content later.'}
+              ? 'Nhấn vào các ngày và mở rộng từng phiên để xem chi tiết lịch trình của hội nghị.'
+              : 'Click on the days and expand each session to view the detailed conference schedule.'}
           </p>
 
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
-            {demoSchedule.map((item, index) => (
-              <article key={index} className="bg-white rounded-[16px] border border-[#EAEFEB] p-6 reveal-up delay-200">
-                <p className="text-[12px] tracking-[0.12em] uppercase text-[#8A9E92] font-geist">{item.time}</p>
-                <h3 className="mt-2 text-[24px] text-[#0D3C1F] font-semibold tracking-tight" style={{ fontFamily: '"Playfair Display", serif' }}>
-                  {item.title}
-                </h3>
-                <p className="mt-2 text-[14px] text-[#4A6B5A] leading-[1.7] font-geist">{item.note}</p>
-              </article>
-            ))}
+          <div className="mt-12 w-full reveal-up delay-200">
+            {/* Day filters */}
+            <div className="flex flex-wrap gap-3 justify-center mb-10">
+              {Array.from(new Set(structuredTimeline.map(s => s.daySection))).map(dayText => (
+                <button
+                  key={dayText}
+                  onClick={() => { setSelectedDaySection(dayText); setExpandedSessionId(null); }}
+                  className={`px-5 py-2.5 border rounded-full text-[14px] font-medium transition-all ${
+                    selectedDaySection === dayText 
+                      ? 'bg-[#0D3C1F] text-white border-[#0D3C1F]' 
+                      : 'bg-white text-[#0D3C1F] border-[#E5EBE8] hover:bg-[#F0F4F2]'
+                  }`}
+                >
+                  {dayText}
+                </button>
+              ))}
+            </div>
+
+            {/* Accordion layout for the selected day */}
+            <div className="flex flex-col gap-4 max-w-4xl mx-auto w-full">
+              {structuredTimeline.filter(s => s.daySection === selectedDaySection).map(session => (
+                <div key={session.id} className="bg-white border text-left border-[#E5EBE8] rounded-[16px] overflow-hidden shadow-sm hover:shadow transition-shadow">
+                  <button
+                    className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-[#F0F4F2]/50 transition-colors"
+                    onClick={() => setExpandedSessionId(expandedSessionId === session.id ? null : session.id)}
+                  >
+                    <span className="text-[17px] font-semibold text-[#0D3C1F]" style={{ fontFamily: '"Playfair Display", serif' }}>
+                      {session.title.replace('PHIÊN', 'Phiên').replace('Thảo luận - Kết thúc', '')}
+                    </span>
+                    <span className="text-[#3D7F61] shrink-0 ml-4 transition-transform duration-300" style={{ transform: expandedSessionId === session.id ? 'rotate(180deg)' : 'rotate(0deg)' }}>
+                      ▼
+                    </span>
+                  </button>
+                  
+                  {expandedSessionId === session.id && (
+                    <div className="px-6 pb-6 overflow-auto border-t border-[#E5EBE8] pt-4 prose prose-sm max-w-none text-[#4A6B5A]">
+                      <div dangerouslySetInnerHTML={{ __html: session.html }} className="custom-table-styles" />
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
