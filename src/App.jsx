@@ -48,7 +48,7 @@ export default function App() {
       await fetch(url, {
         method: 'POST',
         mode: 'no-cors',
-        body: JSON.stringify(payload),
+        body: new URLSearchParams({ data: JSON.stringify(payload) }),
       });
       setFormStatus('success');
       setFormMessage('Đăng ký thành công! Ban Tổ chức sẽ xác nhận qua email của bạn.');
