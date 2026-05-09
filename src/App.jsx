@@ -5,8 +5,56 @@ export default function App() {
   const wordRef = useRef(null);
   const [language, setLanguage] = useState('vi');
   const isVi = language === 'vi';
-  const [selectedDaySection, setSelectedDaySection] = useState("Ngày 31/5/2026");
+  const [selectedDay, setSelectedDay] = useState("Ngày 31/5/2026");
+  const [selectedHall, setSelectedHall] = useState("Phiên toàn thể");
   const [expandedSessionId, setExpandedSessionId] = useState(null);
+
+  // --- Registration form ---
+  const formOpenTimeRef = useRef(Date.now());
+  const [formData, setFormData] = useState({
+    Ho_Ten: '', Ngay_Sinh: '', Email: '', So_Dien_Thoai: '',
+    Don_Vi: '', Chuc_Vu: '', Noi_Dung_Tham_Du: '',
+  });
+  const [formStatus, setFormStatus] = useState('idle'); // 'idle' | 'loading' | 'success' | 'error'
+  const [formMessage, setFormMessage] = useState('');
+
+  const handleFormChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setFormStatus('loading');
+    const payload = {
+      ...formData,
+      _timestamp: Date.now(),
+      _fillTime: Date.now() - formOpenTimeRef.current,
+      _timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+    };
+    try {
+      const res = await fetch(import.meta.env.VITE_GOOGLE_SHEET_URL, {
+        method: 'POST',
+        // Content-Type text/plain tránh CORS preflight với Google Apps Script
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify(payload),
+        redirect: 'follow',
+      });
+      const result = await res.json();
+      if (result.result === 'success') {
+        setFormStatus('success');
+        setFormMessage(result.message || 'Đăng ký thành công!');
+        setFormData({ Ho_Ten: '', Ngay_Sinh: '', Email: '', So_Dien_Thoai: '', Don_Vi: '', Chuc_Vu: '', Noi_Dung_Tham_Du: '' });
+        formOpenTimeRef.current = Date.now();
+      } else {
+        setFormStatus('error');
+        setFormMessage(result.message || 'Có lỗi xảy ra, vui lòng thử lại!');
+      }
+    } catch {
+      setFormStatus('error');
+      setFormMessage('Lỗi kết nối, vui lòng thử lại sau!');
+    }
+  };
 
   // Setup scroll reveal observer matching the source script behavior
   useEffect(() => {
@@ -81,7 +129,7 @@ export default function App() {
   }, [isVi]);
 
   return (
-    <div className="antialiased min-h-screen flex flex-col items-center selection:bg-gray-100 text-gray-900 relative overflow-x-hidden">
+    <div className="antialiased min-h-screen flex flex-col items-center selection:bg-gray-100 text-gray-900 relative">
       {/* Intro Background */}
       <div className="absolute top-0 left-0 w-full h-screen -z-10 bg-cover bg-center bg-[url('https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/169cdb38-2656-4555-bec1-d1acc64bb6fa_3840w.png')] animate-bg-intro"></div>
 
@@ -138,8 +186,8 @@ export default function App() {
           </h1>
           <p className="md:text-xl leading-relaxed text-lg font-normal text-gray-500 max-w-2xl mt-8 animate-subtitle-intro font-geist">
             {isVi
-              ? 'Nơi kết nối các chuyên gia, bác sĩ và nhà nghiên cứu trong lĩnh vực sức khỏe tâm thần tại Việt Nam.'
-              : 'A platform connecting doctors, researchers, and experts in mental health across Vietnam.'}
+              ? 'SỨC KHỎE TÂM THẦN TRONG BỐI CẢNH MỚI'
+              : 'MENTAL HEALTH IN THE NEW CONTEXT'}
           </p>
           <div className="mt-14 animate-btn-intro">
             <a href="#dang-ky" className="inline-flex items-center justify-center uppercase transition-all hover:opacity-90 text-xs font-medium text-white tracking-[0.15em] rounded pt-4 pr-8 pb-4 pl-8 shadow-[0_0_0_1px_rgba(0,0,0,0.05),0_2px_4px_rgba(0,0,0,0.1)]" style={{ backgroundColor: '#0D3C1F' }}>
@@ -452,46 +500,84 @@ export default function App() {
           </p>
 
           <div className="mt-12 w-full reveal-up delay-200">
-            {/* Day filters */}
-            <div className="flex flex-wrap gap-3 justify-center mb-10">
-              {Array.from(new Set(structuredTimeline.map(s => s.daySection))).map(dayText => (
+            {/* Day tabs — cấp 1 */}
+            <div className="flex flex-wrap gap-3 justify-center mb-8">
+              {["Tổng quan", "Ngày 29-30/5/2026", "Ngày 31/5/2026"].map(day => (
                 <button
-                  key={dayText}
-                  onClick={() => { setSelectedDaySection(dayText); setExpandedSessionId(null); }}
+                  key={day}
+                  onClick={() => {
+                    setSelectedDay(day);
+                    setSelectedHall(day === "Ngày 31/5/2026" ? "Phiên toàn thể" : null);
+                    setExpandedSessionId(null);
+                  }}
                   className={`px-5 py-2.5 border rounded-full text-[14px] font-medium transition-all ${
-                    selectedDaySection === dayText 
-                      ? 'bg-[#0D3C1F] text-white border-[#0D3C1F]' 
+                    selectedDay === day
+                      ? 'bg-[#0D3C1F] text-white border-[#0D3C1F]'
                       : 'bg-white text-[#0D3C1F] border-[#E5EBE8] hover:bg-[#F0F4F2]'
                   }`}
                 >
-                  {dayText}
+                  {day}
                 </button>
               ))}
             </div>
 
-            {/* Accordion layout for the selected day */}
-            <div className="flex flex-col gap-4 max-w-4xl mx-auto w-full">
-              {structuredTimeline.filter(s => s.daySection === selectedDaySection).map(session => (
-                <div key={session.id} className="bg-white border text-left border-[#E5EBE8] rounded-[16px] overflow-hidden shadow-sm hover:shadow transition-shadow">
+            {/* Hall sub-tabs — cấp 2, chỉ hiện cho Ngày 31 */}
+            {selectedDay === "Ngày 31/5/2026" && (
+              <div className="flex flex-wrap gap-2 justify-center mb-8">
+                {["Phiên toàn thể","Hội trường Hồng Quảng","Hội trường Yên Trung","Hội trường Đồng Sơn","Hội trường Yên Đức 1","Hội trường Yên Đức 2","Hội trường Yên Đức 3","Hội trường Thanh Lân 1","Hội trường Thanh Lân 2","Hội trường Kim Quy"].map(hall => (
                   <button
-                    className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-[#F0F4F2]/50 transition-colors"
-                    onClick={() => setExpandedSessionId(expandedSessionId === session.id ? null : session.id)}
+                    key={hall}
+                    onClick={() => { setSelectedHall(hall); setExpandedSessionId(null); }}
+                    className={`px-4 py-2 border rounded-full text-[13px] font-medium transition-all ${
+                      selectedHall === hall
+                        ? 'bg-[#3D7F61] text-white border-[#3D7F61]'
+                        : 'bg-white text-[#3D7F61] border-[#C5D9CE] hover:bg-[#F0F4F2]'
+                    }`}
                   >
-                    <span className="text-[17px] font-semibold text-[#0D3C1F]" style={{ fontFamily: '"Playfair Display", serif' }}>
-                      {session.title.replace('PHIÊN', 'Phiên').replace('Thảo luận - Kết thúc', '')}
-                    </span>
-                    <span className="text-[#3D7F61] shrink-0 ml-4 transition-transform duration-300" style={{ transform: expandedSessionId === session.id ? 'rotate(180deg)' : 'rotate(0deg)' }}>
-                      ▼
-                    </span>
+                    {hall}
                   </button>
-                  
-                  {expandedSessionId === session.id && (
-                    <div className="px-6 pb-6 overflow-auto border-t border-[#E5EBE8] pt-4 prose prose-sm max-w-none text-[#4A6B5A]">
-                      <div dangerouslySetInnerHTML={{ __html: session.html }} className="custom-table-styles" />
-                    </div>
-                  )}
-                </div>
-              ))}
+                ))}
+              </div>
+            )}
+
+            {/* Accordion */}
+            <div className="flex flex-col gap-4 max-w-4xl mx-auto w-full">
+              {structuredTimeline
+                .filter(s =>
+                  s.daySection === selectedDay &&
+                  (selectedDay !== "Ngày 31/5/2026" || s.hall === selectedHall)
+                )
+                .map(session => (
+                  <div key={session.id} className="bg-white border text-left border-[#E5EBE8] rounded-[16px] overflow-hidden shadow-sm hover:shadow transition-shadow">
+                    <button
+                      className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-[#F0F4F2]/50 transition-colors"
+                      onClick={() => setExpandedSessionId(expandedSessionId === session.id ? null : session.id)}
+                    >
+                      <span className="text-[17px] font-semibold text-[#0D3C1F]" style={{ fontFamily: '"Playfair Display", serif' }}>
+                        {session.title.replace('PHIÊN', 'Phiên')}
+                      </span>
+                      <span className="text-[#3D7F61] shrink-0 ml-4 transition-transform duration-300" style={{ transform: expandedSessionId === session.id ? 'rotate(180deg)' : 'rotate(0deg)' }}>
+                        ▼
+                      </span>
+                    </button>
+
+                    {expandedSessionId === session.id && (
+                      <div className="px-6 pb-6 overflow-auto border-t border-[#E5EBE8] pt-4">
+                        {session.chuToa && (
+                          <div className="mb-2 text-[13px] text-[#4A6B5A]">
+                            <span className="font-semibold text-[#0D3C1F]">Chủ tọa: </span>{session.chuToa}
+                          </div>
+                        )}
+                        {session.thuKy && (
+                          <div className="mb-4 text-[13px] text-[#4A6B5A]">
+                            <span className="font-semibold text-[#0D3C1F]">Thư ký: </span>{session.thuKy}
+                          </div>
+                        )}
+                        <div dangerouslySetInnerHTML={{ __html: session.html }} className="custom-table-styles" />
+                      </div>
+                    )}
+                  </div>
+                ))}
             </div>
           </div>
         </div>
@@ -583,12 +669,24 @@ export default function App() {
             </p>
           </div>
 
-          <form className="w-full md:w-1/2 bg-white rounded-[16px] p-6 shadow-[0_6px_20px_rgba(13,60,31,0.08)] border border-[#EAEFEB]">
-            <label className="text-[13px] text-[#4A6B5A] font-geist block mb-2">{isVi ? 'Họ và tên' : 'Full name'}</label>
-            <input type="text" placeholder={isVi ? 'Nhập họ và tên' : 'Enter full name'} className="w-full mb-4 px-4 py-3 rounded bg-[#F5F5F3] text-[#0D3C1F] outline-none" />
+          <form onSubmit={handleSubmit} className="w-full md:w-1/2 bg-white rounded-[16px] p-6 shadow-[0_6px_20px_rgba(13,60,31,0.08)] border border-[#EAEFEB]">
 
-            <label className="text-[13px] text-[#4A6B5A] font-geist block mb-2">{isVi ? 'Học hàm / Học vị / Vị trí' : 'Title / Degree / Position'}</label>
-            <select className="w-full mb-4 px-4 py-3 rounded bg-[#F5F5F3] text-[#0D3C1F] outline-none">
+            {/* Họ và tên */}
+            <label className="text-[13px] text-[#4A6B5A] font-geist block mb-2">{isVi ? 'Họ và tên *' : 'Full name *'}</label>
+            <input required name="Ho_Ten" value={formData.Ho_Ten} onChange={handleFormChange}
+              type="text" placeholder={isVi ? 'Nhập họ và tên' : 'Enter full name'}
+              className="w-full mb-4 px-4 py-3 rounded bg-[#F5F5F3] text-[#0D3C1F] outline-none focus:ring-2 focus:ring-[#3D7F61]" />
+
+            {/* Ngày sinh */}
+            <label className="text-[13px] text-[#4A6B5A] font-geist block mb-2">{isVi ? 'Ngày sinh *' : 'Date of birth *'}</label>
+            <input required name="Ngay_Sinh" value={formData.Ngay_Sinh} onChange={handleFormChange}
+              type="date"
+              className="w-full mb-4 px-4 py-3 rounded bg-[#F5F5F3] text-[#0D3C1F] outline-none focus:ring-2 focus:ring-[#3D7F61]" />
+
+            {/* Học hàm / Học vị */}
+            <label className="text-[13px] text-[#4A6B5A] font-geist block mb-2">{isVi ? 'Học hàm / Học vị / Vị trí *' : 'Title / Degree / Position *'}</label>
+            <select required name="Chuc_Vu" value={formData.Chuc_Vu} onChange={handleFormChange}
+              className="w-full mb-4 px-4 py-3 rounded bg-[#F5F5F3] text-[#0D3C1F] outline-none focus:ring-2 focus:ring-[#3D7F61]">
               <option value="">{isVi ? 'Chọn học hàm / học vị' : 'Select title / degree'}</option>
               <option value="Bác sĩ Nội trú (BSNT.)">Bác sĩ Nội trú (BSNT.)</option>
               <option value="Thạc sĩ Bác sĩ (ThS. BS.)">Thạc sĩ Bác sĩ (ThS. BS.)</option>
@@ -604,17 +702,51 @@ export default function App() {
               <option value="Khác">Khác</option>
             </select>
 
-            <label className="text-[13px] text-[#4A6B5A] font-geist block mb-2">{isVi ? 'Đơn vị công tác' : 'Organization'}</label>
-            <input type="text" placeholder={isVi ? 'Bệnh viện / Trung tâm / Trường' : 'Hospital / Center / University'} className="w-full mb-4 px-4 py-3 rounded bg-[#F5F5F3] text-[#0D3C1F] outline-none" />
+            {/* Đơn vị công tác */}
+            <label className="text-[13px] text-[#4A6B5A] font-geist block mb-2">{isVi ? 'Đơn vị công tác *' : 'Organization *'}</label>
+            <input required name="Don_Vi" value={formData.Don_Vi} onChange={handleFormChange}
+              type="text" placeholder={isVi ? 'Bệnh viện / Trung tâm / Trường' : 'Hospital / Center / University'}
+              className="w-full mb-4 px-4 py-3 rounded bg-[#F5F5F3] text-[#0D3C1F] outline-none focus:ring-2 focus:ring-[#3D7F61]" />
 
-            <label className="text-[13px] text-[#4A6B5A] font-geist block mb-2">{isVi ? 'Email liên hệ' : 'Contact email'}</label>
-            <input type="email" placeholder="example@email.com" className="w-full mb-4 px-4 py-3 rounded bg-[#F5F5F3] text-[#0D3C1F] outline-none" />
+            {/* Email */}
+            <label className="text-[13px] text-[#4A6B5A] font-geist block mb-2">{isVi ? 'Email liên hệ *' : 'Contact email *'}</label>
+            <input required name="Email" value={formData.Email} onChange={handleFormChange}
+              type="email" placeholder="example@email.com"
+              className="w-full mb-4 px-4 py-3 rounded bg-[#F5F5F3] text-[#0D3C1F] outline-none focus:ring-2 focus:ring-[#3D7F61]" />
 
-            <label className="text-[13px] text-[#4A6B5A] font-geist block mb-2">{isVi ? 'Số điện thoại' : 'Phone number'}</label>
-            <input type="tel" placeholder={isVi ? '0xxx xxx xxx' : '+84 xxx xxx xxx'} className="w-full mb-6 px-4 py-3 rounded bg-[#F5F5F3] text-[#0D3C1F] outline-none" />
+            {/* Số điện thoại */}
+            <label className="text-[13px] text-[#4A6B5A] font-geist block mb-2">{isVi ? 'Số điện thoại *' : 'Phone number *'}</label>
+            <input required name="So_Dien_Thoai" value={formData.So_Dien_Thoai} onChange={handleFormChange}
+              type="tel" placeholder={isVi ? '0xxx xxx xxx' : '+84 xxx xxx xxx'}
+              className="w-full mb-4 px-4 py-3 rounded bg-[#F5F5F3] text-[#0D3C1F] outline-none focus:ring-2 focus:ring-[#3D7F61]" />
 
-            <button type="button" className="inline-flex items-center justify-center px-7 py-3.5 rounded text-xs font-medium tracking-[0.1em] uppercase transition-all bg-[#0D3C1F] hover:opacity-90 text-white gap-2 shadow-[0_4px_14px_rgba(13,60,31,0.2)] hover:-translate-y-0.5 w-full">
-              {isVi ? 'Gửi đăng ký' : 'Submit registration'}
+            {/* Nội dung tham dự */}
+            <label className="text-[13px] text-[#4A6B5A] font-geist block mb-2">{isVi ? 'Nội dung tham dự *' : 'Participation content *'}</label>
+            <select required name="Noi_Dung_Tham_Du" value={formData.Noi_Dung_Tham_Du} onChange={handleFormChange}
+              className="w-full mb-6 px-4 py-3 rounded bg-[#F5F5F3] text-[#0D3C1F] outline-none focus:ring-2 focus:ring-[#3D7F61]">
+              <option value="">{isVi ? 'Chọn nội dung tham dự' : 'Select participation content'}</option>
+              <option value="Toàn bộ hội nghị (29-31/5)">Toàn bộ hội nghị (29-31/5)</option>
+              <option value="Phiên đào tạo CME (29-30/5)">Phiên đào tạo CME (29-30/5)</option>
+              <option value="Phiên toàn thể và báo cáo khoa học (31/5)">Phiên toàn thể và báo cáo khoa học (31/5)</option>
+            </select>
+
+            {/* Thông báo kết quả */}
+            {formStatus === 'success' && (
+              <div className="mb-4 px-4 py-3 rounded bg-[#ECFDF5] border border-[#6EE7B7] text-[#065F46] text-[13px]">
+                ✅ {formMessage}
+              </div>
+            )}
+            {formStatus === 'error' && (
+              <div className="mb-4 px-4 py-3 rounded bg-[#FEF2F2] border border-[#FCA5A5] text-[#991B1B] text-[13px]">
+                ❌ {formMessage}
+              </div>
+            )}
+
+            <button type="submit" disabled={formStatus === 'loading'}
+              className="inline-flex items-center justify-center px-7 py-3.5 rounded text-xs font-medium tracking-[0.1em] uppercase transition-all bg-[#0D3C1F] hover:opacity-90 text-white gap-2 shadow-[0_4px_14px_rgba(13,60,31,0.2)] hover:-translate-y-0.5 w-full disabled:opacity-60 disabled:cursor-not-allowed disabled:translate-y-0">
+              {formStatus === 'loading'
+                ? (isVi ? 'Đang gửi...' : 'Submitting...')
+                : (isVi ? 'Gửi đăng ký' : 'Submit registration')}
             </button>
           </form>
         </div>
