@@ -29,14 +29,6 @@ export default function App() {
     e.preventDefault();
     setFormStatus('loading');
 
-    // Guarantee _fillTime >= 5100ms so the Apps Script bot check always passes.
-    // If the user fills the form faster than that (demo/autofill), we wait the remainder.
-    const APPS_SCRIPT_MIN_FILL_MS = 5100;
-    const elapsed = Date.now() - formOpenTimeRef.current;
-    if (elapsed < APPS_SCRIPT_MIN_FILL_MS) {
-      await new Promise(resolve => setTimeout(resolve, APPS_SCRIPT_MIN_FILL_MS - elapsed));
-    }
-
     const url = 'https://script.google.com/macros/s/AKfycbydpSsNRDhCtQxoBPU5s4rzfMP4O6r3MAO8t6XB1NVERzsNW8ZHaS9IakztlPGmkR0W/exec';
     const payload = {
       ...formData,
@@ -45,13 +37,9 @@ export default function App() {
       _timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
     };
     try {
-      const formParams = new URLSearchParams();
-      formParams.append("data", JSON.stringify(payload));
-      
-      await fetch(url, {
-        method: 'POST',
+      await fetch(url + '?data=' + encodeURIComponent(JSON.stringify(payload)), {
+        method: 'GET',
         mode: 'no-cors',
-        body: formParams
       });
       setFormStatus('success');
       setFormMessage('Đăng ký thành công! Ban Tổ chức sẽ xác nhận qua email của bạn.');
