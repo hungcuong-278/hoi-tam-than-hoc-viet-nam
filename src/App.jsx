@@ -26,6 +26,12 @@ export default function App() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setFormStatus('loading');
+    const url = import.meta.env.VITE_GOOGLE_SHEET_URL;
+    if (!url || url.includes('YOUR_SCRIPT_ID')) {
+      setFormStatus('error');
+      setFormMessage('Chưa cấu hình URL Google Apps Script!');
+      return;
+    }
     const payload = {
       ...formData,
       _timestamp: Date.now(),
@@ -33,26 +39,21 @@ export default function App() {
       _timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
     };
     try {
-      const res = await fetch(import.meta.env.VITE_GOOGLE_SHEET_URL, {
+      // Google Apps Script trả về redirect → phải dùng no-cors, không đọc được response body
+      await fetch(url, {
         method: 'POST',
-        // Content-Type text/plain tránh CORS preflight với Google Apps Script
-        headers: { 'Content-Type': 'text/plain' },
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify(payload),
-        redirect: 'follow',
+        mode: 'no-cors',
       });
-      const result = await res.json();
-      if (result.result === 'success') {
-        setFormStatus('success');
-        setFormMessage(result.message || 'Đăng ký thành công!');
-        setFormData({ Ho_Ten: '', Ngay_Sinh: '', Email: '', So_Dien_Thoai: '', Don_Vi: '', Chuc_Vu: '', Noi_Dung_Tham_Du: '' });
-        formOpenTimeRef.current = Date.now();
-      } else {
-        setFormStatus('error');
-        setFormMessage(result.message || 'Có lỗi xảy ra, vui lòng thử lại!');
-      }
+      // fetch không throw = request đã gửi thành công đến server
+      setFormStatus('success');
+      setFormMessage('Đăng ký thành công! Ban Tổ chức sẽ xác nhận qua email của bạn.');
+      setFormData({ Ho_Ten: '', Ngay_Sinh: '', Email: '', So_Dien_Thoai: '', Don_Vi: '', Chuc_Vu: '', Noi_Dung_Tham_Du: '' });
+      formOpenTimeRef.current = Date.now();
     } catch {
       setFormStatus('error');
-      setFormMessage('Lỗi kết nối, vui lòng thử lại sau!');
+      setFormMessage('Lỗi kết nối, vui lòng kiểm tra mạng và thử lại!');
     }
   };
 
