@@ -26,12 +26,7 @@ export default function App() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setFormStatus('loading');
-    const url = import.meta.env.VITE_GOOGLE_SHEET_URL;
-    if (!url || url.includes('YOUR_SCRIPT_ID')) {
-      setFormStatus('error');
-      setFormMessage('Chưa cấu hình URL Google Apps Script!');
-      return;
-    }
+    const url = 'https://script.google.com/macros/s/AKfycbz8BJ4yoH2GKvkyG4RAByiZBlHhCe_ymQk4na9qqqaJyv8cniRmNAEsqoUiy1EbZ403/exec';
     const payload = {
       ...formData,
       _timestamp: Date.now(),
