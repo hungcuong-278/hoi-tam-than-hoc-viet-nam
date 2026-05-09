@@ -37,7 +37,7 @@ export default function App() {
       await new Promise(resolve => setTimeout(resolve, APPS_SCRIPT_MIN_FILL_MS - elapsed));
     }
 
-    const url = 'https://script.google.com/macros/s/AKfycbxHFSa2ssS5qA5iFAp9byTjuxhjvUMd7-2aJmLb5ozhdDXJ64f-LeMh8F45NxkIqzo/exec';
+    const url = 'https://script.google.com/macros/s/AKfycbydpSsNRDhCtQxoBPU5s4rzfMP4O6r3MAO8t6XB1NVERzsNW8ZHaS9IakztlPGmkR0W/exec';
     const payload = {
       ...formData,
       _timestamp: Date.now(),
