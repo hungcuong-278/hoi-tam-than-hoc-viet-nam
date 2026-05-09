@@ -45,12 +45,10 @@ export default function App() {
       _timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
     };
     try {
-      // Google Apps Script redirects → must use no-cors; response body is unreadable.
       await fetch(url, {
         method: 'POST',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify(payload),
         mode: 'no-cors',
+        body: JSON.stringify(payload),
       });
       setFormStatus('success');
       setFormMessage('Đăng ký thành công! Ban Tổ chức sẽ xác nhận qua email của bạn.');
