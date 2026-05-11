@@ -302,12 +302,12 @@ export default function App() {
 
             {/* Hall sub-tabs — cấp 2, chỉ hiện cho Ngày 31 */}
             {selectedDay === "Ngày 31/5/2026" && (
-              <div className="flex gap-2 overflow-x-auto pb-2 mb-8 scrollbar-hide -mx-6 px-6">
+              <div className="flex flex-wrap gap-2 justify-center mb-8">
                 {["Phiên toàn thể","Hội trường Hồng Quảng","Hội trường Yên Trung","Hội trường Đồng Sơn","Hội trường Yên Đức 1","Hội trường Yên Đức 2","Hội trường Yên Đức 3","Hội trường Thanh Lân 1","Hội trường Thanh Lân 2","Hội trường Kim Quy"].map(hall => (
                   <button
                     key={hall}
                     onClick={() => { setSelectedHall(hall); setExpandedSessionId(null); }}
-                    className={`px-4 py-2 border rounded-full text-[13px] font-medium transition-all whitespace-nowrap shrink-0 ${
+                    className={`px-4 py-2 border rounded-full text-[13px] font-medium transition-all ${
                       selectedHall === hall
                         ? 'bg-[#3D7F61] text-white border-[#3D7F61]'
                         : 'bg-white text-[#3D7F61] border-[#C5D9CE] hover:bg-[#F0F4F2]'
@@ -418,7 +418,7 @@ export default function App() {
                 <p className="text-center text-[12px] uppercase tracking-[0.2em] text-[#4A6B5A] font-geist font-semibold mb-5">
                   Chuyển sang hội trường khác
                 </p>
-                <div className="flex gap-2 overflow-x-auto pb-2 -mx-6 px-6 scrollbar-hide">
+                <div className="flex flex-wrap gap-2 justify-center">
                   {["Phiên toàn thể","Hội trường Hồng Quảng","Hội trường Yên Trung","Hội trường Đồng Sơn","Hội trường Yên Đức 1","Hội trường Yên Đức 2","Hội trường Yên Đức 3","Hội trường Thanh Lân 1","Hội trường Thanh Lân 2","Hội trường Kim Quy"].map(hall => (
                     <button
                       key={hall}
@@ -427,7 +427,7 @@ export default function App() {
                         setExpandedSessionId(null);
                         document.getElementById('lich-trinh')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                       }}
-                      className={`px-4 py-2 border rounded-full text-[13px] font-medium transition-all whitespace-nowrap shrink-0 ${
+                      className={`px-4 py-2 border rounded-full text-[13px] font-medium transition-all ${
                         selectedHall === hall
                           ? 'bg-[#3D7F61] text-white border-[#3D7F61]'
                           : 'bg-white text-[#3D7F61] border-[#C5D9CE] hover:bg-[#F0F4F2]'
