@@ -107,3 +107,128 @@ body {
     font-size: 11px;
   }
 }
+
+/* ===== MOBILE: OVERVIEW TABLE — SCROLLABLE COMPACT GRID ===== */
+@media (max-width: 640px) {
+  .session-overview-table {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .session-overview-table table {
+    min-width: 500px !important;
+    font-size: 11px;
+  }
+  .session-overview-table td,
+  .session-overview-table th {
+    padding: 0.4rem 0.5rem;
+    word-break: break-word;
+    white-space: normal !important;
+  }
+}
+
+/* ===== MOBILE: HALL SESSION TABLE — CARD LAYOUT ===== */
+@media (max-width: 640px) {
+  .session-hall-table table,
+  .session-hall-table tbody,
+  .session-hall-table colgroup {
+    display: block !important;
+    min-width: unset !important;
+    width: 100% !important;
+    border: none !important;
+  }
+  .session-hall-table col { display: none; }
+
+  /* Hide title row and header row */
+  .session-hall-table tbody tr:first-child,
+  .session-hall-table tbody tr:nth-child(2) {
+    display: none !important;
+  }
+
+  /* Each row is a card entry */
+  .session-hall-table tbody tr {
+    display: block !important;
+    padding: 10px 0 !important;
+    border: none !important;
+    border-bottom: 1px solid #E5EBE8 !important;
+    background: transparent !important;
+  }
+  .session-hall-table tbody tr:last-child {
+    border-bottom: none !important;
+  }
+
+  /* All cells: block, no borders */
+  .session-hall-table tbody td {
+    display: block !important;
+    border: none !important;
+    padding: 0 0 2px !important;
+    white-space: normal !important;
+    word-break: break-word;
+  }
+
+  /* Col 1 — Time: green bold */
+  .session-hall-table tbody td:not([colspan]):first-child {
+    color: #0D6E3D;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.02em;
+    margin-bottom: 2px;
+  }
+  .session-hall-table tbody td:not([colspan]):first-child:empty {
+    display: none !important;
+  }
+
+  /* Col 2 — Content: dark bold */
+  .session-hall-table tbody td:not([colspan]):nth-child(2) {
+    font-weight: 600;
+    font-size: 13px;
+    color: #0D3C1F;
+    line-height: 1.45;
+  }
+  .session-hall-table tbody td:not([colspan]):nth-child(2) p {
+    margin: 0;
+    line-height: 1.45;
+  }
+
+  /* Col 3 — Reporter */
+  .session-hall-table tbody td:not([colspan]):nth-child(3) {
+    font-size: 12px;
+    line-height: 1.4;
+    margin-top: 1px;
+  }
+  .session-hall-table tbody td:not([colspan]):nth-child(3) > p:first-child {
+    color: #0D6E3D;
+    font-weight: 600;
+    margin: 0;
+  }
+  .session-hall-table tbody td:not([colspan]):nth-child(3) > p:nth-child(2) {
+    color: #6B7280;
+    font-style: italic;
+    margin: 0;
+  }
+  .session-hall-table tbody td:not([colspan]):nth-child(3):empty {
+    display: none !important;
+  }
+
+  /* Section header rows (e.g. date separators in Ngày 29-30) */
+  .session-hall-table tbody td[colspan="3"] {
+    font-weight: 700 !important;
+    font-size: 12px !important;
+    color: #0D3C1F !important;
+    background: #EEF4F1 !important;
+    padding: 6px 10px !important;
+    border-radius: 4px !important;
+    white-space: normal !important;
+  }
+  .session-hall-table tbody td[colspan="3"] p {
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  /* Colspan=2 rows (e.g. Tiệc chiêu đãi with merged content+reporter) */
+  .session-hall-table tbody td[colspan="2"] {
+    font-size: 13px;
+    color: #0D3C1F;
+    line-height: 1.4;
+  }
+  .session-hall-table tbody td[colspan="2"] p { margin: 0; }
+}

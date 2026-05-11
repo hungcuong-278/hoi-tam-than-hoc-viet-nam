@@ -375,7 +375,10 @@ export default function App() {
                               ))}
                             </div>
                           )}
-                          <div dangerouslySetInnerHTML={{ __html: session.html }} className="custom-table-styles" />
+                          <div
+                            dangerouslySetInnerHTML={{ __html: session.html }}
+                            className={`custom-table-styles ${session.daySection === 'Tổng quan' ? 'session-overview-table' : 'session-hall-table'}`}
+                          />
                         </div>
                       )}
                     </div>
