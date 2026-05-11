@@ -168,7 +168,8 @@ TS. Trịnh Thị Bích Huyền; TS. Phạm Thị Thu Hiền; TS. Trịnh Thanh 
 <tr class="even">
 <td>08h30-08h40</td>
 <td>Tổng quan các mô hình chăm sóc sức khỏe tâm thần: góc nhìn từ thực tế tại Việt Nam</td>
-<td>PGS.TS Nguyễn Văn Tuấn - Chủ tịch Hội TTHVN</td>
+<td><p>PGS.TS. Nguyễn Văn Tuấn</p>
+<p>Chủ tịch Hội Tâm thần học Việt Nam</p></td>
 </tr>
 <tr class="odd">
 <td>08h40-08h50</td>
