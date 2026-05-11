@@ -84,6 +84,6 @@ body {
 .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 
-.custom-table-styles table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+.custom-table-styles table { width: 100%; min-width: 540px; border-collapse: collapse; margin-top: 1rem; }
 .custom-table-styles th, .custom-table-styles td { border: 1px solid #E5EBE8; padding: 0.75rem; text-align: left; }
 .custom-table-styles tr:nth-child(even) { background-color: #F0F4F2; }
