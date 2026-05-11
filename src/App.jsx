@@ -158,7 +158,7 @@ export default function App() {
           <nav className="hidden gap-x-4 md:flex">
             <a href="#gioi-thieu" className="text-sm font-normal text-gray-500 hover:text-gray-900 transition-colors">{isVi ? 'Giới thiệu' : 'About'}</a>
             <a href="#timeline" className="text-sm font-normal text-gray-500 hover:text-gray-900 transition-colors">{isVi ? 'Sự kiện' : 'Timeline'}</a>
-            <a href="#dai-bieu" className="text-sm font-normal text-gray-500 hover:text-gray-900 transition-colors">{isVi ? 'Đại biểu' : 'Delegates'}</a>
+            <a href="#tai-tro" className="text-sm font-normal text-gray-500 hover:text-gray-900 transition-colors">{isVi ? 'Nhà tài trợ' : 'Sponsors'}</a>
             <a href="#dang-ky" className="text-sm font-normal text-gray-500 hover:text-gray-900 transition-colors">{isVi ? 'Đăng ký' : 'Register'}</a>
             <a href="#lien-he" className="text-sm font-normal text-gray-500 hover:text-gray-900 transition-colors">{isVi ? 'Liên hệ' : 'Contact'}</a>
           </nav>
@@ -304,92 +304,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* Bento Grid Section */}
-      <section className="w-full bg-white py-24 md:py-[100px] px-6 flex justify-center relative z-20">
-        <div className="max-w-[1200px] w-full flex flex-col items-center">
-          <h2 className="text-3xl md:text-5xl font-semibold text-[#0D3C1F] text-center max-w-3xl tracking-tight leading-tight reveal-up delay-100" style={{ fontFamily: '"Playfair Display", serif' }}>
-            Các chỉ số nổi bật trong công tác chuyên môn và đào tạo.
-          </h2>
-
-          <div className="mt-16 w-full grid grid-cols-1 md:grid-cols-12 gap-4 auto-rows-[auto]">
-            {/* Tile 1 */}
-            <div className="md:col-span-5 md:row-span-2 bg-[#0D3C1F] rounded-2xl p-8 flex flex-col relative overflow-hidden reveal-up delay-100 min-h-[400px]">
-              <div className="absolute top-0 right-0 w-full h-1/2 bg-gradient-to-b from-transparent to-[#0D3C1F] z-10 pointer-events-none"></div>
-              <div className="absolute -top-10 -right-10 w-64 h-64 bg-[#3D7F61]/20 blur-3xl rounded-full"></div>
-              
-              <div className="absolute top-8 right-8 w-40 h-32 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 shadow-lg flex items-center justify-center transform rotate-6 z-0">
-                <iconify-icon icon="solar:inbox-linear" width="48" height="48" className="text-[#FAF9F6] opacity-30 -rotate-6"></iconify-icon>
-              </div>
-              <div className="absolute top-16 right-24 w-24 h-20 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 shadow-inner flex items-center justify-center transform -rotate-3 z-0">
-                <iconify-icon icon="solar:letter-linear" width="32" height="32" className="text-[#3D7F61] opacity-50 rotate-3"></iconify-icon>
-              </div>
-
-              <div className="mt-auto relative z-20 flex flex-col gap-2 pt-32">
-                <div className="text-[72px] leading-none text-[#F69066] font-semibold" style={{ fontFamily: '"Playfair Display", serif' }}>
-                  28%
-                </div>
-                <p className="text-[16px] text-[#FAF9F6] font-geist leading-relaxed">
-                  bác sĩ tham dự đánh giá cao chất lượng chương trình khoa học.
-                </p>
-                <p className="text-[12px] text-[#3D7F61] font-geist italic mt-2">
-                  Tổng hợp khảo sát hội nghị gần đây
-                </p>
-              </div>
-            </div>
-
-            {/* Tile 2 */}
-            <div className="md:col-span-4 bg-[#F5F5F3] rounded-2xl p-8 flex flex-col justify-between reveal-up delay-200 min-h-[220px]">
-              <div className="text-[56px] leading-tight text-[#0D3C1F] font-semibold" style={{ fontFamily: '"Playfair Display", serif' }}>
-                72%
-              </div>
-              <div className="mt-4">
-                <p className="text-[15px] text-[#4A6B5A] font-geist leading-snug mb-2">
-                  đại biểu mong muốn tiếp tục mở rộng các phiên thảo luận lâm sàng.
-                </p>
-                <p className="text-[11px] text-[#8A9E92] font-geist italic">
-                  Báo cáo hoạt động thường niên
-                </p>
-              </div>
-            </div>
-
-            {/* Tile 3 */}
-            <div className="md:col-span-3 bg-[#3D7F61] rounded-2xl p-8 flex flex-col relative overflow-hidden reveal-up delay-300 min-h-[220px]">
-              <iconify-icon icon="solar:shield-check-linear" width="24" height="24" className="absolute top-6 right-6 text-white opacity-80"></iconify-icon>
-              <div className="mt-auto">
-                <h3 className="text-[22px] leading-tight text-white font-semibold mb-2" style={{ fontFamily: '"Playfair Display", serif' }}>
-                  Đào tạo liên tục.<br />Kết nối toàn quốc.
-                </h3>
-                <p className="text-[14px] text-[#D4E8DC] font-geist leading-snug">
-                  Ưu tiên thực hành lâm sàng và giá trị cộng đồng.
-                </p>
-              </div>
-            </div>
-
-            {/* Tile 4 */}
-            <div className="md:col-span-4 bg-[#F5F5F3] rounded-2xl p-8 flex flex-col justify-between reveal-up delay-200 min-h-[220px]">
-              <div className="text-[56px] leading-tight text-[#0D3C1F] font-semibold" style={{ fontFamily: '"Playfair Display", serif' }}>
-                121
-              </div>
-              <div className="mt-4">
-                <p className="text-[14px] text-[#4A6B5A] font-geist leading-snug">
-                  chủ đề chuyên sâu được đề xuất cho năm tới.
-                </p>
-              </div>
-            </div>
-
-            {/* Tile 5 */}
-            <div className="md:col-span-3 bg-[#0D3C1F] rounded-2xl p-8 flex flex-col justify-end reveal-up delay-300 min-h-[220px]">
-              <h3 className="text-[20px] leading-tight text-[#FAF9F6] font-semibold mb-2" style={{ fontFamily: '"Playfair Display", serif' }}>
-                Hội phát triển cùng mạng lưới chuyên gia.
-              </h3>
-              <p className="text-[14px] text-[#8ABF9E] font-geist leading-snug">
-                Tăng cường hợp tác giữa bệnh viện, trường học và hội nghề nghiệp.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Ways to Work Section */}
       <section className="w-full bg-white py-24 md:py-[100px] px-6 flex justify-center relative z-20" id="timeline">
         <div className="max-w-[1200px] w-full flex flex-col items-center">
@@ -470,15 +384,15 @@ export default function App() {
             {/* Small Tiles */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
               <div className="bg-[#F5F5F3] rounded-[16px] p-8 flex flex-col reveal-up delay-200 hover:-translate-y-1 transition-transform duration-300">
-                <div className="text-[11px] uppercase tracking-[0.15em] text-[#8A9E92] font-geist font-medium mb-4">ĐẠI BIỂU</div>
+                <div className="text-[11px] uppercase tracking-[0.15em] text-[#8A9E92] font-geist font-medium mb-4">NHÀ TÀI TRỢ</div>
                 <h3 className="text-[22px] font-semibold text-[#0D3C1F] leading-tight mb-3" style={{ fontFamily: '"Playfair Display", serif' }}>
-                  Giới thiệu chủ tọa và báo cáo viên.
+                  Các đối tác đồng hành hội nghị.
                 </h3>
                 <p className="text-[14px] text-[#4A6B5A] font-geist leading-[1.6] mb-8 grow">
-                  Cung cấp hồ sơ tóm tắt, ảnh đại diện và thông tin chuyên môn của từng chuyên gia để người tham dự dễ theo dõi.
+                  Hội nghị được đồng hành bởi các đối tác uy tín trong lĩnh vực y tế, dược phẩm và công nghệ y tế trên toàn quốc.
                 </p>
-                <a href="#dai-bieu" className="mt-auto self-start text-[13px] text-[#3D7F61] font-geist hover:underline flex items-center gap-1 transition-all">
-                  {isVi ? 'Xem danh sách đại biểu' : 'See delegates'} <span className="text-base leading-none">→</span>
+                <a href="#tai-tro" className="mt-auto self-start text-[13px] text-[#3D7F61] font-geist hover:underline flex items-center gap-1 transition-all">
+                  {isVi ? 'Xem danh sách nhà tài trợ' : 'See sponsors'} <span className="text-base leading-none">→</span>
                 </a>
               </div>
 
@@ -619,50 +533,116 @@ export default function App() {
         </div>
       </section>
 
-      {/* Delegates Section */}
-      <section className="w-full bg-white py-24 md:py-[100px] px-6 flex justify-center relative z-20" id="dai-bieu">
+      {/* Sponsors Section */}
+      <section className="w-full bg-white py-24 md:py-[100px] px-6 flex justify-center relative z-20" id="tai-tro">
         <div className="max-w-[1100px] w-full flex flex-col items-center">
           <h2 className="text-3xl md:text-5xl font-semibold text-[#0D3C1F] text-center max-w-3xl tracking-tight leading-tight reveal-up" style={{ fontFamily: '"Playfair Display", serif' }}>
-            {isVi ? 'Đại biểu tham dự' : 'Delegates'}
+            {isVi ? 'Nhà tài trợ' : 'Sponsors'}
           </h2>
           <p className="mt-6 text-[16px] text-[#4A6B5A] text-center max-w-[640px] leading-relaxed font-geist reveal-up delay-100">
             {isVi
-              ? 'Danh sách dự kiến các chủ tọa, báo cáo viên và đại biểu khách mời của Hội Tâm Thần Học Việt Nam.'
-              : 'Planned list of chairs, speakers, and invited delegates of the Vietnam Psychiatric Association.'}
+              ? 'Hội nghị được đồng hành bởi các đối tác chiến lược trong lĩnh vực y tế, dược phẩm và công nghệ y tế.'
+              : 'The conference is supported by strategic partners in healthcare, pharmaceuticals, and medical technology.'}
           </p>
 
-          <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
-            {[
-              {
-                name: isVi ? 'PGS.TS. Nguyễn Minh Hoàng' : 'Assoc. Prof. Dr. Nguyen Minh Hoang',
-                role: isVi ? 'Chủ tọa' : 'Chair',
-                org: isVi ? 'Bệnh viện Tâm thần Trung ương I' : 'National Institute of Mental Health',
-                image: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=800&q=80'
-              },
-              {
-                name: isVi ? 'TS.BS. Lê Thu Hà' : 'Dr. Le Thu Ha',
-                role: isVi ? 'Báo cáo viên' : 'Speaker',
-                org: isVi ? 'Đại học Y Hà Nội' : 'Hanoi Medical University',
-                image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=800&q=80'
-              },
-              {
-                name: isVi ? 'ThS.BS. Trần Quang Vinh' : 'MSc. Dr. Tran Quang Vinh',
-                role: isVi ? 'Đại biểu khách mời' : 'Invited delegate',
-                org: isVi ? 'Bệnh viện Chợ Rẫy' : 'Cho Ray Hospital',
-                image: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=800&q=80'
-              }
-            ].map((person, index) => (
-              <article key={index} className="bg-[#F5F5F3] rounded-[16px] p-7 reveal-up delay-200 hover:-translate-y-1 transition-transform duration-300">
-                <div className="w-full aspect-[4/3] rounded-xl overflow-hidden bg-gray-200 mb-4">
-                  <img src={person.image} alt={person.name} className="w-full h-full object-cover" />
+          {/* Kim cương — 2 */}
+          <div className="mt-16 w-full reveal-up delay-100">
+            <div className="flex items-center gap-4 mb-8">
+              <div className="h-px flex-1 bg-[#E5EBE8]"></div>
+              <span className="text-[11px] uppercase tracking-[0.25em] text-[#B8980A] font-geist font-semibold px-2">Kim cương</span>
+              <div className="h-px flex-1 bg-[#E5EBE8]"></div>
+            </div>
+            <div className="flex flex-wrap justify-center gap-6">
+              {[
+                { src: '/logo-egis.png', alt: 'EGIS' },
+                { src: '/logo-eisai.png', alt: 'Eisai' },
+              ].map((logo) => (
+                <div key={logo.alt} className="h-28 w-72 rounded-2xl bg-white border-2 border-[#E8D48A] flex items-center justify-center hover:-translate-y-1 transition-transform duration-300 shadow-[0_4px_16px_rgba(184,152,10,0.08)] p-6">
+                  <img src={logo.src} alt={logo.alt} className="max-h-full max-w-full object-contain" />
                 </div>
-                <p className="text-[11px] uppercase tracking-[0.12em] text-[#8A9E92] font-geist font-medium">{person.role}</p>
-                <h3 className="mt-2 text-[22px] font-semibold text-[#0D3C1F] tracking-tight" style={{ fontFamily: '"Playfair Display", serif' }}>
-                  {person.name}
-                </h3>
-                <p className="mt-3 text-[14px] text-[#4A6B5A] font-geist leading-[1.7]">{person.org}</p>
-              </article>
-            ))}
+              ))}
+            </div>
+          </div>
+
+          {/* Vàng — 1 */}
+          <div className="mt-12 w-full reveal-up delay-150">
+            <div className="flex items-center gap-4 mb-8">
+              <div className="h-px flex-1 bg-[#E5EBE8]"></div>
+              <span className="text-[11px] uppercase tracking-[0.25em] text-[#C0880A] font-geist font-semibold px-2">Vàng</span>
+              <div className="h-px flex-1 bg-[#E5EBE8]"></div>
+            </div>
+            <div className="flex justify-center">
+              <div className="h-24 w-64 rounded-2xl bg-white border border-[#E8D48A] flex items-center justify-center hover:-translate-y-1 transition-transform duration-300 p-5">
+                <img src="/logo-gigamed.png" alt="Gigamed" className="max-h-full max-w-full object-contain" />
+              </div>
+            </div>
+          </div>
+
+          {/* Bạc — 1 */}
+          <div className="mt-12 w-full reveal-up delay-200">
+            <div className="flex items-center gap-4 mb-8">
+              <div className="h-px flex-1 bg-[#E5EBE8]"></div>
+              <span className="text-[11px] uppercase tracking-[0.25em] text-[#8A9E92] font-geist font-semibold px-2">Bạc</span>
+              <div className="h-px flex-1 bg-[#E5EBE8]"></div>
+            </div>
+            <div className="flex justify-center">
+              <div className="h-20 w-64 rounded-2xl bg-white border border-[#C8CDD0] flex items-center justify-center hover:-translate-y-1 transition-transform duration-300 p-4">
+                <img src="/logo-hoang-duc.png" alt="Hoàng Đức" className="max-h-full max-w-full object-contain" />
+              </div>
+            </div>
+          </div>
+
+          {/* Đồng — 12 */}
+          <div className="mt-12 w-full reveal-up delay-200">
+            <div className="flex items-center gap-4 mb-8">
+              <div className="h-px flex-1 bg-[#E5EBE8]"></div>
+              <span className="text-[11px] uppercase tracking-[0.25em] text-[#A0724A] font-geist font-semibold px-2">Đồng</span>
+              <div className="h-px flex-1 bg-[#E5EBE8]"></div>
+            </div>
+            <div className="flex flex-wrap justify-center gap-4">
+              {[
+                { src: '/logo-hyphens.png',        alt: 'Hyphens' },
+                { src: '/logo-viatris.png',         alt: 'Viatris' },
+                { src: '/logo-gedeon-richter.png',  alt: 'Gedeon Richter' },
+                { src: '/logo-watson.png',          alt: 'Watson & Company' },
+                { src: '/logo-vietcare.png',        alt: 'Vietcare Solutions' },
+                { src: '/logo-biocodex.png',        alt: 'Biocodex' },
+                { src: '/logo-ever-pharma.png',     alt: 'Ever Pharma' },
+                { src: '/logo-torrent.png',         alt: 'Torrent Pharma' },
+                { src: '/logo-novartis.png',        alt: 'Novartis' },
+                { src: '/logo-abbott.png',          alt: 'Abbott' },
+                { src: '/logo-y-med.png',           alt: 'Y-Med' },
+                { src: '/logo-golden-gate.png',     alt: 'Golden Gate' },
+              ].map((logo) => (
+                <div key={logo.alt} className="h-16 w-40 rounded-xl bg-white border border-[#E8CEBB] flex items-center justify-center hover:-translate-y-0.5 transition-transform duration-300 p-3">
+                  <img src={logo.src} alt={logo.alt} className="max-h-full max-w-full object-contain" />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Đồng tài trợ — 7 */}
+          <div className="mt-12 w-full reveal-up delay-300">
+            <div className="flex items-center gap-4 mb-8">
+              <div className="h-px flex-1 bg-[#E5EBE8]"></div>
+              <span className="text-[11px] uppercase tracking-[0.25em] text-[#8A9E92] font-geist font-semibold px-2">Đồng tài trợ</span>
+              <div className="h-px flex-1 bg-[#E5EBE8]"></div>
+            </div>
+            <div className="flex flex-wrap justify-center gap-3">
+              {[
+                { src: '/logo-mosneuro.png',       alt: 'Mosneuro' },
+                { src: '/logo-danapha.png',        alt: 'Danapha' },
+                { src: '/logo-qdu-pharma.png',     alt: 'QDu Pharma' },
+                { src: '/logo-davipharm.png',      alt: 'Davipharm' },
+                { src: '/logo-nhat-viet.png',      alt: 'Nhật Việt' },
+                { src: '/logo-pharma-science.png', alt: 'Pharma Science' },
+                { src: '/logo-famed.png',          alt: 'Famed' },
+              ].map((logo) => (
+                <div key={logo.alt} className="h-14 w-36 rounded-xl bg-white border border-[#E5EBE8] flex items-center justify-center hover:-translate-y-0.5 transition-transform duration-300 p-2.5">
+                  <img src={logo.src} alt={logo.alt} className="max-h-full max-w-full object-contain" />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
