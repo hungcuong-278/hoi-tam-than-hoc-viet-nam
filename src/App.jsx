@@ -2,12 +2,30 @@ import React, { useEffect, useRef, useState } from 'react';
 import { structuredTimeline } from './data/timelineStructured';
 
 export default function App() {
-  const wordRef = useRef(null);
   const [language, setLanguage] = useState('vi');
   const isVi = language === 'vi';
   const [selectedDay, setSelectedDay] = useState("Ngày 31/5/2026");
   const [selectedHall, setSelectedHall] = useState("Phiên toàn thể");
   const [expandedSessionId, setExpandedSessionId] = useState(null);
+
+  // Countdown to May 29 2026 08:00 Vietnam time (UTC+7)
+  const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  useEffect(() => {
+    const target = new Date('2026-05-29T08:00:00+07:00').getTime();
+    const tick = () => {
+      const diff = target - Date.now();
+      if (diff <= 0) { setCountdown({ days: 0, hours: 0, minutes: 0, seconds: 0 }); return; }
+      setCountdown({
+        days:    Math.floor(diff / 86400000),
+        hours:   Math.floor((diff % 86400000) / 3600000),
+        minutes: Math.floor((diff % 3600000) / 60000),
+        seconds: Math.floor((diff % 60000) / 1000),
+      });
+    };
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, []);
 
   // --- Registration form ---
   // Tracks when the form section became visible — used to calculate _fillTime for bot detection.
@@ -86,64 +104,13 @@ export default function App() {
     return () => observer.disconnect();
   }, []);
 
-  // Setup typing effect
-  useEffect(() => {
-    const words = isVi
-      ? ['khoa học.', 'kết nối.', 'chia sẻ.', 'đồng hành.', 'lan tỏa.', 'phát triển.']
-      : ['science.', 'connection.', 'sharing.', 'collaboration.', 'impact.', 'growth.'];
-    let currentWordIndex = 0;
-    let currentText = '';
-    let isDeleting = false;
-    const wordElement = wordRef.current;
-    
-    if (!wordElement) return;
-    
-    let timeoutId;
-
-    function type() {
-      const fullWord = words[currentWordIndex];
-      
-      if (isDeleting) {
-        currentText = fullWord.substring(0, currentText.length - 1);
-      } else {
-        currentText = fullWord.substring(0, currentText.length + 1);
-      }
-      
-      wordElement.textContent = currentText;
-      let typeSpeed = 80;
-      if (isDeleting) typeSpeed /= 2;
-
-      if (!isDeleting && currentText === fullWord) {
-        if (currentWordIndex === words.length - 1) {
-          timeoutId = setTimeout(() => {
-            if (wordElement) {
-              wordElement.classList.remove('animate-blink');
-              wordElement.style.borderRight = 'none';
-            }
-          }, 3000);
-          return;
-        }
-        typeSpeed = 1500;
-        isDeleting = true;
-      } else if (isDeleting && currentText === '') {
-        isDeleting = false;
-        currentWordIndex++;
-        typeSpeed = 500;
-      }
-      
-      timeoutId = setTimeout(type, typeSpeed);
-    }
-
-    wordElement.textContent = '';
-    timeoutId = setTimeout(type, 1000);
-
-    return () => clearTimeout(timeoutId);
-  }, [isVi]);
 
   return (
     <div className="antialiased min-h-screen flex flex-col items-center selection:bg-gray-100 text-gray-900 relative">
       {/* Intro Background */}
-      <div className="absolute top-0 left-0 w-full h-screen -z-10 bg-cover bg-center bg-[url('https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/169cdb38-2656-4555-bec1-d1acc64bb6fa_3840w.png')] animate-bg-intro"></div>
+      <div className="absolute top-0 left-0 w-full h-screen -z-10 bg-cover bg-center bg-[url('/anh-vinh-ha-long-2.png')] animate-bg-intro">
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/45 to-black/25"></div>
+      </div>
 
       <div className="w-full max-w-7xl flex flex-col relative min-h-screen" id="gioi-thieu">
         {/* Header */}
@@ -156,30 +123,30 @@ export default function App() {
             />
           </a>
           <nav className="hidden gap-x-4 md:flex">
-            <a href="#gioi-thieu" className="text-sm font-normal text-gray-500 hover:text-gray-900 transition-colors">{isVi ? 'Giới thiệu' : 'About'}</a>
-            <a href="#timeline" className="text-sm font-normal text-gray-500 hover:text-gray-900 transition-colors">{isVi ? 'Sự kiện' : 'Timeline'}</a>
-            <a href="#tai-tro" className="text-sm font-normal text-gray-500 hover:text-gray-900 transition-colors">{isVi ? 'Nhà tài trợ' : 'Sponsors'}</a>
-            <a href="#dang-ky" className="text-sm font-normal text-gray-500 hover:text-gray-900 transition-colors">{isVi ? 'Đăng ký' : 'Register'}</a>
-            <a href="#lien-he" className="text-sm font-normal text-gray-500 hover:text-gray-900 transition-colors">{isVi ? 'Liên hệ' : 'Contact'}</a>
+            <a href="#gioi-thieu" className="text-sm font-medium text-white/80 hover:text-white transition-colors drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">{isVi ? 'Giới thiệu' : 'About'}</a>
+            <a href="#timeline" className="text-sm font-medium text-white/80 hover:text-white transition-colors drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">{isVi ? 'Sự kiện' : 'Timeline'}</a>
+            <a href="#tai-tro" className="text-sm font-medium text-white/80 hover:text-white transition-colors drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">{isVi ? 'Nhà tài trợ' : 'Sponsors'}</a>
+            <a href="#dang-ky" className="text-sm font-medium text-white/80 hover:text-white transition-colors drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">{isVi ? 'Đăng ký' : 'Register'}</a>
+            <a href="#lien-he" className="text-sm font-medium text-white/80 hover:text-white transition-colors drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">{isVi ? 'Liên hệ' : 'Contact'}</a>
           </nav>
           <div className="flex items-center gap-6">
-            <div className="hidden sm:flex items-center gap-1 rounded border border-gray-200 p-1">
+            <div className="hidden sm:flex items-center gap-1 rounded border border-white/30 p-1">
               <button
                 type="button"
                 onClick={() => setLanguage('vi')}
-                className={`px-2 py-1 text-[10px] tracking-wider rounded ${isVi ? 'bg-[#0D3C1F] text-white' : 'text-gray-600'}`}
+                className={`px-2 py-1 text-[10px] tracking-wider rounded ${isVi ? 'bg-white text-[#0D3C1F] font-semibold' : 'text-white/70'}`}
               >
                 VN
               </button>
               <button
                 type="button"
                 onClick={() => setLanguage('en')}
-                className={`px-2 py-1 text-[10px] tracking-wider rounded ${!isVi ? 'bg-[#0D3C1F] text-white' : 'text-gray-600'}`}
+                className={`px-2 py-1 text-[10px] tracking-wider rounded ${!isVi ? 'bg-white text-[#0D3C1F] font-semibold' : 'text-white/70'}`}
               >
                 EN
               </button>
             </div>
-            <button type="button" className="text-xs tracking-widest font-normal text-gray-500 hover:text-gray-900 uppercase transition-colors hidden sm:block">
+            <button type="button" className="text-xs tracking-widest font-medium text-white/70 hover:text-white uppercase transition-colors hidden sm:block drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">
               {isVi ? 'Đăng nhập' : 'Log in'}
             </button>
             <a href="#dang-ky" className="inline-flex items-center justify-center text-white px-5 py-2.5 rounded text-xs font-medium tracking-[0.15em] uppercase transition-all shadow-[0_0_0_1px_rgba(0,0,0,0.05),0_2px_4px_rgba(0,0,0,0.1)] hover:opacity-90 bg-[#0D3C1F]">
@@ -189,225 +156,111 @@ export default function App() {
         </header>
 
         {/* Hero Section */}
-        <main className="flex-grow flex flex-col text-center pt-0 pr-6 pb-32 pl-6 items-center justify-center">
-          <h1 className="leading-[1.1] bg-clip-text md:text-7xl text-5xl font-semibold text-transparent tracking-tighter font-geist bg-gradient-to-b from-[#3D7F61] to-[#0D3C1F] max-w-4xl animate-title-intro" style={{ fontFamily: '"Playfair Display", serif' }}>
-            {isVi ? 'Hội Tâm Thần Học Việt Nam' : 'Vietnam Psychiatric Association'} <br className="hidden md:block"/>
-            <span className="inline-block border-r-4 border-[#0D3C1F] pr-1 animate-blink text-transparent bg-clip-text bg-gradient-to-b from-[#3D7F61] to-[#0D3C1F]" ref={wordRef}>
-              p
-            </span>
+        <main className="flex-grow flex flex-col text-center pt-0 px-6 pb-16 items-center justify-center gap-0">
+          {/* Title */}
+          <h1 className="text-white text-4xl md:text-6xl font-semibold tracking-tight leading-tight max-w-5xl animate-title-intro drop-shadow-[0_2px_16px_rgba(0,0,0,0.5)]" style={{ fontFamily: '"Playfair Display", serif' }}>
+            {isVi ? 'Hội Tâm Thần Học Việt Nam' : 'Vietnam Psychiatric Association'}
           </h1>
-          <p className="md:text-xl leading-relaxed text-lg font-normal text-gray-500 max-w-2xl mt-8 animate-subtitle-intro font-geist">
-            {isVi
-              ? 'SỨC KHỎE TÂM THẦN TRONG BỐI CẢNH MỚI'
-              : 'MENTAL HEALTH IN THE NEW CONTEXT'}
-          </p>
-          <div className="mt-14 animate-btn-intro">
-            <a href="#dang-ky" className="inline-flex items-center justify-center uppercase transition-all hover:opacity-90 text-xs font-medium text-white tracking-[0.15em] rounded pt-4 pr-8 pb-4 pl-8 shadow-[0_0_0_1px_rgba(0,0,0,0.05),0_2px_4px_rgba(0,0,0,0.1)]" style={{ backgroundColor: '#0D3C1F' }}>
+
+          {/* Subject */}
+          <div className="mt-7 animate-subtitle-intro">
+            <p className="text-[11px] uppercase tracking-[0.3em] text-white/60 font-geist mb-2">
+              {isVi ? 'Chủ đề' : 'Theme'}
+            </p>
+            <p className="text-lg md:text-2xl font-semibold text-white tracking-wide font-geist drop-shadow-[0_1px_8px_rgba(0,0,0,0.6)]">
+              {isVi ? 'Sức Khỏe Tâm Thần Trong Bối Cảnh Mới' : 'Mental Health In The New Context'}
+            </p>
+          </div>
+
+          {/* Date & Venue */}
+          <div className="mt-8 flex flex-col sm:flex-row items-center gap-3 animate-subtitle-intro">
+            <div className="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-xl px-5 py-3 border border-white/20">
+              <iconify-icon icon="solar:calendar-bold" width="18" height="18" className="text-white/80 shrink-0"></iconify-icon>
+              <div className="text-left">
+                <p className="text-[10px] uppercase tracking-[0.15em] text-white/50 font-geist">Thời gian</p>
+                <p className="text-sm font-semibold text-white font-geist">29 – 31 / 5 / 2026</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-xl px-5 py-3 border border-white/20">
+              <iconify-icon icon="solar:map-point-bold" width="18" height="18" className="text-white/80 shrink-0"></iconify-icon>
+              <div className="text-left">
+                <p className="text-[10px] uppercase tracking-[0.15em] text-white/50 font-geist">Địa điểm</p>
+                <p className="text-sm font-semibold text-white font-geist">Hạ Long, Quảng Ninh</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Register button */}
+          <div className="mt-8 animate-btn-intro">
+            <a href="#dang-ky" className="inline-flex items-center justify-center uppercase transition-all hover:opacity-90 text-xs font-medium text-white tracking-[0.15em] rounded px-8 py-4 shadow-[0_0_0_1px_rgba(255,255,255,0.2),0_4px_16px_rgba(0,0,0,0.3)] bg-[#0D3C1F] hover:bg-[#0D3C1F]/90">
               {isVi ? 'Đăng ký tham dự' : 'Register to attend'}
             </a>
+          </div>
+
+          {/* Countdown */}
+          <div className="mt-10 animate-btn-intro">
+            <p className="text-[10px] uppercase tracking-[0.25em] text-white/50 font-geist mb-4">
+              {isVi ? 'Hội nghị sẽ chính thức khai mạc sau' : 'Conference opens in'}
+            </p>
+            <div className="flex items-center gap-3">
+              {[
+                { value: countdown.days,    label: isVi ? 'Ngày' : 'Days' },
+                { value: countdown.hours,   label: isVi ? 'Giờ'  : 'Hours' },
+                { value: countdown.minutes, label: isVi ? 'Phút' : 'Min' },
+                { value: countdown.seconds, label: isVi ? 'Giây' : 'Sec' },
+              ].map((item, i) => (
+                <div key={i} className="flex flex-col items-center bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl px-4 py-3 min-w-[60px] md:min-w-[72px]">
+                  <span className="text-2xl md:text-3xl font-bold text-white font-geist tabular-nums">
+                    {String(item.value).padStart(2, '0')}
+                  </span>
+                  <span className="text-[9px] uppercase tracking-[0.12em] text-white/50 font-geist mt-1">{item.label}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </main>
       </div>
 
-      {/* Features Section */}
-      <section className="w-full bg-[#FAF9F6] py-24 md:py-32 px-6 flex justify-center relative z-20">
-        <div className="max-w-7xl w-full flex flex-col items-center">
-          <h2 className="text-3xl md:text-5xl font-semibold text-[#0D3C1F] text-center max-w-3xl tracking-tight leading-tight reveal-up" style={{ fontFamily: '"Playfair Display", serif' }}>
-            Đồng hành cùng cộng đồng chuyên môn sức khỏe tâm thần trên toàn quốc.
-          </h2>
-          <p className="mt-6 text-lg text-[#4A6B5A] text-center max-w-2xl leading-relaxed font-geist reveal-up delay-100">
-            Hội Tâm Thần Học Việt Nam hướng đến việc cập nhật kiến thức, kết nối học thuật và nâng cao chất lượng chăm sóc sức khỏe tâm thần thông qua các chương trình chuyên đề và hội nghị khoa học.
-          </p>
-
-          {/* Cards Grid */}
-          <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-6xl">
-            {/* Card 1 */}
-            <div className="bg-white rounded-2xl shadow-[0_4px_24px_rgba(13,60,31,0.06)] flex flex-col overflow-hidden max-w-sm mx-auto w-full reveal-up delay-100 transition-transform duration-500 hover:-translate-y-1">
-              <div className="h-72 w-full relative bg-gradient-to-br from-[#F5F8F6] to-[#EAEFEB] overflow-hidden flex items-center justify-center border-b border-gray-50">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_var(--tw-gradient-stops))] from-white/60 via-transparent to-transparent"></div>
-                <div className="absolute -bottom-12 -right-12 w-64 h-64 bg-white/80 blur-3xl rounded-full"></div>
-                <div className="relative z-10 flex items-center gap-5">
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-px bg-gradient-to-r from-transparent via-[#3D7F61]/20 to-transparent"></div>
-                  <div className="w-12 h-12 rounded-xl bg-white/40 backdrop-blur-md border border-white/60 shadow-sm flex items-center justify-center text-[#3D7F61] z-10">
-                    <iconify-icon icon="solar:letter-linear" width="20" height="20"></iconify-icon>
-                  </div>
-                  <div className="w-16 h-16 rounded-2xl bg-white/60 backdrop-blur-xl border border-white/80 shadow-md flex items-center justify-center text-[#0D3C1F] z-20 scale-110">
-                    <iconify-icon icon="solar:chat-round-line-linear" width="28" height="28"></iconify-icon>
-                  </div>
-                  <div className="w-12 h-12 rounded-xl bg-white/40 backdrop-blur-md border border-white/60 shadow-sm flex items-center justify-center text-[#3D7F61] z-10">
-                    <iconify-icon icon="solar:calendar-linear" width="20" height="20"></iconify-icon>
-                  </div>
-                </div>
-              </div>
-              <div className="p-8 flex flex-col gap-3 grow">
-                <h3 className="text-xl font-semibold text-[#0D3C1F] tracking-tight" style={{ fontFamily: '"Playfair Display", serif' }}>
-                  Lịch trình sự kiện rõ ràng và khoa học.
-                </h3>
-                <p className="text-base text-[#4A6B5A] leading-relaxed font-geist">
-                  Thông tin được sắp xếp theo từng khung giờ, giúp bác sĩ và đại biểu dễ dàng theo dõi và tham dự đầy đủ các phiên trọng tâm.
-                </p>
-              </div>
-            </div>
-
-            {/* Card 2 */}
-            <div className="bg-white rounded-2xl shadow-[0_4px_24px_rgba(13,60,31,0.06)] flex flex-col overflow-hidden max-w-sm mx-auto w-full reveal-up delay-200 transition-transform duration-500 hover:-translate-y-1">
-              <div className="h-72 w-full relative bg-gradient-to-bl from-[#F5F8F6] to-[#EAEFEB] overflow-hidden flex items-center justify-center border-b border-gray-50">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-white/60 via-transparent to-transparent"></div>
-                <div className="absolute -top-12 -left-12 w-64 h-64 bg-white/80 blur-3xl rounded-full"></div>
-                <div className="relative z-10 w-28 h-32 rounded-t-full rounded-b-2xl bg-white/50 backdrop-blur-xl border border-white/80 shadow-[0_8px_16px_rgba(13,60,31,0.04)] flex flex-col items-center justify-center">
-                  <iconify-icon icon="solar:shield-linear" width="40" height="40" className="text-[#0D3C1F] opacity-80 mb-2"></iconify-icon>
-                  <div className="flex gap-1 opacity-70">
-                    <iconify-icon icon="solar:star-bold" width="12" height="12" className="text-[#3D7F61]"></iconify-icon>
-                    <iconify-icon icon="solar:star-bold" width="12" height="12" className="text-[#3D7F61]"></iconify-icon>
-                    <iconify-icon icon="solar:star-bold" width="12" height="12" className="text-[#3D7F61]"></iconify-icon>
-                  </div>
-                </div>
-              </div>
-              <div className="p-8 flex flex-col gap-3 grow">
-                <h3 className="text-xl font-semibold text-[#0D3C1F] tracking-tight" style={{ fontFamily: '"Playfair Display", serif' }}>
-                  Mạng lưới chuyên gia uy tín.
-                </h3>
-                <p className="text-base text-[#4A6B5A] leading-relaxed font-geist">
-                  Giới thiệu các chủ tọa, báo cáo viên đến từ các bệnh viện, trường đại học và trung tâm tâm thần trên cả nước.
-                </p>
-              </div>
-            </div>
-
-            {/* Card 3 */}
-            <div className="bg-white rounded-2xl shadow-[0_4px_24px_rgba(13,60,31,0.06)] flex flex-col overflow-hidden max-w-sm mx-auto w-full reveal-up delay-300 transition-transform duration-500 hover:-translate-y-1">
-              <div className="h-72 w-full relative bg-gradient-to-b from-[#F5F8F6] to-[#EAEFEB] overflow-hidden flex items-center justify-center border-b border-gray-50">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,_var(--tw-gradient-stops))] from-white/60 via-transparent to-transparent"></div>
-                <div className="absolute top-0 right-0 w-48 h-48 bg-[#3D7F61]/5 blur-3xl rounded-full"></div>
-                <div className="relative z-10 flex items-center">
-                  <div className="w-20 h-20 rounded-full bg-white/60 backdrop-blur-xl border border-white/80 shadow-md flex items-center justify-center text-[#0D3C1F] z-20 translate-x-4">
-                    <iconify-icon icon="solar:user-linear" width="32" height="32" className="opacity-80"></iconify-icon>
-                  </div>
-                  <div className="w-20 h-20 rounded-2xl rotate-12 bg-gradient-to-br from-[#3D7F61]/10 to-transparent backdrop-blur-md border border-white/60 shadow-inner flex items-center justify-center text-[#3D7F61] z-10 -translate-x-4">
-                    <iconify-icon icon="solar:stars-linear" width="28" height="28" className="-rotate-12 opacity-70"></iconify-icon>
-                  </div>
-                </div>
-              </div>
-              <div className="p-8 flex flex-col gap-3 grow">
-                <h3 className="text-xl font-semibold text-[#0D3C1F] tracking-tight" style={{ fontFamily: '"Playfair Display", serif' }}>
-                  Đăng ký tham dự nhanh chóng.
-                </h3>
-                <p className="text-base text-[#4A6B5A] leading-relaxed font-geist">
-                  Bác sĩ có thể gửi thông tin đăng ký trực tuyến để nhận xác nhận tham dự và cập nhật lịch trình mới nhất từ Ban Tổ Chức.
-                </p>
+      {/* Ha Long Section */}
+      <section className="w-full bg-white py-20 md:py-28 px-6 flex justify-center relative z-20">
+        <div className="max-w-[1100px] w-full flex flex-col md:flex-row items-center gap-12 md:gap-16 reveal-up">
+          {/* Image */}
+          <div className="w-full md:w-[48%] shrink-0">
+            <div className="relative rounded-[20px] overflow-hidden shadow-[0_8px_40px_rgba(13,60,31,0.12)]">
+              <img
+                src="/anh-vinh-ha-long-1.png"
+                alt="Vịnh Hạ Long – Quảng Ninh"
+                className="w-full h-full object-cover aspect-[4/3]"
+              />
+              <div className="absolute bottom-4 left-4 bg-white/80 backdrop-blur-sm rounded-xl px-4 py-2.5 flex items-center gap-2">
+                <iconify-icon icon="solar:map-point-bold" width="16" height="16" className="text-[#0D3C1F]"></iconify-icon>
+                <span className="text-[13px] font-medium text-[#0D3C1F] font-geist">Vịnh Hạ Long – Quảng Ninh</span>
               </div>
             </div>
           </div>
 
-          <p className="mt-16 text-sm text-[#4A6B5A] italic font-geist text-center reveal-up delay-300">
-            Chúng ta cùng nhau nâng cao sức khỏe tâm thần vì một cộng đồng bền vững.
-          </p>
-        </div>
-      </section>
-
-      {/* Ways to Work Section */}
-      <section className="w-full bg-white py-24 md:py-[100px] px-6 flex justify-center relative z-20" id="timeline">
-        <div className="max-w-[1200px] w-full flex flex-col items-center">
-          <div className="mt-16 w-full flex flex-col gap-4">
-            {/* Large Tile */}
-            <div className="md:p-16 flex flex-col md:flex-row min-h-[480px] overflow-hidden reveal-up delay-100 bg-[#0D3C1F] w-full rounded-[16px] p-8 relative shadow-[0_8px_32px_rgba(13,60,31,0.12)]">
-              {/* Left Side */}
-              <div className="w-full md:w-[50%] flex flex-col justify-center relative z-20 md:pr-16">
-                <div className="text-[12px] uppercase tracking-[0.15em] text-[#3D7F61] font-geist font-medium mb-6">
-                  THÔNG TIN HỘI NGHỊ
-                </div>
-                <h3 className="text-[36px] font-semibold text-[#FAF9F6] leading-tight mb-6 tracking-tight" style={{ fontFamily: '"Playfair Display", serif' }}>
-                  Timeline sự kiện rõ ràng theo từng phiên.
-                </h3>
-                <p className="text-[16px] text-[#B8D4C4] font-geist leading-[1.8] mb-12 max-w-lg">
-                  Lịch trình được trình bày theo từng mốc thời gian từ khai mạc, báo cáo chuyên đề, thảo luận đến tổng kết. Nội dung phù hợp để cập nhật nhanh cho bác sĩ tham dự.
-                </p>
-                <a href="#lich-trinh-demo" className="mt-auto md:mt-0 self-start text-[15px] text-[#F69066] font-geist hover:underline flex items-center gap-2 transition-all">
-                  {isVi ? 'Xem lịch trình chi tiết' : 'View full schedule'} <span className="text-xl leading-none">→</span>
-                </a>
-              </div>
-
-              {/* Right Side Visuals */}
-              <div className="w-full md:w-[50%] mt-16 md:mt-0 relative flex items-center justify-center min-h-[320px] md:min-h-full">
-                <div className="absolute inset-0 w-full h-full flex flex-col gap-6 justify-center items-end opacity-90 transform translate-x-4 md:translate-x-12">
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-[#3D7F61] blur-[100px] rounded-full opacity-60"></div>
-                  <div className="absolute top-1/4 right-1/4 w-32 h-32 bg-[#F69066]/20 blur-[80px] rounded-full opacity-40"></div>
-
-                  <div className="w-full max-w-[340px] h-24 rounded-xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.2)] p-5 flex items-center gap-5 transform -translate-x-12 relative z-10 hover:-translate-y-1 transition-transform duration-300">
-                    <div className="w-10 h-10 rounded-lg bg-[#3D7F61]/30 flex-shrink-0 flex items-center justify-center text-[#8ABF9E]">
-                      <iconify-icon icon="solar:box-linear" width="20" height="20"></iconify-icon>
-                    </div>
-                    <div className="flex flex-col gap-3 w-full">
-                      <div className="w-3/4 h-2.5 rounded-full bg-white/30"></div>
-                      <div className="w-1/2 h-2 rounded-full bg-white/10"></div>
-                    </div>
-                  </div>
-
-                  <div className="w-full max-w-[400px] h-32 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 shadow-[0_16px_48px_rgba(0,0,0,0.3)] p-6 flex flex-col justify-between relative z-20 transform -translate-x-4 hover:-translate-y-1 transition-transform duration-300">
-                    <div className="flex items-center justify-between w-full">
-                      <div className="flex items-center gap-4 w-full">
-                        <div className="w-12 h-12 rounded-full bg-[#F69066]/20 border border-[#F69066]/30 flex-shrink-0 flex items-center justify-center text-[#F69066]">
-                           <iconify-icon icon="solar:magic-stick-3-linear" width="24" height="24"></iconify-icon>
-                        </div>
-                        <div className="w-1/2 h-3.5 rounded-full bg-white/40"></div>
-                      </div>
-                      <div className="w-8 h-8 rounded-full bg-white/10 flex-shrink-0 flex items-center justify-center text-white/70">
-                         <iconify-icon icon="solar:check-circle-linear" width="16" height="16"></iconify-icon>
-                      </div>
-                    </div>
-                    <div className="flex gap-3 w-full">
-                      <div className="w-1/3 h-2.5 rounded-full bg-[#3D7F61]/60"></div>
-                      <div className="w-1/4 h-2.5 rounded-full bg-white/20"></div>
-                      <div className="w-1/5 h-2.5 rounded-full bg-white/10"></div>
-                    </div>
-                  </div>
-
-                  <div className="w-full max-w-[320px] h-20 rounded-xl bg-white/5 backdrop-blur-lg border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.2)] p-5 flex items-center gap-4 transform translate-x-2 relative z-10 hover:-translate-y-1 transition-transform duration-300">
-                    <div className="w-10 h-10 rounded-lg bg-white/10 flex-shrink-0 flex items-center justify-center text-white/70">
-                       <iconify-icon icon="solar:list-linear" width="20" height="20"></iconify-icon>
-                    </div>
-                    <div className="flex flex-col gap-2 w-full">
-                      <div className="w-2/3 h-2 rounded-full bg-white/20"></div>
-                      <div className="w-1/3 h-2 rounded-full bg-white/10"></div>
-                    </div>
-                  </div>
-
-                  <div className="w-full max-w-[260px] h-16 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.2)] p-4 flex items-center gap-4 transform translate-x-12 relative z-0 opacity-60">
-                    <div className="w-8 h-8 rounded-full bg-white/10 flex-shrink-0"></div>
-                    <div className="flex flex-col gap-2 w-full">
-                      <div className="w-3/4 h-1.5 rounded-full bg-white/20"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+          {/* Text */}
+          <div className="w-full md:w-[52%]">
+            <div className="inline-flex items-center gap-2 bg-[#F0F7F4] rounded-full px-4 py-1.5 mb-6">
+              <iconify-icon icon="solar:star-bold" width="14" height="14" className="text-[#F69066]"></iconify-icon>
+              <span className="text-[11px] uppercase tracking-[0.18em] text-[#3D7F61] font-geist font-semibold">Chào mừng đến với Hạ Long</span>
             </div>
-
-            {/* Small Tiles */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
-              <div className="bg-[#F5F5F3] rounded-[16px] p-8 flex flex-col reveal-up delay-200 hover:-translate-y-1 transition-transform duration-300">
-                <div className="text-[11px] uppercase tracking-[0.15em] text-[#8A9E92] font-geist font-medium mb-4">NHÀ TÀI TRỢ</div>
-                <h3 className="text-[22px] font-semibold text-[#0D3C1F] leading-tight mb-3" style={{ fontFamily: '"Playfair Display", serif' }}>
-                  Các đối tác đồng hành hội nghị.
-                </h3>
-                <p className="text-[14px] text-[#4A6B5A] font-geist leading-[1.6] mb-8 grow">
-                  Hội nghị được đồng hành bởi các đối tác uy tín trong lĩnh vực y tế, dược phẩm và công nghệ y tế trên toàn quốc.
-                </p>
-                <a href="#tai-tro" className="mt-auto self-start text-[13px] text-[#3D7F61] font-geist hover:underline flex items-center gap-1 transition-all">
-                  {isVi ? 'Xem danh sách nhà tài trợ' : 'See sponsors'} <span className="text-base leading-none">→</span>
-                </a>
+            <h2 className="text-3xl md:text-4xl font-semibold text-[#0D3C1F] leading-tight tracking-tight mb-6" style={{ fontFamily: '"Playfair Display", serif' }}>
+              Kỳ quan thiên nhiên thế giới
+            </h2>
+            <div className="space-y-5 text-[15px] text-[#4A6B5A] leading-[1.85] font-geist">
+              <p>
+                <strong className="text-[#0D3C1F]">Hạ Long (Quảng Ninh)</strong> – vùng đất được thiên nhiên ưu ái ban tặng kỳ quan thiên nhiên thế giới, hội tụ vẻ đẹp kỳ vĩ của non nước mây trời – từ lâu đã mang trong mình sức sống mãnh liệt của một thành phố vươn tầm quốc tế. Hôm nay, trên hành trình đổi mới và bứt phá, Hạ Long không chỉ là đầu tàu kinh tế năng động của vùng Đông Bắc mà còn đang khẳng định vị thế quan trọng trong mạng lưới y tế khu vực, với nhiều thành tựu nổi bật về đầu tư cơ sở hạ tầng và nâng cao chất lượng chăm sóc sức khỏe chuyên sâu.
+              </p>
+              <p>
+                Việc lựa chọn <strong className="text-[#0D3C1F]">Hạ Long</strong> là nơi tổ chức <strong className="text-[#0D3C1F]">Hội nghị</strong> quan trọng này không chỉ là sự ghi nhận đối với năng lực tổ chức sự kiện chuyên nghiệp và hệ sinh thái dịch vụ chất lượng cao của địa phương, mà còn thể hiện mong muốn kiến tạo một không gian học thuật uy tín, truyền cảm hứng và gắn kết. Hội nghị sẽ là cơ hội quý báu để các chuyên gia, nhà khoa học hàng đầu trong nước và quốc tế cùng hội tụ, trao đổi kinh nghiệm, chia sẻ tri thức và cập nhật những tiến bộ mới nhất trong chẩn đoán, điều trị và chăm sóc sức khỏe tâm thần tại Việt Nam.
+              </p>
+            </div>
+            <div className="mt-8 flex items-center gap-3">
+              <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[#0D3C1F] text-white text-sm font-semibold font-geist shrink-0">
+                500+
               </div>
-
-              <div className="bg-[#F5F5F3] rounded-[16px] p-8 flex flex-col reveal-up delay-300 hover:-translate-y-1 transition-transform duration-300">
-                <div className="text-[11px] uppercase tracking-[0.15em] text-[#8A9E92] font-geist font-medium mb-4">ĐĂNG KÝ</div>
-                <h3 className="text-[22px] font-semibold text-[#0D3C1F] leading-tight mb-3" style={{ fontFamily: '"Playfair Display", serif' }}>
-                  Biểu mẫu đăng ký tham dự dành cho bác sĩ.
-                </h3>
-                <p className="text-[14px] text-[#4A6B5A] font-geist leading-[1.6] mb-8 grow">
-                  Người tham dự điền thông tin cơ bản để Ban Tổ Chức xác nhận nhanh, gửi thông báo và cập nhật các hướng dẫn cần thiết trước ngày sự kiện.
-                </p>
-                <a href="#dang-ky" className="mt-auto self-start text-[13px] text-[#3D7F61] font-geist hover:underline flex items-center gap-1 transition-all">
-                  {isVi ? 'Mở form đăng ký' : 'Open registration form'} <span className="text-base leading-none">→</span>
-                </a>
-              </div>
+              <span className="text-[13px] text-[#4A6B5A] font-geist">Đại biểu từ khắp cả nước và quốc tế</span>
             </div>
           </div>
         </div>
@@ -421,8 +274,8 @@ export default function App() {
           </h2>
           <p className="mt-6 text-[16px] text-[#4A6B5A] text-center max-w-[720px] leading-relaxed font-geist reveal-up delay-100">
             {isVi
-              ? 'Nhấn vào các ngày và mở rộng từng phiên để xem chi tiết lịch trình của hội nghị.'
-              : 'Click on the days and expand each session to view the detailed conference schedule.'}
+              ? 'Chọn ngày và hội trường để xem chi tiết lịch trình của hội nghị.'
+              : 'Select a day and hall to view the detailed conference schedule.'}
           </p>
 
           <div className="mt-12 w-full reveal-up delay-200">
@@ -466,69 +319,114 @@ export default function App() {
               </div>
             )}
 
-            {/* Accordion */}
+            {/* Sessions */}
             <div className="flex flex-col gap-4 max-w-4xl mx-auto w-full">
               {structuredTimeline
                 .filter(s =>
                   s.daySection === selectedDay &&
                   (selectedDay !== "Ngày 31/5/2026" || s.hall === selectedHall)
                 )
-                .map(session => (
-                  <div key={session.id} className="bg-white border text-left border-[#E5EBE8] rounded-[16px] overflow-hidden shadow-sm hover:shadow transition-shadow">
-                    <button
-                      className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-[#F0F4F2]/50 transition-colors"
-                      onClick={() => setExpandedSessionId(expandedSessionId === session.id ? null : session.id)}
-                    >
-                      <span className="text-[17px] font-semibold text-[#0D3C1F]" style={{ fontFamily: '"Playfair Display", serif' }}>
-                        {session.title.replace('PHIÊN', 'Phiên')}
-                      </span>
-                      <span className="text-[#3D7F61] shrink-0 ml-4 transition-transform duration-300" style={{ transform: expandedSessionId === session.id ? 'rotate(180deg)' : 'rotate(0deg)' }}>
-                        ▼
-                      </span>
-                    </button>
+                .map(session => {
+                  const alwaysOpen = true;
+                  const isOpen = alwaysOpen || expandedSessionId === session.id;
+                  return (
+                    <div key={session.id} className="bg-white border text-left border-[#E5EBE8] rounded-[16px] overflow-hidden shadow-sm hover:shadow transition-shadow">
+                      {!alwaysOpen ? (
+                        <button
+                          className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-[#F0F4F2]/50 transition-colors"
+                          onClick={() => setExpandedSessionId(expandedSessionId === session.id ? null : session.id)}
+                        >
+                          <span className="text-[17px] font-semibold text-[#0D3C1F]" style={{ fontFamily: '"Playfair Display", serif' }}>
+                            {session.title.replace('PHIÊN', 'Phiên')}
+                          </span>
+                          <span className="text-[#3D7F61] shrink-0 ml-4 transition-transform duration-300" style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>
+                            ▼
+                          </span>
+                        </button>
+                      ) : (
+                        <div className="px-6 pt-5 pb-2">
+                          <span className="text-[17px] font-semibold text-[#0D3C1F]" style={{ fontFamily: '"Playfair Display", serif' }}>
+                            {session.title.replace('PHIÊN', 'Phiên')}
+                          </span>
+                        </div>
+                      )}
 
-                    {expandedSessionId === session.id && (
-                      <div className="px-6 pb-6 overflow-auto border-t border-[#E5EBE8] pt-4">
-                        {session.chuToa && (
-                          <div className="mb-2 text-[13px] text-[#4A6B5A]">
-                            <span className="font-semibold text-[#0D3C1F]">Chủ tọa: </span>{session.chuToa}
-                          </div>
-                        )}
-                        {session.thuKy && (
-                          <div className="mb-4 text-[13px] text-[#4A6B5A]">
-                            <span className="font-semibold text-[#0D3C1F]">Thư ký: </span>{session.thuKy}
-                          </div>
-                        )}
-                        <div dangerouslySetInnerHTML={{ __html: session.html }} className="custom-table-styles" />
-                      </div>
-                    )}
-                  </div>
-                ))}
+                      {isOpen && (
+                        <div className="px-6 pb-6 overflow-auto border-t border-[#E5EBE8] pt-4">
+                          {session.chuToa && (
+                            <div className="mb-2 text-[13px] text-[#4A6B5A]">
+                              <span className="font-semibold text-[#0D3C1F]">Chủ tọa: </span>{session.chuToa}
+                            </div>
+                          )}
+                          {session.thuKy && (
+                            <div className="mb-4 text-[13px] text-[#4A6B5A]">
+                              <span className="font-semibold text-[#0D3C1F]">Thư ký: </span>{session.thuKy}
+                            </div>
+                          )}
+                          <div dangerouslySetInnerHTML={{ __html: session.html }} className="custom-table-styles" />
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Lightmode CTA Section */}
-      <section className="w-full bg-[#FAF9F6] py-24 md:py-32 px-6 flex justify-center relative z-20">
-        <div className="max-w-[1100px] w-full flex flex-col md:flex-row items-start md:items-center justify-between gap-12 reveal-up">
-          <div className="max-w-2xl">
-            <h2 className="text-5xl md:text-6xl font-semibold text-[#0D3C1F] tracking-tight leading-tight" style={{ fontFamily: '"Playfair Display", serif' }}>
-              Sẵn sàng tham dự trong <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F69066] to-[#E35D30]">vài bước</span>
-            </h2>
-            <p className="mt-6 text-lg md:text-xl text-[#4A6B5A] leading-relaxed font-geist">
-              Đăng ký sớm để Ban Tổ Chức xác nhận thông tin và gửi lịch trình chi tiết đến quý bác sĩ.
-            </p>
-          </div>
-          <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto shrink-0 mt-8 md:mt-0">
-            <a href="#dang-ky" className="inline-flex items-center justify-center px-7 py-3.5 rounded text-xs font-medium tracking-[0.1em] uppercase transition-all bg-[#F69066] hover:bg-[#E35D30] text-white gap-2 shadow-[0_4px_14px_rgba(246,144,102,0.25)] hover:-translate-y-0.5">
-              {isVi ? 'Đăng ký ngay' : 'Register now'}
-              <iconify-icon icon="solar:arrow-right-up-linear" width="16" height="16"></iconify-icon>
-            </a>
-            <a href="#lien-he" className="inline-flex items-center justify-center px-7 py-3.5 rounded text-xs font-medium tracking-[0.1em] uppercase transition-all bg-[#EAEFEB] hover:bg-[#DCE4DF] text-[#0D3C1F] gap-2 shadow-[0_2px_4px_rgba(0,0,0,0.02)] hover:-translate-y-0.5">
-              {isVi ? 'Nhận thông báo' : 'Get updates'}
-              <iconify-icon icon="solar:arrow-right-up-linear" width="16" height="16"></iconify-icon>
-            </a>
+            {/* Bottom day switcher — cho Tổng quan & Ngày 29-30 */}
+            {selectedDay !== "Ngày 31/5/2026" && (
+              <div className="max-w-4xl mx-auto w-full mt-10 pt-8 border-t border-[#E5EBE8]">
+                <p className="text-center text-[12px] uppercase tracking-[0.2em] text-[#4A6B5A] font-geist font-semibold mb-5">
+                  Xem ngày khác
+                </p>
+                <div className="flex flex-wrap gap-3 justify-center">
+                  {["Tổng quan", "Ngày 29-30/5/2026", "Ngày 31/5/2026"].map(day => (
+                    <button
+                      key={day}
+                      onClick={() => {
+                        setSelectedDay(day);
+                        setSelectedHall(day === "Ngày 31/5/2026" ? "Phiên toàn thể" : null);
+                        setExpandedSessionId(null);
+                        document.getElementById('lich-trinh')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      }}
+                      className={`px-5 py-2.5 border rounded-full text-[14px] font-medium transition-all ${
+                        selectedDay === day
+                          ? 'bg-[#0D3C1F] text-white border-[#0D3C1F]'
+                          : 'bg-white text-[#0D3C1F] border-[#E5EBE8] hover:bg-[#F0F4F2]'
+                      }`}
+                    >
+                      {day}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Bottom hall switcher — chỉ hiện cho Ngày 31 */}
+            {selectedDay === "Ngày 31/5/2026" && (
+              <div className="max-w-4xl mx-auto w-full mt-10 pt-8 border-t border-[#E5EBE8]">
+                <p className="text-center text-[12px] uppercase tracking-[0.2em] text-[#4A6B5A] font-geist font-semibold mb-5">
+                  Chuyển sang hội trường khác
+                </p>
+                <div className="flex flex-wrap gap-2 justify-center">
+                  {["Phiên toàn thể","Hội trường Hồng Quảng","Hội trường Yên Trung","Hội trường Đồng Sơn","Hội trường Yên Đức 1","Hội trường Yên Đức 2","Hội trường Yên Đức 3","Hội trường Thanh Lân 1","Hội trường Thanh Lân 2","Hội trường Kim Quy"].map(hall => (
+                    <button
+                      key={hall}
+                      onClick={() => {
+                        setSelectedHall(hall);
+                        setExpandedSessionId(null);
+                        document.getElementById('lich-trinh')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      }}
+                      className={`px-4 py-2 border rounded-full text-[13px] font-medium transition-all ${
+                        selectedHall === hall
+                          ? 'bg-[#3D7F61] text-white border-[#3D7F61]'
+                          : 'bg-white text-[#3D7F61] border-[#C5D9CE] hover:bg-[#F0F4F2]'
+                      }`}
+                    >
+                      {hall}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -545,26 +443,26 @@ export default function App() {
               : 'The conference is supported by strategic partners in healthcare, pharmaceuticals, and medical technology.'}
           </p>
 
-          {/* Kim cương — 2 */}
+          {/* Kim cương — 200M — 2 */}
           <div className="mt-16 w-full reveal-up delay-100">
             <div className="flex items-center gap-4 mb-8">
               <div className="h-px flex-1 bg-[#E5EBE8]"></div>
               <span className="text-[11px] uppercase tracking-[0.25em] text-[#B8980A] font-geist font-semibold px-2">Kim cương</span>
               <div className="h-px flex-1 bg-[#E5EBE8]"></div>
             </div>
-            <div className="flex flex-wrap justify-center gap-6">
+            <div className="flex flex-wrap justify-center gap-8">
               {[
                 { src: '/logo-egis.png', alt: 'EGIS' },
                 { src: '/logo-eisai.png', alt: 'Eisai' },
               ].map((logo) => (
-                <div key={logo.alt} className="h-28 w-72 rounded-2xl bg-white border-2 border-[#E8D48A] flex items-center justify-center hover:-translate-y-1 transition-transform duration-300 shadow-[0_4px_16px_rgba(184,152,10,0.08)] p-6">
+                <div key={logo.alt} className="h-36 w-80 rounded-2xl bg-white border-2 border-[#E8D48A] flex items-center justify-center hover:-translate-y-1 transition-transform duration-300 shadow-[0_6px_24px_rgba(184,152,10,0.14)] p-7">
                   <img src={logo.src} alt={logo.alt} className="max-h-full max-w-full object-contain" />
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Vàng — 1 */}
+          {/* Vàng — 150M — 1 */}
           <div className="mt-12 w-full reveal-up delay-150">
             <div className="flex items-center gap-4 mb-8">
               <div className="h-px flex-1 bg-[#E5EBE8]"></div>
@@ -572,13 +470,13 @@ export default function App() {
               <div className="h-px flex-1 bg-[#E5EBE8]"></div>
             </div>
             <div className="flex justify-center">
-              <div className="h-24 w-64 rounded-2xl bg-white border border-[#E8D48A] flex items-center justify-center hover:-translate-y-1 transition-transform duration-300 p-5">
+              <div className="h-28 w-72 rounded-2xl bg-white border-2 border-[#E8D48A] flex items-center justify-center hover:-translate-y-1 transition-transform duration-300 shadow-[0_4px_16px_rgba(184,152,10,0.08)] p-6">
                 <img src="/logo-gigamed.png" alt="Gigamed" className="max-h-full max-w-full object-contain" />
               </div>
             </div>
           </div>
 
-          {/* Bạc — 1 */}
+          {/* Bạc — 100M — 1 */}
           <div className="mt-12 w-full reveal-up delay-200">
             <div className="flex items-center gap-4 mb-8">
               <div className="h-px flex-1 bg-[#E5EBE8]"></div>
@@ -586,13 +484,13 @@ export default function App() {
               <div className="h-px flex-1 bg-[#E5EBE8]"></div>
             </div>
             <div className="flex justify-center">
-              <div className="h-20 w-64 rounded-2xl bg-white border border-[#C8CDD0] flex items-center justify-center hover:-translate-y-1 transition-transform duration-300 p-4">
+              <div className="h-[88px] w-56 rounded-2xl bg-white border border-[#C8CDD0] flex items-center justify-center hover:-translate-y-1 transition-transform duration-300 shadow-[0_2px_10px_rgba(0,0,0,0.05)] p-4">
                 <img src="/logo-hoang-duc.png" alt="Hoàng Đức" className="max-h-full max-w-full object-contain" />
               </div>
             </div>
           </div>
 
-          {/* Đồng — 12 */}
+          {/* Đồng — 50M — 12 */}
           <div className="mt-12 w-full reveal-up delay-200">
             <div className="flex items-center gap-4 mb-8">
               <div className="h-px flex-1 bg-[#E5EBE8]"></div>
@@ -601,7 +499,7 @@ export default function App() {
             </div>
             <div className="flex flex-wrap justify-center gap-4">
               {[
-                { src: '/logo-hyphens.png',        alt: 'Hyphens' },
+                { src: '/logo-golden-gate.png',     alt: 'Golden Gate' },
                 { src: '/logo-viatris.png',         alt: 'Viatris' },
                 { src: '/logo-gedeon-richter.png',  alt: 'Gedeon Richter' },
                 { src: '/logo-watson.png',          alt: 'Watson & Company' },
@@ -612,16 +510,16 @@ export default function App() {
                 { src: '/logo-novartis.png',        alt: 'Novartis' },
                 { src: '/logo-abbott.png',          alt: 'Abbott' },
                 { src: '/logo-y-med.png',           alt: 'Y-Med' },
-                { src: '/logo-golden-gate.png',     alt: 'Golden Gate' },
+                { src: '/logo-hyphens.png',         alt: 'Hyphens' },
               ].map((logo) => (
-                <div key={logo.alt} className="h-16 w-40 rounded-xl bg-white border border-[#E8CEBB] flex items-center justify-center hover:-translate-y-0.5 transition-transform duration-300 p-3">
+                <div key={logo.alt} className="h-14 w-36 rounded-xl bg-white border border-[#E8CEBB] flex items-center justify-center hover:-translate-y-0.5 transition-transform duration-300 p-2.5">
                   <img src={logo.src} alt={logo.alt} className="max-h-full max-w-full object-contain" />
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Đồng tài trợ — 7 */}
+          {/* Đồng tài trợ — 20M — 7 */}
           <div className="mt-12 w-full reveal-up delay-300">
             <div className="flex items-center gap-4 mb-8">
               <div className="h-px flex-1 bg-[#E5EBE8]"></div>
@@ -638,7 +536,7 @@ export default function App() {
                 { src: '/logo-pharma-science.png', alt: 'Pharma Science' },
                 { src: '/logo-famed.png',          alt: 'Famed' },
               ].map((logo) => (
-                <div key={logo.alt} className="h-14 w-36 rounded-xl bg-white border border-[#E5EBE8] flex items-center justify-center hover:-translate-y-0.5 transition-transform duration-300 p-2.5">
+                <div key={logo.alt} className="h-12 w-32 rounded-xl bg-white border border-[#E5EBE8] flex items-center justify-center hover:-translate-y-0.5 transition-transform duration-300 p-2">
                   <img src={logo.src} alt={logo.alt} className="max-h-full max-w-full object-contain" />
                 </div>
               ))}
@@ -746,7 +644,7 @@ export default function App() {
 
       {/* Banner Image */}
       <div className="w-full h-[180px] md:h-[260px] relative overflow-hidden reveal-up z-20">
-        <div className="absolute inset-0 bg-cover bg-center bg-[url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop')] contrast-125 sepia-[.3] hue-rotate-[-10deg] opacity-90"></div>
+        <div className="absolute inset-0 bg-cover bg-center bg-[url('/anh-vinh-ha-long-17.png')] opacity-90"></div>
       </div>
 
       {/* Footer */}
