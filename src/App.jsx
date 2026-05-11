@@ -302,12 +302,12 @@ export default function App() {
 
             {/* Hall sub-tabs — cấp 2, chỉ hiện cho Ngày 31 */}
             {selectedDay === "Ngày 31/5/2026" && (
-              <div className="flex flex-wrap gap-2 justify-center mb-8">
+              <div className="flex gap-2 overflow-x-auto pb-2 mb-8 scrollbar-hide -mx-6 px-6">
                 {["Phiên toàn thể","Hội trường Hồng Quảng","Hội trường Yên Trung","Hội trường Đồng Sơn","Hội trường Yên Đức 1","Hội trường Yên Đức 2","Hội trường Yên Đức 3","Hội trường Thanh Lân 1","Hội trường Thanh Lân 2","Hội trường Kim Quy"].map(hall => (
                   <button
                     key={hall}
                     onClick={() => { setSelectedHall(hall); setExpandedSessionId(null); }}
-                    className={`px-4 py-2 border rounded-full text-[13px] font-medium transition-all ${
+                    className={`px-4 py-2 border rounded-full text-[13px] font-medium transition-all whitespace-nowrap shrink-0 ${
                       selectedHall === hall
                         ? 'bg-[#3D7F61] text-white border-[#3D7F61]'
                         : 'bg-white text-[#3D7F61] border-[#C5D9CE] hover:bg-[#F0F4F2]'
@@ -352,15 +352,27 @@ export default function App() {
                       )}
 
                       {isOpen && (
-                        <div className="px-6 pb-6 overflow-auto border-t border-[#E5EBE8] pt-4">
+                        <div className="px-6 pb-6 overflow-x-auto border-t border-[#E5EBE8] pt-4">
                           {session.chuToa && (
-                            <div className="mb-2 text-[13px] text-[#4A6B5A]">
-                              <span className="font-semibold text-[#0D3C1F]">Chủ tọa: </span>{session.chuToa}
+                            <div className="mb-2 text-[13px] text-[#4A6B5A] leading-relaxed">
+                              <span className="font-semibold text-[#0D3C1F]">Chủ tọa: </span>
+                              {session.chuToa.split('; ').map((name, i, arr) => (
+                                <React.Fragment key={i}>
+                                  <span className="whitespace-nowrap">{name}</span>
+                                  {i < arr.length - 1 && <span>; </span>}
+                                </React.Fragment>
+                              ))}
                             </div>
                           )}
                           {session.thuKy && (
-                            <div className="mb-4 text-[13px] text-[#4A6B5A]">
-                              <span className="font-semibold text-[#0D3C1F]">Thư ký: </span>{session.thuKy}
+                            <div className="mb-4 text-[13px] text-[#4A6B5A] leading-relaxed">
+                              <span className="font-semibold text-[#0D3C1F]">Thư ký: </span>
+                              {session.thuKy.split('; ').map((name, i, arr) => (
+                                <React.Fragment key={i}>
+                                  <span className="whitespace-nowrap">{name}</span>
+                                  {i < arr.length - 1 && <span>; </span>}
+                                </React.Fragment>
+                              ))}
                             </div>
                           )}
                           <div dangerouslySetInnerHTML={{ __html: session.html }} className="custom-table-styles" />
@@ -406,7 +418,7 @@ export default function App() {
                 <p className="text-center text-[12px] uppercase tracking-[0.2em] text-[#4A6B5A] font-geist font-semibold mb-5">
                   Chuyển sang hội trường khác
                 </p>
-                <div className="flex flex-wrap gap-2 justify-center">
+                <div className="flex gap-2 overflow-x-auto pb-2 -mx-6 px-6 scrollbar-hide">
                   {["Phiên toàn thể","Hội trường Hồng Quảng","Hội trường Yên Trung","Hội trường Đồng Sơn","Hội trường Yên Đức 1","Hội trường Yên Đức 2","Hội trường Yên Đức 3","Hội trường Thanh Lân 1","Hội trường Thanh Lân 2","Hội trường Kim Quy"].map(hall => (
                     <button
                       key={hall}
@@ -415,7 +427,7 @@ export default function App() {
                         setExpandedSessionId(null);
                         document.getElementById('lich-trinh')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                       }}
-                      className={`px-4 py-2 border rounded-full text-[13px] font-medium transition-all ${
+                      className={`px-4 py-2 border rounded-full text-[13px] font-medium transition-all whitespace-nowrap shrink-0 ${
                         selectedHall === hall
                           ? 'bg-[#3D7F61] text-white border-[#3D7F61]'
                           : 'bg-white text-[#3D7F61] border-[#C5D9CE] hover:bg-[#F0F4F2]'
@@ -450,12 +462,12 @@ export default function App() {
               <span className="text-[11px] uppercase tracking-[0.25em] text-[#B8980A] font-geist font-semibold px-2">Kim cương</span>
               <div className="h-px flex-1 bg-[#E5EBE8]"></div>
             </div>
-            <div className="flex flex-wrap justify-center gap-8">
+            <div className="flex flex-wrap justify-center gap-6">
               {[
                 { src: '/logo-egis.png', alt: 'EGIS' },
                 { src: '/logo-eisai.png', alt: 'Eisai' },
               ].map((logo) => (
-                <div key={logo.alt} className="h-36 w-80 rounded-2xl bg-white border-2 border-[#E8D48A] flex items-center justify-center hover:-translate-y-1 transition-transform duration-300 shadow-[0_6px_24px_rgba(184,152,10,0.14)] p-7">
+                <div key={logo.alt} className="h-32 w-full max-w-[300px] sm:w-80 sm:max-w-none rounded-2xl bg-white border-2 border-[#E8D48A] flex items-center justify-center hover:-translate-y-1 transition-transform duration-300 shadow-[0_6px_24px_rgba(184,152,10,0.14)] p-7">
                   <img src={logo.src} alt={logo.alt} className="max-h-full max-w-full object-contain" />
                 </div>
               ))}
@@ -470,7 +482,7 @@ export default function App() {
               <div className="h-px flex-1 bg-[#E5EBE8]"></div>
             </div>
             <div className="flex justify-center">
-              <div className="h-28 w-72 rounded-2xl bg-white border-2 border-[#E8D48A] flex items-center justify-center hover:-translate-y-1 transition-transform duration-300 shadow-[0_4px_16px_rgba(184,152,10,0.08)] p-6">
+              <div className="h-24 w-full max-w-[280px] sm:w-72 sm:max-w-none rounded-2xl bg-white border-2 border-[#E8D48A] flex items-center justify-center hover:-translate-y-1 transition-transform duration-300 shadow-[0_4px_16px_rgba(184,152,10,0.08)] p-6">
                 <img src="/logo-gigamed.png" alt="Gigamed" className="max-h-full max-w-full object-contain" />
               </div>
             </div>
@@ -484,7 +496,7 @@ export default function App() {
               <div className="h-px flex-1 bg-[#E5EBE8]"></div>
             </div>
             <div className="flex justify-center">
-              <div className="h-[88px] w-56 rounded-2xl bg-white border border-[#C8CDD0] flex items-center justify-center hover:-translate-y-1 transition-transform duration-300 shadow-[0_2px_10px_rgba(0,0,0,0.05)] p-4">
+              <div className="h-[88px] w-full max-w-[224px] sm:w-56 sm:max-w-none rounded-2xl bg-white border border-[#C8CDD0] flex items-center justify-center hover:-translate-y-1 transition-transform duration-300 shadow-[0_2px_10px_rgba(0,0,0,0.05)] p-4">
                 <img src="/logo-hoang-duc.png" alt="Hoàng Đức" className="max-h-full max-w-full object-contain" />
               </div>
             </div>
