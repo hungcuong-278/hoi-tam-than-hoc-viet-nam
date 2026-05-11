@@ -84,6 +84,20 @@ body {
 .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 
-.custom-table-styles table { width: 100%; min-width: 540px; border-collapse: collapse; margin-top: 1rem; }
+.custom-table-styles table { width: 100%; min-width: 480px; border-collapse: collapse; margin-top: 1rem; }
 .custom-table-styles th, .custom-table-styles td { border: 1px solid #E5EBE8; padding: 0.75rem; text-align: left; }
 .custom-table-styles tr:nth-child(even) { background-color: #F0F4F2; }
+
+@media (max-width: 640px) {
+  .custom-table-styles table {
+    min-width: unset;
+    width: 100%;
+    table-layout: auto;
+    font-size: 11.5px;
+  }
+  .custom-table-styles col { width: auto !important; }
+  .custom-table-styles td, .custom-table-styles th {
+    padding: 0.4rem 0.5rem;
+    word-break: break-word;
+  }
+}

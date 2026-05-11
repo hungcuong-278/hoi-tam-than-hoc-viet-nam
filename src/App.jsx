@@ -352,7 +352,7 @@ export default function App() {
                       )}
 
                       {isOpen && (
-                        <div className="px-6 pb-6 overflow-x-auto border-t border-[#E5EBE8] pt-4">
+                        <div className="px-6 pb-6 overflow-hidden border-t border-[#E5EBE8] pt-4">
                           {session.chuToa && (
                             <div className="mb-2 text-[13px] text-[#4A6B5A] leading-relaxed">
                               <span className="font-semibold text-[#0D3C1F]">Chủ tọa: </span>
