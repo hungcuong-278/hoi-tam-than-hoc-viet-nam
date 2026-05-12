@@ -5,8 +5,13 @@ export default function App() {
   const [language, setLanguage] = useState('vi');
   const isVi = language === 'vi';
   const [selectedDay, setSelectedDay] = useState("Tổng quan");
-  const [selectedHall, setSelectedHall] = useState(null);
   const [expandedSessionId, setExpandedSessionId] = useState(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 60);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Countdown to May 29 2026 08:00 Vietnam time (UTC+7)
   const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
@@ -112,51 +117,51 @@ export default function App() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/45 to-black/25"></div>
       </div>
 
-      <div className="w-full max-w-7xl flex flex-col relative min-h-screen" id="gioi-thieu">
-        {/* Header */}
-        <header className="md:px-12 flex z-10 w-full pt-6 pr-6 pb-6 pl-6 relative items-center justify-between animate-header-intro">
-          <a href="#gioi-thieu" className="flex items-center select-none">
-            <img 
-              src="/vpa-logo.jpg" 
-              alt="Hội Tâm Thần Học Việt Nam" 
-              className="mix-blend-multiply h-11 object-contain"
-            />
-          </a>
-          <nav className="hidden gap-x-4 md:flex">
-            <a href="#gioi-thieu" className="text-sm font-medium text-white/80 hover:text-white transition-colors drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">{isVi ? 'Giới thiệu' : 'About'}</a>
-            <a href="#timeline" className="text-sm font-medium text-white/80 hover:text-white transition-colors drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">{isVi ? 'Sự kiện' : 'Timeline'}</a>
-            <a href="#tai-tro" className="text-sm font-medium text-white/80 hover:text-white transition-colors drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">{isVi ? 'Nhà tài trợ' : 'Sponsors'}</a>
-            <a href="#dang-ky" className="text-sm font-medium text-white/80 hover:text-white transition-colors drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">{isVi ? 'Đăng ký' : 'Register'}</a>
-            <a href="#lien-he" className="text-sm font-medium text-white/80 hover:text-white transition-colors drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">{isVi ? 'Liên hệ' : 'Contact'}</a>
-          </nav>
-          <div className="flex items-center gap-6">
-            <div className="hidden sm:flex items-center gap-1 rounded border border-white/30 p-1">
-              <button
-                type="button"
-                onClick={() => setLanguage('vi')}
-                className={`px-2 py-1 text-[10px] tracking-wider rounded ${isVi ? 'bg-white text-[#0D3C1F] font-semibold' : 'text-white/70'}`}
-              >
-                VN
-              </button>
-              <button
-                type="button"
-                onClick={() => setLanguage('en')}
-                className={`px-2 py-1 text-[10px] tracking-wider rounded ${!isVi ? 'bg-white text-[#0D3C1F] font-semibold' : 'text-white/70'}`}
-              >
-                EN
-              </button>
-            </div>
-            <button type="button" className="text-xs tracking-widest font-medium text-white/70 hover:text-white uppercase transition-colors hidden sm:block drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">
-              {isVi ? 'Đăng nhập' : 'Log in'}
+      {/* Fixed Header */}
+      <header className={`fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-3 flex items-center justify-between animate-header-intro transition-all duration-300 ${isScrolled ? 'bg-[#0D3C1F] shadow-md' : ''}`}>
+        <a href="#gioi-thieu" className="flex items-center select-none">
+          <img
+            src="/vpa-logo-removebg-preview.png"
+            alt="Hội Tâm Thần Học Việt Nam"
+            className="h-11 object-contain"
+          />
+        </a>
+        <nav className="hidden gap-x-4 md:flex">
+          <a href="#gioi-thieu" className="text-sm font-medium text-white/80 hover:text-white transition-colors drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">{isVi ? 'Giới thiệu' : 'About'}</a>
+          <a href="#timeline" className="text-sm font-medium text-white/80 hover:text-white transition-colors drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">{isVi ? 'Sự kiện' : 'Timeline'}</a>
+          <a href="#tai-tro" className="text-sm font-medium text-white/80 hover:text-white transition-colors drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">{isVi ? 'Nhà tài trợ' : 'Sponsors'}</a>
+          <a href="#dang-ky" className="text-sm font-medium text-white/80 hover:text-white transition-colors drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">{isVi ? 'Đăng ký' : 'Register'}</a>
+          <a href="#lien-he" className="text-sm font-medium text-white/80 hover:text-white transition-colors drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">{isVi ? 'Liên hệ' : 'Contact'}</a>
+        </nav>
+        <div className="flex items-center gap-6">
+          <div className="hidden sm:flex items-center gap-1 rounded border border-white/30 p-1">
+            <button
+              type="button"
+              onClick={() => setLanguage('vi')}
+              className={`px-2 py-1 text-[10px] tracking-wider rounded ${isVi ? 'bg-white text-[#0D3C1F] font-semibold' : 'text-white/70'}`}
+            >
+              VN
             </button>
-            <a href="#dang-ky" className="inline-flex items-center justify-center text-white px-5 py-2.5 rounded text-xs font-medium tracking-[0.15em] uppercase transition-all shadow-[0_0_0_1px_rgba(0,0,0,0.05),0_2px_4px_rgba(0,0,0,0.1)] hover:opacity-90 bg-[#0D3C1F]">
-              {isVi ? 'Đăng ký tham dự' : 'Register now'}
-            </a>
+            <button
+              type="button"
+              onClick={() => setLanguage('en')}
+              className={`px-2 py-1 text-[10px] tracking-wider rounded ${!isVi ? 'bg-white text-[#0D3C1F] font-semibold' : 'text-white/70'}`}
+            >
+              EN
+            </button>
           </div>
-        </header>
+          <button type="button" className="text-xs tracking-widest font-medium text-white/70 hover:text-white uppercase transition-colors hidden sm:block drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">
+            {isVi ? 'Đăng nhập' : 'Log in'}
+          </button>
+          <a href="#dang-ky" className="inline-flex items-center justify-center bg-white text-[#0D3C1F] px-5 py-2.5 rounded text-xs font-medium tracking-[0.15em] uppercase transition-all hover:opacity-80">
+            {isVi ? 'Đăng ký tham dự' : 'Register now'}
+          </a>
+        </div>
+      </header>
 
+      <div className="w-full max-w-7xl flex flex-col relative min-h-screen" id="gioi-thieu">
         {/* Hero Section */}
-        <main className="flex-grow flex flex-col text-center pt-0 px-6 pb-16 items-center justify-center gap-0">
+        <main className="flex-grow flex flex-col text-center pt-24 px-6 pb-16 items-center justify-center gap-0">
           {/* Title */}
           <h1 className="text-white text-4xl md:text-6xl font-bold tracking-tight leading-tight max-w-5xl animate-title-intro drop-shadow-[0_2px_16px_rgba(0,0,0,0.5)]" style={{ fontFamily: '"Be Vietnam Pro", sans-serif' }}>
             {isVi ? 'Hội Tâm Thần Học Việt Nam' : 'Vietnam Psychiatric Association'}
@@ -275,8 +280,8 @@ export default function App() {
           </h2>
           <p className="mt-6 text-[16px] text-[#4A6B5A] text-center max-w-[720px] leading-relaxed font-geist reveal-up delay-100">
             {isVi
-              ? 'Chọn ngày và hội trường để xem chi tiết lịch trình của hội nghị.'
-              : 'Select a day and hall to view the detailed conference schedule.'}
+              ? 'Chọn ngày để xem chi tiết lịch trình của hội nghị.'
+              : 'Select a day to view the detailed conference schedule.'}
           </p>
 
           <div className="mt-12 w-full reveal-up delay-200">
@@ -285,11 +290,7 @@ export default function App() {
               {["Tổng quan", "Ngày 29-30/5/2026", "Ngày 31/5/2026"].map(day => (
                 <button
                   key={day}
-                  onClick={() => {
-                    setSelectedDay(day);
-                    setSelectedHall(day === "Ngày 31/5/2026" ? "Phiên toàn thể" : null);
-                    setExpandedSessionId(null);
-                  }}
+                  onClick={() => { setSelectedDay(day); setExpandedSessionId(null); }}
                   className={`px-6 py-2.5 border rounded text-[15px] font-medium transition-all font-geist ${
                     selectedDay === day
                       ? 'bg-[#0D3C1F] text-white border-[#0D3C1F]'
@@ -301,59 +302,57 @@ export default function App() {
               ))}
             </div>
 
-            {/* Hall sub-tabs — cấp 2, chỉ hiện cho Ngày 31 */}
-            {selectedDay === "Ngày 31/5/2026" && (
-              <div className="flex flex-wrap gap-2 justify-center mb-8">
-                {["Phiên toàn thể","Hội trường Hồng Quảng","Hội trường Yên Trung","Hội trường Đồng Sơn","Hội trường Yên Đức 1","Hội trường Yên Đức 2","Hội trường Yên Đức 3","Hội trường Thanh Lân 1","Hội trường Thanh Lân 2","Hội trường Kim Quy"].map(hall => (
-                  <button
-                    key={hall}
-                    onClick={() => { setSelectedHall(hall); setExpandedSessionId(null); }}
-                    className={`px-2.5 py-1.5 sm:px-4 sm:py-2 border rounded text-[11px] sm:text-[14px] font-medium transition-all font-geist ${
-                      selectedHall === hall
-                        ? 'bg-[#3D7F61] text-white border-[#3D7F61]'
-                        : 'bg-white text-[#3D7F61] border-[#B8CEC5] hover:bg-[#F0F4F2]'
-                    }`}
-                  >
-                    {hall}
-                  </button>
-                ))}
-              </div>
-            )}
-
-            {/* Sessions */}
+            {/* Sessions — continuous scroll */}
             <div className="flex flex-col gap-4 max-w-4xl mx-auto w-full">
-              {structuredTimeline
-                .filter(s =>
-                  s.daySection === selectedDay &&
-                  (selectedDay !== "Ngày 31/5/2026" || s.hall === selectedHall)
-                )
-                .map(session => {
-                  const alwaysOpen = true;
-                  const isOpen = alwaysOpen || expandedSessionId === session.id;
-                  return (
-                    <div key={session.id} className="bg-white border text-left border-[#E5EBE8] rounded-[16px] overflow-hidden shadow-sm hover:shadow transition-shadow">
-                      {!alwaysOpen ? (
-                        <button
-                          className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-[#F0F4F2]/50 transition-colors"
-                          onClick={() => setExpandedSessionId(expandedSessionId === session.id ? null : session.id)}
-                        >
-                          <span className="text-[17px] font-semibold text-[#0D3C1F]" style={{ fontFamily: '"Playfair Display", serif' }}>
-                            {session.title.replace('PHIÊN', 'Phiên')}
-                          </span>
-                          <span className="text-[#3D7F61] shrink-0 ml-4 transition-transform duration-300" style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>
-                            ▼
-                          </span>
-                        </button>
-                      ) : (
-                        <div className="px-6 pt-5 pb-2">
-                          <span className="text-[17px] font-semibold text-[#0D3C1F]" style={{ fontFamily: '"Playfair Display", serif' }}>
-                            {session.title.replace('PHIÊN', 'Phiên')}
-                          </span>
+              {selectedDay === "Ngày 31/5/2026"
+                ? ["Phiên toàn thể","Hội trường Hồng Quảng","Hội trường Yên Trung","Hội trường Đồng Sơn","Hội trường Yên Đức 1","Hội trường Yên Đức 2","Hội trường Yên Đức 3","Hội trường Thanh Lân 1","Hội trường Thanh Lân 2","Hội trường Kim Quy"].map(hall => {
+                    const sessions = structuredTimeline.filter(s => s.daySection === "Ngày 31/5/2026" && s.hall === hall);
+                    if (!sessions.length) return null;
+                    return (
+                      <React.Fragment key={hall}>
+                        <div className="mt-4 px-4 py-2 bg-[#EEF4F1] rounded-lg">
+                          <span className="text-[14px] font-semibold text-[#0D3C1F] font-geist">{hall}</span>
                         </div>
-                      )}
-
-                      {isOpen && (
-                        <div className="px-6 pb-6 overflow-hidden border-t border-[#E5EBE8] pt-4">
+                        {sessions.map(session => (
+                          <div key={session.id} className="bg-white border text-left border-[#E5EBE8] rounded-[16px] overflow-hidden shadow-sm hover:shadow transition-shadow">
+                            <div className="px-6 pt-5 pb-6">
+                              {session.chuToa && (
+                                <div className="mb-2 text-[13px] text-[#4A6B5A] leading-relaxed">
+                                  <span className="font-semibold text-[#0D3C1F]">Chủ tọa: </span>
+                                  {session.chuToa.split('; ').map((name, i, arr) => (
+                                    <React.Fragment key={i}>
+                                      <span className="whitespace-nowrap">{name}</span>
+                                      {i < arr.length - 1 && <span>; </span>}
+                                    </React.Fragment>
+                                  ))}
+                                </div>
+                              )}
+                              {session.thuKy && (
+                                <div className="mb-4 text-[13px] text-[#4A6B5A] leading-relaxed">
+                                  <span className="font-semibold text-[#0D3C1F]">Thư ký: </span>
+                                  {session.thuKy.split('; ').map((name, i, arr) => (
+                                    <React.Fragment key={i}>
+                                      <span className="whitespace-nowrap">{name}</span>
+                                      {i < arr.length - 1 && <span>; </span>}
+                                    </React.Fragment>
+                                  ))}
+                                </div>
+                              )}
+                              <div
+                                dangerouslySetInnerHTML={{ __html: session.html }}
+                                className="custom-table-styles session-hall-table"
+                              />
+                            </div>
+                          </div>
+                        ))}
+                      </React.Fragment>
+                    );
+                  })
+                : structuredTimeline
+                    .filter(s => s.daySection === selectedDay)
+                    .map(session => (
+                      <div key={session.id} className="bg-white border text-left border-[#E5EBE8] rounded-[16px] overflow-hidden shadow-sm hover:shadow transition-shadow">
+                        <div className="px-6 pt-5 pb-6">
                           {session.chuToa && (
                             <div className="mb-2 text-[13px] text-[#4A6B5A] leading-relaxed">
                               <span className="font-semibold text-[#0D3C1F]">Chủ tọa: </span>
@@ -381,68 +380,36 @@ export default function App() {
                             className={`custom-table-styles ${session.daySection === 'Tổng quan' ? 'session-overview-table' : 'session-hall-table'}`}
                           />
                         </div>
-                      )}
-                    </div>
-                  );
-                })}
+                      </div>
+                    ))
+              }
             </div>
 
-            {/* Bottom day switcher — cho Tổng quan & Ngày 29-30 */}
-            {selectedDay !== "Ngày 31/5/2026" && (
-              <div className="max-w-4xl mx-auto w-full mt-10 pt-8 border-t border-[#E5EBE8]">
-                <p className="text-center text-[12px] uppercase tracking-[0.2em] text-[#4A6B5A] font-geist font-semibold mb-5">
-                  Xem ngày khác
-                </p>
-                <div className="flex flex-wrap gap-3 justify-center">
-                  {["Tổng quan", "Ngày 29-30/5/2026", "Ngày 31/5/2026"].map(day => (
-                    <button
-                      key={day}
-                      onClick={() => {
-                        setSelectedDay(day);
-                        setSelectedHall(day === "Ngày 31/5/2026" ? "Phiên toàn thể" : null);
-                        setExpandedSessionId(null);
-                        document.getElementById('lich-trinh')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                      }}
-                      className={`px-6 py-2.5 border rounded text-[15px] font-medium transition-all font-geist ${
-                        selectedDay === day
-                          ? 'bg-[#0D3C1F] text-white border-[#0D3C1F]'
-                          : 'bg-white text-[#0D3C1F] border-[#C5D4CC] hover:bg-[#F0F4F2]'
-                      }`}
-                    >
-                      {day}
-                    </button>
-                  ))}
-                </div>
+            {/* Bottom day switcher */}
+            <div className="max-w-4xl mx-auto w-full mt-10 pt-8 border-t border-[#E5EBE8]">
+              <p className="text-center text-[12px] uppercase tracking-[0.2em] text-[#4A6B5A] font-geist font-semibold mb-5">
+                Xem ngày khác
+              </p>
+              <div className="flex flex-wrap gap-3 justify-center">
+                {["Tổng quan", "Ngày 29-30/5/2026", "Ngày 31/5/2026"].map(day => (
+                  <button
+                    key={day}
+                    onClick={() => {
+                      setSelectedDay(day);
+                      setExpandedSessionId(null);
+                      document.getElementById('lich-trinh')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }}
+                    className={`px-6 py-2.5 border rounded text-[15px] font-medium transition-all font-geist ${
+                      selectedDay === day
+                        ? 'bg-[#0D3C1F] text-white border-[#0D3C1F]'
+                        : 'bg-white text-[#0D3C1F] border-[#C5D4CC] hover:bg-[#F0F4F2]'
+                    }`}
+                  >
+                    {day}
+                  </button>
+                ))}
               </div>
-            )}
-
-            {/* Bottom hall switcher — chỉ hiện cho Ngày 31 */}
-            {selectedDay === "Ngày 31/5/2026" && (
-              <div className="max-w-4xl mx-auto w-full mt-10 pt-8 border-t border-[#E5EBE8]">
-                <p className="text-center text-[12px] uppercase tracking-[0.2em] text-[#4A6B5A] font-geist font-semibold mb-5">
-                  Chuyển sang hội trường khác
-                </p>
-                <div className="flex flex-wrap gap-2 justify-center">
-                  {["Phiên toàn thể","Hội trường Hồng Quảng","Hội trường Yên Trung","Hội trường Đồng Sơn","Hội trường Yên Đức 1","Hội trường Yên Đức 2","Hội trường Yên Đức 3","Hội trường Thanh Lân 1","Hội trường Thanh Lân 2","Hội trường Kim Quy"].map(hall => (
-                    <button
-                      key={hall}
-                      onClick={() => {
-                        setSelectedHall(hall);
-                        setExpandedSessionId(null);
-                        document.getElementById('lich-trinh')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                      }}
-                      className={`px-2.5 py-1.5 sm:px-4 sm:py-2 border rounded text-[11px] sm:text-[14px] font-medium transition-all font-geist ${
-                        selectedHall === hall
-                          ? 'bg-[#3D7F61] text-white border-[#3D7F61]'
-                          : 'bg-white text-[#3D7F61] border-[#B8CEC5] hover:bg-[#F0F4F2]'
-                      }`}
-                    >
-                      {hall}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
+            </div>
           </div>
         </div>
       </section>
@@ -667,11 +634,11 @@ export default function App() {
       <footer className="w-full bg-[#FAF9F6] pt-12 pb-8 px-6 flex justify-center relative z-20" id="lien-he">
         <div className="max-w-[1100px] w-full flex flex-col">
           <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-10">
-            <a href="#gioi-thieu" className="flex items-center select-none shrink-0">
-              <img src="/vpa-logo.jpg" alt="Hội Tâm Thần Học Việt Nam" className="mix-blend-multiply h-7 object-contain" />
+            <a href="#gioi-thieu" className="flex items-center gap-3 select-none shrink-0">
+              <img src="/vpa-logo-removebg-preview.png" alt="Hội Tâm Thần Học Việt Nam" className="h-9 object-contain" />
+              <span className="text-xs font-semibold text-[#4A6B5A] tracking-[0.05em] uppercase font-geist">Hội Tâm Thần Học Việt Nam</span>
             </a>
             <div className="flex flex-wrap justify-center gap-8 md:gap-12 text-xs font-medium text-[#4A6B5A] tracking-[0.05em] uppercase font-geist">
-              <a href="#gioi-thieu" className="hover:text-[#0D3C1F] transition-colors">Hội Tâm Thần Học Việt Nam</a>
               <a href="#gioi-thieu" className="hover:text-[#0D3C1F] transition-colors">Về chúng tôi</a>
               <a href="#lien-he" className="hover:text-[#0D3C1F] transition-colors">Liên hệ</a>
             </div>
