@@ -126,11 +126,10 @@ body {
   }
 }
 
-/* ===== MOBILE: HALL SESSION TABLE — CARD LAYOUT ===== */
-@media (max-width: 640px) {
-  .session-hall-table table,
-  .session-hall-table tbody,
-  .session-hall-table colgroup {
+/* ===== HALL SESSION TABLE — CARD LAYOUT ===== */
+.session-hall-table table,
+.session-hall-table tbody,
+.session-hall-table colgroup {
     display: block !important;
     min-width: unset !important;
     width: 100% !important;
@@ -231,4 +230,3 @@ body {
     line-height: 1.4;
   }
   .session-hall-table tbody td[colspan="2"] p { margin: 0; }
-}

@@ -4,8 +4,8 @@ import { structuredTimeline } from './data/timelineStructured';
 export default function App() {
   const [language, setLanguage] = useState('vi');
   const isVi = language === 'vi';
-  const [selectedDay, setSelectedDay] = useState("Ngày 31/5/2026");
-  const [selectedHall, setSelectedHall] = useState("Phiên toàn thể");
+  const [selectedDay, setSelectedDay] = useState("Tổng quan");
+  const [selectedHall, setSelectedHall] = useState(null);
   const [expandedSessionId, setExpandedSessionId] = useState(null);
 
   // Countdown to May 29 2026 08:00 Vietnam time (UTC+7)
