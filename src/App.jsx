@@ -290,7 +290,7 @@ export default function App() {
                     setSelectedHall(day === "Ngày 31/5/2026" ? "Phiên toàn thể" : null);
                     setExpandedSessionId(null);
                   }}
-                  className={`px-5 py-2 border rounded text-[13px] font-medium transition-all font-geist ${
+                  className={`px-6 py-2.5 border rounded text-[15px] font-medium transition-all font-geist ${
                     selectedDay === day
                       ? 'bg-[#0D3C1F] text-white border-[#0D3C1F]'
                       : 'bg-white text-[#0D3C1F] border-[#C5D4CC] hover:bg-[#F0F4F2]'
@@ -308,7 +308,7 @@ export default function App() {
                   <button
                     key={hall}
                     onClick={() => { setSelectedHall(hall); setExpandedSessionId(null); }}
-                    className={`px-3.5 py-1.5 border rounded text-[12px] font-medium transition-all font-geist ${
+                    className={`px-4 py-2 border rounded text-[14px] font-medium transition-all font-geist ${
                       selectedHall === hall
                         ? 'bg-[#3D7F61] text-white border-[#3D7F61]'
                         : 'bg-white text-[#3D7F61] border-[#B8CEC5] hover:bg-[#F0F4F2]'
@@ -403,7 +403,7 @@ export default function App() {
                         setExpandedSessionId(null);
                         document.getElementById('lich-trinh')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                       }}
-                      className={`px-5 py-2 border rounded text-[13px] font-medium transition-all font-geist ${
+                      className={`px-6 py-2.5 border rounded text-[15px] font-medium transition-all font-geist ${
                         selectedDay === day
                           ? 'bg-[#0D3C1F] text-white border-[#0D3C1F]'
                           : 'bg-white text-[#0D3C1F] border-[#C5D4CC] hover:bg-[#F0F4F2]'
@@ -431,7 +431,7 @@ export default function App() {
                         setExpandedSessionId(null);
                         document.getElementById('lich-trinh')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                       }}
-                      className={`px-3.5 py-1.5 border rounded text-[12px] font-medium transition-all font-geist ${
+                      className={`px-4 py-2 border rounded text-[14px] font-medium transition-all font-geist ${
                         selectedHall === hall
                           ? 'bg-[#3D7F61] text-white border-[#3D7F61]'
                           : 'bg-white text-[#3D7F61] border-[#B8CEC5] hover:bg-[#F0F4F2]'
