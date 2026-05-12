@@ -501,7 +501,7 @@ export default function App() {
             </div>
             <div className="flex justify-center">
               <div className="flex items-center justify-center hover:-translate-y-1 transition-transform duration-300">
-                <img src="/logo-hoang-duc.png" alt="Hoàng Đức" className="h-12 sm:h-14 max-w-[160px] object-contain" />
+                <img src="/logo-hoang-duc.png" alt="Hoàng Đức" className="h-14 sm:h-16 max-w-[180px] object-contain" />
               </div>
             </div>
           </div>
