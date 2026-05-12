@@ -119,7 +119,7 @@ export default function App() {
             <img 
               src="/vpa-logo.jpg" 
               alt="Hội Tâm Thần Học Việt Nam" 
-              className="mix-blend-multiply h-7 object-contain" 
+              className="mix-blend-multiply h-11 object-contain"
             />
           </a>
           <nav className="hidden gap-x-4 md:flex">
@@ -158,7 +158,7 @@ export default function App() {
         {/* Hero Section */}
         <main className="flex-grow flex flex-col text-center pt-0 px-6 pb-16 items-center justify-center gap-0">
           {/* Title */}
-          <h1 className="text-white text-4xl md:text-6xl font-semibold tracking-tight leading-tight max-w-5xl animate-title-intro drop-shadow-[0_2px_16px_rgba(0,0,0,0.5)]" style={{ fontFamily: '"Playfair Display", serif' }}>
+          <h1 className="text-white text-4xl md:text-6xl font-bold tracking-tight leading-tight max-w-5xl animate-title-intro drop-shadow-[0_2px_16px_rgba(0,0,0,0.5)]" style={{ fontFamily: '"Be Vietnam Pro", sans-serif' }}>
             {isVi ? 'Hội Tâm Thần Học Việt Nam' : 'Vietnam Psychiatric Association'}
           </h1>
 
@@ -168,7 +168,7 @@ export default function App() {
               {isVi ? 'Chủ đề' : 'Theme'}
             </p>
             <p className="text-lg md:text-2xl font-semibold text-white tracking-wide font-geist drop-shadow-[0_1px_8px_rgba(0,0,0,0.6)]">
-              {isVi ? 'Sức Khỏe Tâm Thần Trong Bối Cảnh Mới' : 'Mental Health In The New Context'}
+              {isVi ? <>Sức Khỏe Tâm Thần Trong <span className="whitespace-nowrap">Bối Cảnh Mới</span></> : 'Mental Health In The New Context'}
             </p>
           </div>
 
@@ -192,8 +192,9 @@ export default function App() {
 
           {/* Register button */}
           <div className="mt-8 animate-btn-intro">
-            <a href="#dang-ky" className="inline-flex items-center justify-center uppercase transition-all hover:opacity-90 text-xs font-medium text-white tracking-[0.15em] rounded px-8 py-4 shadow-[0_0_0_1px_rgba(255,255,255,0.2),0_4px_16px_rgba(0,0,0,0.3)] bg-[#0D3C1F] hover:bg-[#0D3C1F]/90">
-              {isVi ? 'Đăng ký tham dự' : 'Register to attend'}
+            <a href="#lich-trinh" className="inline-flex items-center justify-center gap-2 uppercase transition-all hover:opacity-90 text-xs font-medium text-white tracking-[0.15em] rounded px-8 py-4 shadow-[0_0_0_1px_rgba(255,255,255,0.2),0_4px_16px_rgba(0,0,0,0.3)] bg-[#0D3C1F] hover:bg-[#0D3C1F]/90">
+              <iconify-icon icon="solar:calendar-bold" width="14" height="14"></iconify-icon>
+              {isVi ? 'Xem lịch trình chi tiết' : 'View schedule'}
             </a>
           </div>
 
@@ -289,10 +290,10 @@ export default function App() {
                     setSelectedHall(day === "Ngày 31/5/2026" ? "Phiên toàn thể" : null);
                     setExpandedSessionId(null);
                   }}
-                  className={`px-5 py-2.5 border rounded-full text-[14px] font-medium transition-all ${
+                  className={`px-5 py-2 border rounded text-[13px] font-medium transition-all font-geist ${
                     selectedDay === day
                       ? 'bg-[#0D3C1F] text-white border-[#0D3C1F]'
-                      : 'bg-white text-[#0D3C1F] border-[#E5EBE8] hover:bg-[#F0F4F2]'
+                      : 'bg-white text-[#0D3C1F] border-[#C5D4CC] hover:bg-[#F0F4F2]'
                   }`}
                 >
                   {day}
@@ -307,10 +308,10 @@ export default function App() {
                   <button
                     key={hall}
                     onClick={() => { setSelectedHall(hall); setExpandedSessionId(null); }}
-                    className={`px-4 py-2 border rounded-full text-[13px] font-medium transition-all ${
+                    className={`px-3.5 py-1.5 border rounded text-[12px] font-medium transition-all font-geist ${
                       selectedHall === hall
                         ? 'bg-[#3D7F61] text-white border-[#3D7F61]'
-                        : 'bg-white text-[#3D7F61] border-[#C5D9CE] hover:bg-[#F0F4F2]'
+                        : 'bg-white text-[#3D7F61] border-[#B8CEC5] hover:bg-[#F0F4F2]'
                     }`}
                   >
                     {hall}
@@ -402,10 +403,10 @@ export default function App() {
                         setExpandedSessionId(null);
                         document.getElementById('lich-trinh')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                       }}
-                      className={`px-5 py-2.5 border rounded-full text-[14px] font-medium transition-all ${
+                      className={`px-5 py-2 border rounded text-[13px] font-medium transition-all font-geist ${
                         selectedDay === day
                           ? 'bg-[#0D3C1F] text-white border-[#0D3C1F]'
-                          : 'bg-white text-[#0D3C1F] border-[#E5EBE8] hover:bg-[#F0F4F2]'
+                          : 'bg-white text-[#0D3C1F] border-[#C5D4CC] hover:bg-[#F0F4F2]'
                       }`}
                     >
                       {day}
@@ -430,10 +431,10 @@ export default function App() {
                         setExpandedSessionId(null);
                         document.getElementById('lich-trinh')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                       }}
-                      className={`px-4 py-2 border rounded-full text-[13px] font-medium transition-all ${
+                      className={`px-3.5 py-1.5 border rounded text-[12px] font-medium transition-all font-geist ${
                         selectedHall === hall
                           ? 'bg-[#3D7F61] text-white border-[#3D7F61]'
-                          : 'bg-white text-[#3D7F61] border-[#C5D9CE] hover:bg-[#F0F4F2]'
+                          : 'bg-white text-[#3D7F61] border-[#B8CEC5] hover:bg-[#F0F4F2]'
                       }`}
                     >
                       {hall}
@@ -462,16 +463,16 @@ export default function App() {
           <div className="mt-16 w-full reveal-up delay-100">
             <div className="flex items-center gap-4 mb-8">
               <div className="h-px flex-1 bg-[#E5EBE8]"></div>
-              <span className="text-[11px] uppercase tracking-[0.25em] text-[#B8980A] font-geist font-semibold px-2">Kim cương</span>
+              <span className="text-[14px] uppercase tracking-[0.2em] text-[#B8980A] font-geist font-bold px-3">Kim cương</span>
               <div className="h-px flex-1 bg-[#E5EBE8]"></div>
             </div>
-            <div className="flex flex-wrap justify-center gap-6">
+            <div className="flex flex-wrap justify-center gap-10">
               {[
                 { src: '/logo-egis.png', alt: 'EGIS' },
                 { src: '/logo-eisai.png', alt: 'Eisai' },
               ].map((logo) => (
-                <div key={logo.alt} className="h-32 w-full max-w-[300px] sm:w-80 sm:max-w-none rounded-2xl bg-white border-2 border-[#E8D48A] flex items-center justify-center hover:-translate-y-1 transition-transform duration-300 shadow-[0_6px_24px_rgba(184,152,10,0.14)] p-7">
-                  <img src={logo.src} alt={logo.alt} className="max-h-full max-w-full object-contain" />
+                <div key={logo.alt} className="flex items-center justify-center hover:-translate-y-1 transition-transform duration-300">
+                  <img src={logo.src} alt={logo.alt} className="h-20 sm:h-24 max-w-[240px] object-contain" />
                 </div>
               ))}
             </div>
@@ -481,12 +482,12 @@ export default function App() {
           <div className="mt-12 w-full reveal-up delay-150">
             <div className="flex items-center gap-4 mb-8">
               <div className="h-px flex-1 bg-[#E5EBE8]"></div>
-              <span className="text-[11px] uppercase tracking-[0.25em] text-[#C0880A] font-geist font-semibold px-2">Vàng</span>
+              <span className="text-[12px] uppercase tracking-[0.2em] text-[#C0880A] font-geist font-bold px-3">Vàng</span>
               <div className="h-px flex-1 bg-[#E5EBE8]"></div>
             </div>
             <div className="flex justify-center">
-              <div className="h-24 w-full max-w-[280px] sm:w-72 sm:max-w-none rounded-2xl bg-white border-2 border-[#E8D48A] flex items-center justify-center hover:-translate-y-1 transition-transform duration-300 shadow-[0_4px_16px_rgba(184,152,10,0.08)] p-6">
-                <img src="/logo-gigamed.png" alt="Gigamed" className="max-h-full max-w-full object-contain" />
+              <div className="flex items-center justify-center hover:-translate-y-1 transition-transform duration-300">
+                <img src="/logo-gigamed.png" alt="Gigamed" className="h-16 sm:h-20 max-w-[200px] object-contain" />
               </div>
             </div>
           </div>
@@ -495,12 +496,12 @@ export default function App() {
           <div className="mt-12 w-full reveal-up delay-200">
             <div className="flex items-center gap-4 mb-8">
               <div className="h-px flex-1 bg-[#E5EBE8]"></div>
-              <span className="text-[11px] uppercase tracking-[0.25em] text-[#8A9E92] font-geist font-semibold px-2">Bạc</span>
+              <span className="text-[11px] uppercase tracking-[0.2em] text-[#8A9E92] font-geist font-semibold px-3">Bạc</span>
               <div className="h-px flex-1 bg-[#E5EBE8]"></div>
             </div>
             <div className="flex justify-center">
-              <div className="h-[88px] w-full max-w-[224px] sm:w-56 sm:max-w-none rounded-2xl bg-white border border-[#C8CDD0] flex items-center justify-center hover:-translate-y-1 transition-transform duration-300 shadow-[0_2px_10px_rgba(0,0,0,0.05)] p-4">
-                <img src="/logo-hoang-duc.png" alt="Hoàng Đức" className="max-h-full max-w-full object-contain" />
+              <div className="flex items-center justify-center hover:-translate-y-1 transition-transform duration-300">
+                <img src="/logo-hoang-duc.png" alt="Hoàng Đức" className="h-12 sm:h-14 max-w-[160px] object-contain" />
               </div>
             </div>
           </div>
@@ -509,10 +510,10 @@ export default function App() {
           <div className="mt-12 w-full reveal-up delay-200">
             <div className="flex items-center gap-4 mb-8">
               <div className="h-px flex-1 bg-[#E5EBE8]"></div>
-              <span className="text-[11px] uppercase tracking-[0.25em] text-[#A0724A] font-geist font-semibold px-2">Đồng</span>
+              <span className="text-[10px] uppercase tracking-[0.2em] text-[#A0724A] font-geist font-semibold px-3">Đồng</span>
               <div className="h-px flex-1 bg-[#E5EBE8]"></div>
             </div>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-6 sm:gap-8">
               {[
                 { src: '/logo-golden-gate.png',     alt: 'Golden Gate' },
                 { src: '/logo-viatris.png',         alt: 'Viatris' },
@@ -527,8 +528,8 @@ export default function App() {
                 { src: '/logo-y-med.png',           alt: 'Y-Med' },
                 { src: '/logo-hyphens.png',         alt: 'Hyphens' },
               ].map((logo) => (
-                <div key={logo.alt} className="h-14 w-36 rounded-xl bg-white border border-[#E8CEBB] flex items-center justify-center hover:-translate-y-0.5 transition-transform duration-300 p-2.5">
-                  <img src={logo.src} alt={logo.alt} className="max-h-full max-w-full object-contain" />
+                <div key={logo.alt} className="flex items-center justify-center hover:-translate-y-0.5 transition-transform duration-300">
+                  <img src={logo.src} alt={logo.alt} className="h-9 sm:h-10 max-w-[110px] object-contain" />
                 </div>
               ))}
             </div>
@@ -538,10 +539,10 @@ export default function App() {
           <div className="mt-12 w-full reveal-up delay-300">
             <div className="flex items-center gap-4 mb-8">
               <div className="h-px flex-1 bg-[#E5EBE8]"></div>
-              <span className="text-[11px] uppercase tracking-[0.25em] text-[#8A9E92] font-geist font-semibold px-2">Đồng tài trợ</span>
+              <span className="text-[9px] uppercase tracking-[0.2em] text-[#8A9E92] font-geist font-semibold px-3">Đồng tài trợ</span>
               <div className="h-px flex-1 bg-[#E5EBE8]"></div>
             </div>
-            <div className="flex flex-wrap justify-center gap-3">
+            <div className="flex flex-wrap justify-center gap-5 sm:gap-7">
               {[
                 { src: '/logo-mosneuro.png',       alt: 'Mosneuro' },
                 { src: '/logo-danapha.png',        alt: 'Danapha' },
@@ -551,8 +552,8 @@ export default function App() {
                 { src: '/logo-pharma-science.png', alt: 'Pharma Science' },
                 { src: '/logo-famed.png',          alt: 'Famed' },
               ].map((logo) => (
-                <div key={logo.alt} className="h-12 w-32 rounded-xl bg-white border border-[#E5EBE8] flex items-center justify-center hover:-translate-y-0.5 transition-transform duration-300 p-2">
-                  <img src={logo.src} alt={logo.alt} className="max-h-full max-w-full object-contain" />
+                <div key={logo.alt} className="flex items-center justify-center hover:-translate-y-0.5 transition-transform duration-300">
+                  <img src={logo.src} alt={logo.alt} className="h-7 sm:h-8 max-w-[90px] object-contain" />
                 </div>
               ))}
             </div>
