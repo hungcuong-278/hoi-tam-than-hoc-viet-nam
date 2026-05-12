@@ -146,7 +146,7 @@ body {
   /* Each row is a card entry */
   .session-hall-table tbody tr {
     display: block !important;
-    padding: 10px 0 !important;
+    padding: 14px 0 !important;
     border: none !important;
     border-bottom: 1px solid #E5EBE8 !important;
     background: transparent !important;
@@ -168,9 +168,9 @@ body {
   .session-hall-table tbody td:not([colspan]):first-child {
     color: #0D6E3D;
     font-weight: 700;
-    font-size: 11px;
+    font-size: 14px;
     letter-spacing: 0.02em;
-    margin-bottom: 2px;
+    margin-bottom: 4px;
   }
   .session-hall-table tbody td:not([colspan]):first-child:empty {
     display: none !important;
@@ -179,20 +179,20 @@ body {
   /* Col 2 — Content: dark bold */
   .session-hall-table tbody td:not([colspan]):nth-child(2) {
     font-weight: 600;
-    font-size: 13px;
+    font-size: 16px;
     color: #0D3C1F;
-    line-height: 1.45;
+    line-height: 1.5;
   }
   .session-hall-table tbody td:not([colspan]):nth-child(2) p {
     margin: 0;
-    line-height: 1.45;
+    line-height: 1.5;
   }
 
   /* Col 3 — Reporter */
   .session-hall-table tbody td:not([colspan]):nth-child(3) {
-    font-size: 12px;
-    line-height: 1.4;
-    margin-top: 1px;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-top: 3px;
   }
   .session-hall-table tbody td:not([colspan]):nth-child(3) > p:first-child {
     color: #0D6E3D;
@@ -211,7 +211,7 @@ body {
   /* Section header rows (e.g. date separators in Ngày 29-30) */
   .session-hall-table tbody td[colspan="3"] {
     font-weight: 700 !important;
-    font-size: 12px !important;
+    font-size: 14px !important;
     color: #0D3C1F !important;
     background: #EEF4F1 !important;
     padding: 6px 10px !important;
@@ -225,7 +225,7 @@ body {
 
   /* Colspan=2 rows (e.g. Tiệc chiêu đãi with merged content+reporter) */
   .session-hall-table tbody td[colspan="2"] {
-    font-size: 13px;
+    font-size: 15px;
     color: #0D3C1F;
     line-height: 1.4;
   }
