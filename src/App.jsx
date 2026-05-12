@@ -52,7 +52,7 @@ export default function App() {
     e.preventDefault();
     setFormStatus('loading');
 
-    const url = 'https://script.google.com/macros/s/AKfycbxVFrumJK-AiTnSQIfsPQAZ4mxzossgFKXI7UYi6R3imEKf6NzsdrbdL3vDyWOU42SV/exec';
+    const url = 'https://script.google.com/macros/s/AKfycbxvrVEjnGD7BrlhLVEHGZOXYXi2W75UBtfJukuuppKv3arJLXP0EHkNtdgf967FITrW/exec';
     const payload = {
       ...formData,
       _timestamp: Date.now(),
