@@ -315,7 +315,12 @@ export default function App() {
                         </div>
                         {sessions.map(session => (
                           <div key={session.id} className="bg-white border text-left border-[#E5EBE8] rounded-[16px] overflow-hidden shadow-sm hover:shadow transition-shadow">
-                            <div className="px-6 pt-5 pb-6">
+                            <div className="px-6 pt-4 pb-3">
+                              <span className="text-[15px] font-semibold text-[#0D3C1F]" style={{ fontFamily: '"Be Vietnam Pro", sans-serif' }}>
+                                {session.title.replace('PHIÊN', 'Phiên')}
+                              </span>
+                            </div>
+                            <div className="px-6 pb-6 border-t border-[#E5EBE8] pt-4">
                               {session.chuToa && (
                                 <div className="mb-2 text-[13px] text-[#4A6B5A] leading-relaxed">
                                   <span className="font-semibold text-[#0D3C1F]">Chủ tọa: </span>
@@ -352,7 +357,14 @@ export default function App() {
                     .filter(s => s.daySection === selectedDay)
                     .map(session => (
                       <div key={session.id} className="bg-white border text-left border-[#E5EBE8] rounded-[16px] overflow-hidden shadow-sm hover:shadow transition-shadow">
-                        <div className="px-6 pt-5 pb-6">
+                        {session.daySection !== 'Tổng quan' && (
+                          <div className="px-6 pt-4 pb-3 border-b border-[#E5EBE8]">
+                            <span className="text-[15px] font-semibold text-[#0D3C1F]" style={{ fontFamily: '"Be Vietnam Pro", sans-serif' }}>
+                              {session.title.replace('PHIÊN', 'Phiên')}
+                            </span>
+                          </div>
+                        )}
+                        <div className="px-6 pt-4 pb-6">
                           {session.chuToa && (
                             <div className="mb-2 text-[13px] text-[#4A6B5A] leading-relaxed">
                               <span className="font-semibold text-[#0D3C1F]">Chủ tọa: </span>
