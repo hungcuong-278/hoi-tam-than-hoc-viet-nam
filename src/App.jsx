@@ -308,7 +308,7 @@ export default function App() {
                   <button
                     key={hall}
                     onClick={() => { setSelectedHall(hall); setExpandedSessionId(null); }}
-                    className={`px-4 py-2 border rounded text-[14px] font-medium transition-all font-geist ${
+                    className={`px-2.5 py-1.5 sm:px-4 sm:py-2 border rounded text-[11px] sm:text-[14px] font-medium transition-all font-geist ${
                       selectedHall === hall
                         ? 'bg-[#3D7F61] text-white border-[#3D7F61]'
                         : 'bg-white text-[#3D7F61] border-[#B8CEC5] hover:bg-[#F0F4F2]'
@@ -431,7 +431,7 @@ export default function App() {
                         setExpandedSessionId(null);
                         document.getElementById('lich-trinh')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                       }}
-                      className={`px-4 py-2 border rounded text-[14px] font-medium transition-all font-geist ${
+                      className={`px-2.5 py-1.5 sm:px-4 sm:py-2 border rounded text-[11px] sm:text-[14px] font-medium transition-all font-geist ${
                         selectedHall === hall
                           ? 'bg-[#3D7F61] text-white border-[#3D7F61]'
                           : 'bg-white text-[#3D7F61] border-[#B8CEC5] hover:bg-[#F0F4F2]'
