@@ -471,21 +471,26 @@ export default function App() {
             </div>
           </div>
 
-          {/* Bạc — 100M — 1 */}
+          {/* Bạc — 100M — 2 */}
           <div className="mt-12 w-full reveal-up delay-200">
             <div className="flex items-center gap-4 mb-8">
               <div className="h-px flex-1 bg-[#E5EBE8]"></div>
               <span className="text-[11px] uppercase tracking-[0.2em] text-[#8A9E92] font-geist font-semibold px-3">Bạc</span>
               <div className="h-px flex-1 bg-[#E5EBE8]"></div>
             </div>
-            <div className="flex justify-center">
-              <div className="flex items-center justify-center hover:-translate-y-1 transition-transform duration-300">
-                <img src="/logo-hoang-duc.png" alt="Hoàng Đức" className="h-14 sm:h-16 max-w-[180px] object-contain" />
-              </div>
+            <div className="flex flex-wrap justify-center gap-8 sm:gap-12">
+              {[
+                { src: '/logo-hoang-duc.png', alt: 'Hoàng Đức' },
+                { src: '/logo-gedeon-richter.png', alt: 'Gedeon Richter' },
+              ].map((logo) => (
+                <div key={logo.alt} className="flex items-center justify-center hover:-translate-y-1 transition-transform duration-300">
+                  <img src={logo.src} alt={logo.alt} className="h-14 sm:h-16 max-w-[180px] object-contain" />
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* Đồng — 50M — 12 */}
+          {/* Đồng — 50M — 11 */}
           <div className="mt-12 w-full reveal-up delay-200">
             <div className="flex items-center gap-4 mb-8">
               <div className="h-px flex-1 bg-[#E5EBE8]"></div>
@@ -496,7 +501,6 @@ export default function App() {
               {[
                 { src: '/logo-golden-gate.png',     alt: 'Golden Gate' },
                 { src: '/logo-viatris.png',         alt: 'Viatris' },
-                { src: '/logo-gedeon-richter.png',  alt: 'Gedeon Richter' },
                 { src: '/logo-watson.png',          alt: 'Watson & Company' },
                 { src: '/logo-vietcare.png',        alt: 'Vietcare Solutions' },
                 { src: '/logo-biocodex.png',        alt: 'Biocodex' },
