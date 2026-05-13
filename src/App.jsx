@@ -118,7 +118,7 @@ export default function App() {
       </div>
 
       {/* Fixed Header */}
-      <header className={`fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-3 flex items-center justify-between animate-header-intro transition-all duration-300 ${isScrolled ? 'bg-[#0D3C1F] shadow-md' : ''}`}>
+      <header className={`fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-3 flex items-center justify-between animate-header-intro transition-all duration-300 bg-white shadow-sm`}>
         <a href="#gioi-thieu" className="flex items-center select-none">
           <img
             src="/vpa-new-logo-transparent.png"
@@ -127,33 +127,33 @@ export default function App() {
           />
         </a>
         <nav className="hidden gap-x-4 md:flex">
-          <a href="#gioi-thieu" className="text-sm font-medium text-white/80 hover:text-white transition-colors drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">{isVi ? 'Giới thiệu' : 'About'}</a>
-          <a href="#timeline" className="text-sm font-medium text-white/80 hover:text-white transition-colors drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">{isVi ? 'Sự kiện' : 'Timeline'}</a>
-          <a href="#tai-tro" className="text-sm font-medium text-white/80 hover:text-white transition-colors drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">{isVi ? 'Nhà tài trợ' : 'Sponsors'}</a>
-          <a href="#dang-ky" className="text-sm font-medium text-white/80 hover:text-white transition-colors drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">{isVi ? 'Đăng ký' : 'Register'}</a>
-          <a href="#lien-he" className="text-sm font-medium text-white/80 hover:text-white transition-colors drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">{isVi ? 'Liên hệ' : 'Contact'}</a>
+          <a href="#gioi-thieu" className="text-sm font-medium text-[#4B5563] hover:text-[#0D3C1F] transition-colors">{isVi ? 'Giới thiệu' : 'About'}</a>
+          <a href="#timeline" className="text-sm font-medium text-[#4B5563] hover:text-[#0D3C1F] transition-colors">{isVi ? 'Sự kiện' : 'Timeline'}</a>
+          <a href="#tai-tro" className="text-sm font-medium text-[#4B5563] hover:text-[#0D3C1F] transition-colors">{isVi ? 'Nhà tài trợ' : 'Sponsors'}</a>
+          <a href="#dang-ky" className="text-sm font-medium text-[#4B5563] hover:text-[#0D3C1F] transition-colors">{isVi ? 'Đăng ký' : 'Register'}</a>
+          <a href="#lien-he" className="text-sm font-medium text-[#4B5563] hover:text-[#0D3C1F] transition-colors">{isVi ? 'Liên hệ' : 'Contact'}</a>
         </nav>
         <div className="flex items-center gap-6">
-          <div className="hidden sm:flex items-center gap-1 rounded border border-white/30 p-1">
+          <div className="hidden sm:flex items-center gap-1 rounded border border-[#E5E7EB] p-1">
             <button
               type="button"
               onClick={() => setLanguage('vi')}
-              className={`px-2 py-1 text-[10px] tracking-wider rounded ${isVi ? 'bg-white text-[#0D3C1F] font-semibold' : 'text-white/70'}`}
+              className={`px-2 py-1 text-[10px] tracking-wider rounded ${isVi ? 'bg-[#0D3C1F] text-white font-semibold' : 'text-[#6B7280] hover:text-[#0D3C1F]'}`}
             >
               VN
             </button>
             <button
               type="button"
               onClick={() => setLanguage('en')}
-              className={`px-2 py-1 text-[10px] tracking-wider rounded ${!isVi ? 'bg-white text-[#0D3C1F] font-semibold' : 'text-white/70'}`}
+              className={`px-2 py-1 text-[10px] tracking-wider rounded ${!isVi ? 'bg-[#0D3C1F] text-white font-semibold' : 'text-[#6B7280] hover:text-[#0D3C1F]'}`}
             >
               EN
             </button>
           </div>
-          <button type="button" className="text-xs tracking-widest font-medium text-white/70 hover:text-white uppercase transition-colors hidden sm:block drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">
+          <button type="button" className="text-xs tracking-widest font-medium text-[#4B5563] hover:text-[#0D3C1F] uppercase transition-colors hidden sm:block">
             {isVi ? 'Đăng nhập' : 'Log in'}
           </button>
-          <a href="#dang-ky" className="inline-flex items-center justify-center bg-white text-[#0D3C1F] px-5 py-2.5 rounded text-xs font-medium tracking-[0.15em] uppercase transition-all hover:opacity-80">
+          <a href="#dang-ky" className="inline-flex items-center justify-center bg-[#0D3C1F] text-white px-5 py-2.5 rounded text-xs font-medium tracking-[0.15em] uppercase transition-all hover:bg-[#155A2F] shadow-sm">
             {isVi ? 'Đăng ký tham dự' : 'Register now'}
           </a>
         </div>
