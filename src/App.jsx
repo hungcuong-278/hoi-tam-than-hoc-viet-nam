@@ -121,7 +121,7 @@ export default function App() {
       <header className={`fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-3 flex items-center justify-between animate-header-intro transition-all duration-300 ${isScrolled ? 'bg-[#0D3C1F] shadow-md' : ''}`}>
         <a href="#gioi-thieu" className="flex items-center select-none">
           <img
-            src="/vpa-logo-clean-highres.png"
+            src="/vpa-new-logo-transparent.png"
             alt="Hội Tâm Thần Học Việt Nam"
             className="h-11 object-contain"
           />
@@ -651,7 +651,7 @@ export default function App() {
         <div className="max-w-[1100px] w-full flex flex-col">
           <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-10">
             <a href="#gioi-thieu" className="flex items-center gap-3 select-none shrink-0">
-              <img src="/vpa-logo-clean-highres.png" alt="Hội Tâm Thần Học Việt Nam" className="h-9 object-contain" />
+              <img src="/vpa-new-logo-transparent.png" alt="Hội Tâm Thần Học Việt Nam" className="h-9 object-contain" />
               <span className="text-xs font-semibold text-[#4A6B5A] tracking-[0.05em] uppercase font-geist">Hội Tâm Thần Học Việt Nam</span>
             </a>
             <div className="flex flex-wrap justify-center gap-8 md:gap-12 text-xs font-medium text-[#4A6B5A] tracking-[0.05em] uppercase font-geist">
