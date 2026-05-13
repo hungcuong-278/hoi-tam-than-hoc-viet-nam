@@ -2,7 +2,7 @@ const timeline = {
   meta: {
     title_vi: 'Chương trình Hội nghị Tâm Thần Học Toàn Quốc lần thứ V',
     title_en: '5th National Conference on Psychiatry',
-    dates: '29 - 31/5/2026',
+    dates: '29 & 31/5/2026',
     venue: 'Trung tâm hội nghị Mường Thanh Hạ Long Centre, Khu 2, đường Hạ Long, phường Bãi Cháy, tỉnh Quảng Ninh'
   },
   vi: [
@@ -21,8 +21,8 @@ const timeline = {
       date: '30/5/2026',
       title: 'Sự kiện ngày 30/5',
       entries: [
-        { time: 'Toàn ngày', title: 'Giải Pickeball Hạ Long 2026 (Bệnh viện SKTT Quảng Ninh)' },
-        { time: '18:00', title: 'Tiệc chiêu đãi' }
+        { time: 'Toàn ngày', title: 'Giải Pickeball Hạ Long 2026 (Bệnh Viện SKTT Quảng Ninh)' },
+        { time: '18:00', title: '18h00, 30/5/2026 – Tiệc chiêu đãi tại Khách sạn Sài Gòn Hạ Long, Số 168, đường Hạ Long, phường Bãi Cháy, Quảng Ninh' }
       ]
     },
     {

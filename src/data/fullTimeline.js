@@ -1,6 +1,6 @@
 const fullTimeline = `**CHƯƠNG TRÌNH HỘI NGHỊ TÂM THẦN HỌC TOÀN QUỐC LẦN THỨ V**
 
-**Ngày 29 - 31/5/2026**
+**Ngày 29 & 31/5/2026**
 
 **Địa điểm: Trung tâm hội nghị Mường Thanh Hạ Long Centre**
 
@@ -117,7 +117,7 @@ const fullTimeline = `**CHƯƠNG TRÌNH HỘI NGHỊ TÂM THẦN HỌC TOÀN QU�
 <tr class="odd">
 <td colspan="3"><p><strong>Ngày 29/5/2026</strong></p>
 <p><strong>Chương trình đào tạo liên tục</strong></p>
-<p><strong>tại Bệnh viện Sức khỏe tâm thần Quảng Ninh</strong></p></td>
+<p><strong>tại Bệnh Viện Sức khỏe tâm thần Quảng Ninh</strong></p></td>
 </tr>
 <tr class="even">
 <td>13h30-14h00</td>
@@ -147,14 +147,11 @@ const fullTimeline = `**CHƯƠNG TRÌNH HỘI NGHỊ TÂM THẦN HỌC TOÀN QU�
 <td></td>
 </tr>
 <tr class="odd">
-<td colspan="3"><p><strong>Ngày 30/5/2026</strong></p>
-<p><strong>Giải Pickeball Hạ Long 2026</strong></p>
-<p><strong>Đơn vị tổ chức: Bệnh viện Sức khỏe tâm thần Quảng Ninh</strong></p></td>
+<td colspan="3"><p><strong>Ngày 30/5/2026</strong></p></td>
 </tr>
 <tr class="even">
 <td>18h00</td>
-<td colspan="2"><p>Tiệc chiêu đãi</p>
-<p>Đơn vị tổ chức: Bệnh viện Sức khỏe tâm thần Quảng Ninh</p></td>
+<td colspan="2"><p>18h00, 30/5/2026 – Tiệc chiêu đãi tại Khách sạn Sài Gòn Hạ Long, Số 168, đường Hạ Long, phường Bãi Cháy, Quảng Ninh</p></td>
 </tr>
 <tr class="odd">
 <td colspan="3"><p><strong>Ngày 31/5/2026</strong></p>
@@ -164,7 +161,7 @@ const fullTimeline = `**CHƯƠNG TRÌNH HỘI NGHỊ TÂM THẦN HỌC TOÀN QU�
 <tr class="even">
 <td colspan="3"><p><strong>PHIÊN TOÀN THỂ</strong></p>
 <p><strong>HỘI TRƯỜNG HỒNG QUẢNG</strong></p>
-<p><strong>Chủ tọa:</strong> PGS.TS. Nguyễn Văn Tuấn; ThS. Vũ Minh Hạnh;</p>
+<p><strong>Chủ tọa:</strong> PGS.TS. Nguyễn Văn Tuấn; Ths. Vũ Minh Hạnh;</p>
 <p>PGS.TS. Trần Viết Nghị; PGS.TS. Trần Hữu Bình; PGS.TS. Nguyễn Kim Việt;</p>
 <p>GS.TS. Cao Tiến Đức; PGS.TS. Nguyễn Thanh Bình; PGS.TS. Phạm Văn Mạnh;</p>
 <p>PGS.TS. Võ Văn Bản; PGS.TS. Phạm Đức Thịnh; PGS.TS. Nguyễn Sinh Phúc;</p>
@@ -172,10 +169,10 @@ const fullTimeline = `**CHƯƠNG TRÌNH HỘI NGHỊ TÂM THẦN HỌC TOÀN QU�
 <p>PGS.TS. Dương Minh Tâm; PGS.TS. Tô Thanh Phương;</p>
 <p>TS. Nguyễn Mạnh Phát; TS. Nguyễn Hữu Thắng; TS. Phùng Thanh Hải; BSCKII. Hoàng Viết Hải; TS. Trần Thị Hà An; TS. Nguyễn Doãn Phương; BSCKII. Nguyễn Minh Tuấn;</p>
 <p>BSCKII. Vũ Ngọc Úy; BSCKII. Nguyễn Đăng Khoa; TS. Đàm Đức Thắng; TS. Lê Bật Tân;</p>
-<p>TS. Hồ Giang Nam; BSCKII. Trần Nguyên Ngọc; ThS. Hồ Dũng; TS. Đàm Thị Bảo Hoa;</p>
+<p>TS. Hồ Giang Nam; BSCKII. Trần Nguyên Ngọc; Ths. Hồ Dũng; TS. Đàm Thị Bảo Hoa;</p>
 <p>TS. Vũ Thy Cầm; TS. Trần Như Minh Hằng; TS. Nguyễn Văn Thống; TS. Đỗ Xuân Tĩnh;</p>
 <p>TS. Nguyễn Mai Hương; TS. Nguyễn Thị Phương Mai; TS. Vũ Sơn Tùng; TS. Lê Thị Thu Hà;</p>
-<p>TS. Nguyễn Văn Tuấn; BSCKII. Trần Trung Nghĩa; ThS. Lê Công Thiện; TS. Nguyễn Hữu Chiến;</p>
+<p>TS. Nguyễn Văn Tuấn; BSCKII. Trần Trung Nghĩa; Ths. Lê Công Thiện; TS. Nguyễn Hữu Chiến;</p>
 <p>TS. Trịnh Thị Bích Huyền; TS. Phạm Thị Thu Hiền; TS. Trịnh Thanh Hương</p>
 <p><strong>Thư ký:</strong> BSCKII. Bùi Văn Lợi; Phạm Thị Thu Hương; Vũ Thị Hạnh</p></td>
 </tr>
@@ -219,7 +216,7 @@ const fullTimeline = `**CHƯƠNG TRÌNH HỘI NGHỊ TÂM THẦN HỌC TOÀN QU�
 <tr class="even">
 <td>08h40-08h50</td>
 <td>Chăm sóc sức khoẻ tâm thần tại Quảng Ninh: cơ hội và thách thức</td>
-<td><p>ThS. Vũ Minh Hạnh</p>
+<td><p>Ths. Vũ Minh Hạnh</p>
 <p>Giám đốc</p>
 <p>Bệnh viện SKTT tỉnh Quảng Ninh</p></td>
 </tr>
@@ -264,9 +261,9 @@ const fullTimeline = `**CHƯƠNG TRÌNH HỘI NGHỊ TÂM THẦN HỌC TOÀN QU�
 
 Chủ tọa: PGS.TS. Nguyễn Văn Tuấn; TS. Đàm Thị Bảo Hoa; TS. Lê Bật Tân;
 
-TS. Trịnh Thị Bích Huyền; ThS. Vũ Minh Hạnh
+TS. Trịnh Thị Bích Huyền; Ths. Vũ Minh Hạnh
 
-Thư ký: ThS. Nguyễn Văn Hải; Phạm Thuỳ Dương
+Thư ký: Ths. Nguyễn Văn Hải; Phạm Thuỳ Dương
 
 <table>
 <colgroup>
@@ -297,25 +294,25 @@ Thư ký: ThS. Nguyễn Văn Hải; Phạm Thuỳ Dương
 <tr class="odd">
 <td>09h35-09h50</td>
 <td>Ứng dụng từ não đồ trong chẩn đoán và điều trị các rối loạn tâm thần</td>
-<td>BSCKII. Phạm Công Huân Viện Sức khỏe Tâm thần</td>
+<td>BSCKII. Phạm Công Huân Viện Sức khỏe tâm thần</td>
 </tr>
 <tr class="even">
 <td>09h50-10h05</td>
 <td>Vai trò của Đa ký giấc ngủ trong các rối loạn tâm thần</td>
 <td><p>Ths. Nguyễn Văn Hải</p>
-<p>Viện Sức khỏe Tâm thần</p></td>
+<p>Viện Sức khỏe tâm thần</p></td>
 </tr>
 <tr class="odd">
 <td>10h05-10h20</td>
 <td>Nghiên cứu biến thể gen 5-HTR2A và nồng độ 5-HIAA huyết tương ở bệnh nhân rối loạn trầm cảm</td>
 <td><p>Ths. Nguyễn Tất Định</p>
-<p>Bệnh viện QY 103, Học viện Quân Y</p></td>
+<p>Bệnh viện QY 103, Học viện Quân y</p></td>
 </tr>
 <tr class="even">
 <td>10h20-10h35</td>
 <td><mark>Nghiên cứu một số đa hình gen nguy cơ và mối liên quan với đặc điểm lâm sàng ở bệnh nhân nghiện rượu mạn tính</mark></td>
 <td><p>Ths. Nguyễn Văn Linh</p>
-<p>BV Quân Y 103, Học viện Quân Y</p></td>
+<p>BV Quân Y 103, Học viện Quân y</p></td>
 </tr>
 <tr class="odd">
 <td>10h35-10h40</td>
@@ -353,7 +350,7 @@ Thư ký: ThS. Nguyễn Văn Hải; Phạm Thuỳ Dương
 <tr class="even">
 <td>10h55-11h10</td>
 <td>Vai trò của điều biến não trong điều trị tâm thần phân liệt</td>
-<td>TS. Trịnh Thị Bích Huyền Viện Sức khỏe Tâm thần</td>
+<td>TS. Trịnh Thị Bích Huyền Viện Sức khỏe tâm thần</td>
 </tr>
 <tr class="odd">
 <td>11h10-11h25</td>
@@ -371,13 +368,13 @@ Thư ký: ThS. Nguyễn Văn Hải; Phạm Thuỳ Dương
 <td>11h40-11h55</td>
 <td>Hiệu quả của rTMS trong điều trị trầm cảm ở người cao tuổi</td>
 <td><p>Ths. Nguyễn Việt Hà</p>
-<p>Viện Sức khỏe Tâm thần</p></td>
+<p>Viện Sức khỏe tâm thần</p></td>
 </tr>
 <tr class="even">
 <td>11h55-12h10</td>
 <td>Ứng dụng kích thích dòng điện một chiều xuyên sọ trong điều trị trầm cảm và tâm thần phân liệt</td>
 <td><p>TS. Nguyễn Trọng Đạo</p>
-<p>BV Quân Y 103, Học viện Quân Y</p></td>
+<p>BV Quân Y 103, Học viện Quân y</p></td>
 </tr>
 <tr class="odd">
 <td>12h10-12h20</td>
@@ -389,9 +386,9 @@ Thư ký: ThS. Nguyễn Văn Hải; Phạm Thuỳ Dương
 
 **HỘI TRƯỜNG YÊN TRUNG**
 
-Chủ tọa: PGS.TS. Nguyễn Thanh Bình; PGS.TS. Dương Minh Tâm; PGS.TS. Tô Thanh Phương; TS. Đỗ Xuân Tĩnh; ThS. Hồ Dũng
+Chủ tọa: PGS.TS. Nguyễn Thanh Bình; PGS.TS. Dương Minh Tâm; PGS.TS. Tô Thanh Phương; TS. Đỗ Xuân Tĩnh; Ths. Hồ Dũng
 
-Thư ký: ThS.BS. Phạm Thanh Tùng; Nguyễn Thị Hường
+Thư ký: Ths.BS. Phạm Thanh Tùng; Nguyễn Thị Hường
 
 <table>
 <colgroup>
@@ -493,13 +490,13 @@ Thư ký: ThS.BS. Phạm Thanh Tùng; Nguyễn Thị Hường
 <td>11h40-11h55</td>
 <td>Đặc điểm hoạt động tình dục ở nam giới nghiện rượu tại Viện sức khỏe Tâm thần</td>
 <td><p>Ths. Phạm Thanh Tùng</p>
-<p>Viện Sức khỏe Tâm thần</p></td>
+<p>Viện Sức khỏe tâm thần</p></td>
 </tr>
 <tr class="even">
 <td>11h55-12h10</td>
 <td>Đặc điểm giảm ham muốn tình dục ở người bệnh nam rối loạn cơ thể hóa điều trị tại Viện sức khỏe tâm thần</td>
 <td><p>Ths. Trịnh Thị Vân Anh</p>
-<p>Viện Sức khỏe Tâm thần</p></td>
+<p>Viện Sức khỏe tâm thần</p></td>
 </tr>
 <tr class="odd">
 <td>12h10-12h20</td>
@@ -541,7 +538,7 @@ Thư ký: Ths. Nguyễn Kim Anh; Nguyễn Ngọc Thuỷ
 <td>09h20-09h35</td>
 <td>Cập nhật di truyền học trong chẩn đoán và điều trị rối loạn phát triển</td>
 <td><p>Ths. Lê Công Thiện</p>
-<p>Viện Sức khỏe Tâm thần</p></td>
+<p>Viện Sức khỏe tâm thần</p></td>
 </tr>
 <tr class="odd">
 <td>09h35-09h50</td>
@@ -570,7 +567,7 @@ Thư ký: Ths. Nguyễn Kim Anh; Nguyễn Ngọc Thuỷ
 <tr class="odd">
 <td>10h35-10h40</td>
 <td>Giới thiệu sản phẩm</td>
-<td>VPĐD Hyphens</td>
+<td>Cty Hyphens</td>
 </tr>
 <tr class="even">
 <td>10h40-10h50</td>
@@ -604,19 +601,19 @@ Thư ký: Ths. Nguyễn Kim Anh; Nguyễn Ngọc Thuỷ
 <td>10h55-11h10</td>
 <td>Tổng quan điều trị rối loạn cảm xúc ở trẻ vị thành niên</td>
 <td><p>TS. Vũ Sơn Tùng</p>
-<p>Viện Sức khỏe Tâm thần</p></td>
+<p>Viện Sức khỏe tâm thần</p></td>
 </tr>
 <tr class="odd">
 <td>11h10-11h25</td>
-<td>Đặc điểm rút lui xã hội ở người bệnh vị thành niên điều trị tại Viện Sức khỏe Tâm thần</td>
+<td>Đặc điểm rút lui xã hội ở người bệnh vị thành niên điều trị tại Viện Sức khỏe tâm thần</td>
 <td><p>BSCKII. Đỗ Thuỳ Dung</p>
-<p>Viện Sức khỏe Tâm thần</p></td>
+<p>Viện Sức khỏe tâm thần</p></td>
 </tr>
 <tr class="even">
 <td>11h25-11h40</td>
 <td>Đặc điểm rối loạn hành vi ở người bệnh rối loạn hỗn hợp hành vi và cảm xúc tuổi vị thành niên điều trị nội trú</td>
 <td>Ths. Nguyễn Kim Anh<br />
-Viện Sức khỏe Tâm thần</td>
+Viện Sức khỏe tâm thần</td>
 </tr>
 <tr class="odd">
 <td>11h40-11h55</td>
@@ -642,7 +639,7 @@ Viện Sức khỏe Tâm thần</td>
 
 Chủ tọa: PGS.TS. Trần Viết Nghị; TS. Đàm Đức Thắng; BSCKII. Nguyễn Đăng Khoa;
 
-TS. Trần Như Minh Hằng; ThS. Lê Công Thiện
+TS. Trần Như Minh Hằng; Ths. Lê Công Thiện
 
 Thư ký: Ths. Nguyễn Việt Hà; Đoàn Thị Hải Yến
 
@@ -699,7 +696,7 @@ Bệnh viện Tâm thần Nghệ An</td>
 <tr class="odd">
 <td>10h35-10h40</td>
 <td>Giới thiệu sản phẩm</td>
-<td>Cty Gigamed (nhãn hàng Invega)</td>
+<td>Cty Gigamed</td>
 </tr>
 <tr class="even">
 <td>10h40-10h50</td>
@@ -745,7 +742,7 @@ Bệnh viện Tâm thần Nghệ An</td>
 <td>11h25-11h40</td>
 <td>Đặc điểm lâm sàng toan tự sát ở người bệnh 15-19 tuổi điều trị nội trú tại Bệnh viện Bạch Mai</td>
 <td><p>BSCKII. Bùi Nguyễn Hồng Bảo Ngọc</p>
-<p>Viện Sức khỏe Tâm thần</p></td>
+<p>Viện Sức khỏe tâm thần</p></td>
 </tr>
 <tr class="odd">
 <td>11h40-11h55</td>
@@ -862,7 +859,7 @@ Thư ký: Ths. Phạm Thị Nguyệt Nga; Cao Thị Vân Anh
 <td>10h55-11h10</td>
 <td>Tổng quan phân loại, điều trị các rối loạn ăn uống</td>
 <td><p>BSCKII. Bùi Văn Lợi</p>
-<p>Viện Sức khỏe Tâm thần</p></td>
+<p>Viện Sức khỏe tâm thần</p></td>
 </tr>
 <tr class="odd">
 <td>11h10-11h25</td>
@@ -877,14 +874,14 @@ Thư ký: Ths. Phạm Thị Nguyệt Nga; Cao Thị Vân Anh
 </tr>
 <tr class="odd">
 <td>11h40-11h55</td>
-<td>Đặc điểm ngon miệng ở người bệnh rối loạn trầm cảm tái diễn điều trị nội trú tại Viện Sức khỏe Tâm thần</td>
-<td>Ths. Nguyễn Phương Linh, Viện Sức khỏe Tâm thần</td>
+<td>Đặc điểm ngon miệng ở người bệnh rối loạn trầm cảm tái diễn điều trị nội trú tại Viện Sức khỏe tâm thần</td>
+<td>Ths. Nguyễn Phương Linh, Viện Sức khỏe tâm thần</td>
 </tr>
 <tr class="even">
 <td>11h55-12h10</td>
 <td>Trị liệu nhận thức hành vi trong điều trị ăn vô độ tâm thần</td>
 <td><p>Ths. Ngô Tuấn Khiêm</p>
-<p>Viện Sức khỏe Tâm thần</p></td>
+<p>Viện Sức khỏe tâm thần</p></td>
 </tr>
 <tr class="odd">
 <td>12h10-12h20</td>
@@ -932,7 +929,7 @@ Thư ký: BSCKII. Vũ Văn Hoài; Ngô Thu Cúc
 <td>09h35-09h50</td>
 <td>Cập nhật chẩn đoán và điều trị nghiện N2O</td>
 <td><p>BSCKII. Bùi Nguyễn Hồng Bảo Ngọc</p>
-<p>Viện Sức khỏe Tâm thần</p></td>
+<p>Viện Sức khỏe tâm thần</p></td>
 </tr>
 <tr class="even">
 <td>09h50-10h05</td>
@@ -944,7 +941,7 @@ Thư ký: BSCKII. Vũ Văn Hoài; Ngô Thu Cúc
 <td>10h05-10h20</td>
 <td>Thực trạng sử dụng thuốc lá điện tử ở trẻ vị thành niên đến khám chữa bệnh tại Viện Sức khoẻ Tâm thần - Bệnh viện Bạch Mai</td>
 <td><p>BSCKII. Vũ Văn Hoài</p>
-<p>Viện Sức khỏe Tâm thần</p></td>
+<p>Viện Sức khỏe tâm thần</p></td>
 </tr>
 <tr class="even">
 <td>10h20-10h35</td>
@@ -1055,18 +1052,18 @@ Thư ký: Ths. Dương Thị Tố Uyên; Nguyễn Thuỳ Linh
 <td>09h20-09h35</td>
 <td>Tổng quan phân loại, điều trị sa sút trí tuệ</td>
 <td>TS. Nguyễn Thị Phương Mai<br />
-Viện Sức khỏe Tâm thần</td>
+Viện Sức khỏe tâm thần</td>
 </tr>
 <tr class="odd">
 <td>09h35-09h50</td>
 <td>Đặc điểm lâm sàng triệu chứng hành vi ở người bệnh Alzheimer điều trị nội trú</td>
-<td>Ths. Dương Thị Tố Uyên Viện Sức khỏe Tâm thần</td>
+<td>Ths. Dương Thị Tố Uyên Viện Sức khỏe tâm thần</td>
 </tr>
 <tr class="even">
 <td>09h50-10h05</td>
 <td>Một số yếu tố liên quan rối loạn trầm cảm ở người cao tuổi điều trị nội trú tại Bệnh viện Sức khỏe Tâm thần Quảng Ninh</td>
 <td><p>BSCKI. Trương Hồng Vinh</p>
-<p>Bệnh viện SKTT Quảng Ninh</p></td>
+<p>Bệnh Viện SKTT Quảng Ninh</p></td>
 </tr>
 <tr class="odd">
 <td>10h05-10h20</td>
@@ -1141,7 +1138,7 @@ Viện SKTT Phương Đông</td>
 <td>11h55-12h10</td>
 <td>Mối liên hệ giữa chất lượng giấc ngủ và sức khỏe tâm thần ở sinh viên đại học trong bối cảnh hiện nay</td>
 <td><p>TS. Phạm Thị Kiều Duyên</p>
-<p>Trường ĐH Sư phạm - ĐH Đà Nẵng</p></td>
+<p>Trường ĐH Sư phạm, ĐH Đà Nẵng</p></td>
 </tr>
 <tr class="odd">
 <td>12h10-12h20</td>
@@ -1181,7 +1178,7 @@ Thư ký: Ths. Hoàng Trường Sơn; Phạm Thị Hằng
 <td>09h20-09h35</td>
 <td>Tổng quan phân loại rối loạn tâm thần thực tổn/ động kinh</td>
 <td><p>TS. Trần Thị Hà An</p>
-<p>Viện Sức khỏe Tâm thần</p></td>
+<p>Viện Sức khỏe tâm thần</p></td>
 </tr>
 <tr class="odd">
 <td>09h35-09h50</td>
@@ -1310,7 +1307,7 @@ Thư ký: BSCKII. Cao Thị Ánh Tuyết; Lê Quỳnh Anh
 <td>09h20-09h35</td>
 <td>Tổng quan chẩn đoán tâm lý</td>
 <td><p>TS. Vũ Thy Cầm</p>
-<p>Viện Sức khỏe Tâm thần</p></td>
+<p>Viện Sức khỏe tâm thần</p></td>
 </tr>
 <tr class="odd">
 <td>09h35-09h50</td>
@@ -1328,13 +1325,13 @@ Thư ký: BSCKII. Cao Thị Ánh Tuyết; Lê Quỳnh Anh
 <td>10h05-10h20</td>
 <td>Liệu pháp âm nhạc trong điều trị trầm cảm</td>
 <td><p>BSCKII. Cao Thị Ánh Tuyết</p>
-<p>Viện Sức khỏe Tâm thần</p></td>
+<p>Viện Sức khỏe tâm thần</p></td>
 </tr>
 <tr class="even">
 <td>10h20-10h35</td>
-<td>Đánh giá mối liên quan giữa chất lượng thực hành liệu pháp nhận thức (CTRS) và mức độ trầm cảm (PHQ_9) tại Viện Sức khoẻ Tâm thần</td>
+<td>Đánh giá mối liên quan giữa chất lượng thực hành liệu pháp nhận thức (CTRS) và mức độ trầm cảm (PHQ-9) tại Viện Sức khoẻ Tâm thần</td>
 <td><p>TS. Trịnh Thanh Hương</p>
-<p>Viện Sức khỏe Tâm thần</p></td>
+<p>Viện Sức khỏe tâm thần</p></td>
 </tr>
 <tr class="odd">
 <td>10h35-10h50</td>
@@ -1368,7 +1365,7 @@ Thư ký: BSCKII. Cao Thị Ánh Tuyết; Lê Quỳnh Anh
 <td>10h55-11h10</td>
 <td>Tổng quan điều dưỡng chăm sóc sức khỏe tâm thần</td>
 <td><p>TS. Phạm Thị Thu Hiền</p>
-<p>Viện Sức khỏe Tâm thần</p></td>
+<p>Viện Sức khỏe tâm thần</p></td>
 </tr>
 <tr class="odd">
 <td>11h10-11h25</td>
@@ -1380,7 +1377,7 @@ Thư ký: BSCKII. Cao Thị Ánh Tuyết; Lê Quỳnh Anh
 <td>11h25-11h40</td>
 <td>Đánh giá mức độ độc lập chăm sóc theo thang điểm Barthel trong ngày đầu điều trị hội chứng cai rượu</td>
 <td><p>Ths. Đỗ Thị Hoa</p>
-<p>Viện Sức khỏe Tâm thần</p></td>
+<p>Viện Sức khỏe tâm thần</p></td>
 </tr>
 <tr class="odd">
 <td>11h40-11h55</td>
