@@ -534,6 +534,7 @@ export default function App() {
                 { src: '/logo-nhat-viet.png',      alt: 'Nhật Việt' },
                 { src: '/logo-pharma-science.png', alt: 'Pharma Science' },
                 { src: '/logo-famed.png',          alt: 'Famed' },
+                { src: '/logo-nevada.png',         alt: 'Nevada' },
               ].map((logo) => (
                 <div key={logo.alt} className="flex items-center justify-center hover:-translate-y-0.5 transition-transform duration-300">
                   <img src={logo.src} alt={logo.alt} className="h-7 sm:h-8 max-w-[90px] object-contain" />
