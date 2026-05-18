@@ -628,80 +628,14 @@ export default function App() {
               <iconify-icon icon="solar:document-text-bold" width="18" height="18" className="text-[#3D7F61]"></iconify-icon>
               <p className="text-[13px] font-semibold text-[#0D3C1F] font-geist">Văn bản thông báo chính thức</p>
             </div>
-            {/* Mobile: HTML render — iframe PDF không hoạt động trên iOS/Zalo WebView */}
-            <div className="md:hidden w-full rounded-2xl border border-[#E5EBE8] overflow-hidden shadow-[0_4px_16px_rgba(13,60,31,0.06)] bg-white">
-              <div className="p-5 text-[#1a1a1a]" style={{ fontFamily: 'serif' }}>
-                {/* Letterhead */}
-                <div className="flex justify-between text-center gap-2 pb-4 border-b border-gray-300 mb-4">
-                  <div className="flex-1">
-                    <p className="font-bold text-[11px] uppercase leading-tight">Hội Tâm Thần Học Việt Nam</p>
-                    <p className="text-[11px] text-gray-500 mt-1">Số: <em>14</em>/TB-HTTHVN</p>
-                  </div>
-                  <div className="flex-1">
-                    <p className="font-bold text-[10px] uppercase leading-tight">Cộng Hòa Xã Hội Chủ Nghĩa Việt Nam</p>
-                    <p className="text-[11px] font-medium mt-0.5">Độc lập – Tự do – Hạnh phúc</p>
-                    <p className="text-[10px] text-gray-500 italic mt-1">Hà Nội, ngày 18 tháng 5 năm 2026</p>
-                  </div>
-                </div>
-                {/* Title */}
-                <div className="text-center mb-4">
-                  <p className="font-bold text-[13px] uppercase tracking-wide">Thông Báo</p>
-                  <p className="text-[11px] font-semibold mt-2 leading-snug">
-                    Về việc tuyển sinh lớp "Ứng dụng kỹ thuật Kích thích dòng điện một chiều xuyên sọ trong điều trị rối loạn trầm cảm" năm 2026
-                  </p>
-                </div>
-                {/* Body */}
-                <p className="text-[12px] leading-relaxed mb-4 text-justify">
-                  Hội Tâm thần học Việt Nam phối hợp với Trung tâm đào tạo và ứng dụng công nghệ Trường Đại học Y Hà Nội thông báo tuyển sinh lớp "Kích thích dòng điện một chiều xuyên sọ trong điều trị rối loạn trầm cảm" năm 2026, với nội dung cụ thể như sau:
-                </p>
-                <ol className="text-[12px] leading-relaxed space-y-2 pl-4 list-decimal">
-                  <li><span className="font-semibold">Đối tượng tuyển sinh:</span> Bác sĩ tâm thần, bác sĩ đa khoa.</li>
-                  <li><span className="font-semibold">Thời gian đào tạo:</span> 29/05/2026 (tương đương 8 tiết)</li>
-                  <li><span className="font-semibold">Số lượng học viên:</span> Trên 50 học viên</li>
-                  <li><span className="font-semibold">Địa điểm đào tạo:</span> Bệnh viện Sức khỏe Tâm Thần Quảng Ninh (online/offline)</li>
-                  <li><span className="font-semibold">Hình thức tuyển sinh:</span> Xét tuyển</li>
-                  <li><span className="font-semibold">Chứng chỉ cuối khóa học:</span> Cấp theo Quy định. Học phí: 500.000 đ</li>
-                  <li>
-                    <span className="font-semibold">Hồ sơ đăng ký gồm:</span>
-                    <ul className="mt-1 space-y-1 pl-4 list-disc text-gray-700">
-                      <li>01 đơn xin học (theo mẫu)</li>
-                      <li>01 bản sao văn bằng tốt nghiệp Đại học (có chứng thực)</li>
-                      <li>01 bản sao căn cước công dân (photo)</li>
-                      <li>Giấy giới thiệu của cơ quan cử đi học (nếu có)</li>
-                    </ul>
-                  </li>
-                  <li>
-                    <span className="font-semibold">Đăng ký trực tuyến:</span>{' '}
-                    <a href="https://forms.gle/TcXJwfGCvt1eaRj28" target="_blank" rel="noreferrer" className="text-[#3D7F61] underline break-all">
-                      forms.gle/TcXJwfGCvt1eaRj28
-                    </a>
-                  </li>
-                </ol>
-                {/* Signature note */}
-                <p className="text-[10px] text-gray-400 italic text-center mt-5 pt-4 border-t border-gray-100">
-                  Ký bởi PGS.TS. Nguyễn Văn Tuấn – Chủ tịch Hội Tâm Thần Học Việt Nam
-                </p>
-                {/* Download original */}
-                <div className="mt-3 flex justify-center">
-                  <a
-                    href="/TB%20tuy%E1%BB%83n%20sinh%20tDCS.pdf"
-                    download
-                    className="inline-flex items-center gap-1.5 bg-[#EEF4F1] text-[#0D3C1F] px-4 py-2 rounded-lg text-[11px] font-semibold font-geist"
-                  >
-                    <iconify-icon icon="solar:download-bold" width="14" height="14"></iconify-icon>
-                    Tải văn bản gốc (PDF)
-                  </a>
-                </div>
+            <div className="w-full rounded-2xl border border-[#E5EBE8] shadow-[0_4px_16px_rgba(13,60,31,0.06)] overflow-hidden">
+              <div style={{ height: '75vh', minHeight: '500px', overflowY: 'auto', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
+                <iframe
+                  src="/TB%20tuy%E1%BB%83n%20sinh%20tDCS.pdf"
+                  style={{ width: '100%', height: '1500px', border: 'none', display: 'block' }}
+                  title="Thông báo tuyển sinh lớp tDCS"
+                />
               </div>
-            </div>
-            {/* Desktop: iframe embed */}
-            <div className="hidden md:block w-full rounded-2xl overflow-hidden border border-[#E5EBE8] shadow-[0_4px_16px_rgba(13,60,31,0.06)]">
-              <iframe
-                src="/TB%20tuy%E1%BB%83n%20sinh%20tDCS.pdf"
-                className="w-full"
-                style={{ height: '680px' }}
-                title="Thông báo tuyển sinh lớp tDCS"
-              />
             </div>
           </div>
 
