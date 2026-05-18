@@ -633,8 +633,8 @@ export default function App() {
               <img src="/tb-tdcs-trang-1.jpg" alt="Thông báo tuyển sinh tDCS – Trang 1" className="w-full block" />
               <img src="/tb-tdcs-trang-2.jpg" alt="Thông báo tuyển sinh tDCS – Trang 2" className="w-full block" />
               <a
-                href="/TB%20tuy%E1%BB%83n%20sinh%20tDCS.pdf"
-                download
+                href="/cong-van-tuyen-sinh-tdcs-2026.pdf"
+                download="Cong-van-tuyen-sinh-tDCS-2026.pdf"
                 className="flex items-center justify-center gap-2 bg-[#0D3C1F] hover:bg-[#155A2F] text-white py-3.5 text-[13px] font-semibold font-geist transition-all"
               >
                 <iconify-icon icon="solar:download-bold" width="16" height="16"></iconify-icon>
