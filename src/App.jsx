@@ -182,7 +182,7 @@ export default function App() {
           {/* Full venue address */}
           <div className="mt-3 animate-subtitle-intro flex items-start justify-center gap-1.5">
             <iconify-icon icon="solar:map-point-line-duotone" width="14" height="14" className="text-white/50 shrink-0 mt-[1px]"></iconify-icon>
-            <p className="text-[12px] text-white/60 font-geist leading-snug text-center">
+            <p className="text-[15px] md:text-[16px] text-white/90 font-geist leading-snug text-center font-medium">
               Trung tâm hội nghị Mường Thanh Hạ Long Centre, Khu 2, đường Hạ Long, phường Bãi Cháy, tỉnh Quảng Ninh
             </p>
           </div>
