@@ -127,34 +127,18 @@ export default function App() {
           />
         </a>
         <nav className="hidden gap-x-4 md:flex">
-          <a href="#gioi-thieu" className="text-sm font-medium text-[#4B5563] hover:text-[#0D3C1F] transition-colors">{isVi ? 'Giới thiệu' : 'About'}</a>
+          <a href="#gioi-thieu-ha-long" className="text-sm font-medium text-[#4B5563] hover:text-[#0D3C1F] transition-colors">{isVi ? 'Giới thiệu' : 'About'}</a>
           <a href="#timeline" className="text-sm font-medium text-[#4B5563] hover:text-[#0D3C1F] transition-colors">{isVi ? 'Sự kiện' : 'Timeline'}</a>
           <a href="#tai-tro" className="text-sm font-medium text-[#4B5563] hover:text-[#0D3C1F] transition-colors">{isVi ? 'Nhà tài trợ' : 'Sponsors'}</a>
           <a href="#dang-ky" className="text-sm font-medium text-[#4B5563] hover:text-[#0D3C1F] transition-colors">{isVi ? 'Đăng ký' : 'Register'}</a>
           <a href="#lien-he" className="text-sm font-medium text-[#4B5563] hover:text-[#0D3C1F] transition-colors">{isVi ? 'Liên hệ' : 'Contact'}</a>
         </nav>
-        <div className="flex items-center gap-6">
-          <div className="hidden sm:flex items-center gap-1 rounded border border-[#E5E7EB] p-1">
-            <button
-              type="button"
-              onClick={() => setLanguage('vi')}
-              className={`px-2 py-1 text-[10px] tracking-wider rounded ${isVi ? 'bg-[#0D3C1F] text-white font-semibold' : 'text-[#6B7280] hover:text-[#0D3C1F]'}`}
-            >
-              VN
-            </button>
-            <button
-              type="button"
-              onClick={() => setLanguage('en')}
-              className={`px-2 py-1 text-[10px] tracking-wider rounded ${!isVi ? 'bg-[#0D3C1F] text-white font-semibold' : 'text-[#6B7280] hover:text-[#0D3C1F]'}`}
-            >
-              EN
-            </button>
-          </div>
-          <button type="button" className="text-xs tracking-widest font-medium text-[#4B5563] hover:text-[#0D3C1F] uppercase transition-colors hidden sm:block">
-            {isVi ? 'Đăng nhập' : 'Log in'}
-          </button>
-          <a href="#dang-ky" className="inline-flex items-center justify-center bg-[#0D3C1F] text-white px-5 py-2.5 rounded text-xs font-medium tracking-[0.15em] uppercase transition-all hover:bg-[#155A2F] shadow-sm">
-            {isVi ? 'Đăng ký tham dự' : 'Register now'}
+        <div className="flex items-center gap-2 sm:gap-3">
+          <a href="#dang-ky-cme" className="inline-flex items-center justify-center bg-[#3D7F61] text-white px-3 py-2 sm:px-5 sm:py-2.5 rounded text-[10px] sm:text-xs font-medium tracking-[0.1em] sm:tracking-[0.15em] uppercase transition-all hover:bg-[#2E6B50] shadow-sm whitespace-nowrap">
+            Đăng ký CME
+          </a>
+          <a href="#dang-ky" className="inline-flex items-center justify-center bg-[#0D3C1F] text-white px-3 py-2 sm:px-5 sm:py-2.5 rounded text-[10px] sm:text-xs font-medium tracking-[0.1em] sm:tracking-[0.15em] uppercase transition-all hover:bg-[#155A2F] shadow-sm whitespace-nowrap">
+            Đăng ký tham dự
           </a>
         </div>
       </header>
@@ -228,7 +212,7 @@ export default function App() {
       </div>
 
       {/* Ha Long Section */}
-      <section className="w-full bg-white py-20 md:py-28 px-6 flex justify-center relative z-20">
+      <section id="gioi-thieu-ha-long" className="w-full bg-white py-20 md:py-28 px-6 flex justify-center relative z-20">
         <div className="max-w-[1100px] w-full flex flex-col md:flex-row items-center gap-12 md:gap-16 reveal-up">
           {/* Image */}
           <div className="w-full md:w-[48%] shrink-0">
@@ -545,12 +529,124 @@ export default function App() {
         </div>
       </section>
 
+      {/* CME Section */}
+      <section className="w-full bg-[#FAF9F6] py-24 md:py-[100px] px-6 flex justify-center relative z-20" id="dang-ky-cme">
+        <div className="max-w-[1100px] w-full reveal-up">
+
+          {/* Header */}
+          <div className="flex flex-col items-center text-center mb-12">
+            <span className="text-[11px] uppercase tracking-[0.2em] text-[#3D7F61] font-geist font-semibold mb-4">Đào tạo liên tục CME</span>
+            <h2 className="text-3xl md:text-4xl font-semibold text-[#0D3C1F] max-w-3xl tracking-tight leading-tight" style={{ fontFamily: '"Playfair Display", serif' }}>
+              Ứng dụng kỹ thuật Kích thích dòng điện một chiều xuyên sọ trong điều trị rối loạn trầm cảm
+            </h2>
+            <p className="mt-4 text-[14px] text-[#6B7280] font-geist">
+              Hội Tâm Thần Học Việt Nam phối hợp Trường Đại học Y Hà Nội · Năm 2026
+            </p>
+          </div>
+
+          <div className="flex flex-col lg:flex-row gap-8 items-start">
+
+            {/* Left — thông tin */}
+            <div className="flex-1 flex flex-col gap-4">
+
+              {/* Thông tin nhanh */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {[
+                  { icon: 'solar:calendar-bold', label: 'Thời gian', value: '29/05/2026 · 8 tiết' },
+                  { icon: 'solar:users-group-rounded-bold', label: 'Đối tượng', value: 'Bác sĩ tâm thần, bác sĩ đa khoa' },
+                  { icon: 'solar:map-point-bold', label: 'Địa điểm', value: 'Bệnh viện Sức khỏe Tâm Thần Quảng Ninh' },
+                  { icon: 'solar:diploma-bold', label: 'Chứng chỉ', value: 'Cấp theo quy định · Học phí 500.000 đ' },
+                ].map((item) => (
+                  <div key={item.label} className="flex items-start gap-3 bg-white rounded-xl p-4 border border-[#E5EBE8]">
+                    <div className="w-9 h-9 rounded-lg bg-[#EEF4F1] flex items-center justify-center shrink-0">
+                      <iconify-icon icon={item.icon} width="18" height="18" className="text-[#3D7F61]"></iconify-icon>
+                    </div>
+                    <div>
+                      <p className="text-[11px] uppercase tracking-[0.1em] text-[#8A9E92] font-geist font-medium">{item.label}</p>
+                      <p className="text-[13px] font-semibold text-[#0D3C1F] font-geist mt-0.5">{item.value}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Hồ sơ đăng ký */}
+              <div className="bg-white rounded-xl border border-[#E5EBE8] p-5">
+                <p className="text-[11px] uppercase tracking-[0.15em] text-[#8A9E92] font-geist font-semibold mb-3">Hồ sơ đăng ký</p>
+                <ul className="space-y-1.5">
+                  {[
+                    '01 đơn xin học (theo mẫu)',
+                    '01 bản sao văn bằng tốt nghiệp Đại học (có chứng thực)',
+                    '01 bản sao căn cước công dân (photo)',
+                    'Giấy giới thiệu của cơ quan cử đi học (nếu có)',
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-2 text-[13px] text-[#4A6B5A] font-geist">
+                      <iconify-icon icon="solar:check-circle-bold" width="16" height="16" className="text-[#3D7F61] shrink-0 mt-0.5"></iconify-icon>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Liên hệ */}
+              <div className="bg-[#0D3C1F] rounded-xl p-5 flex flex-col gap-1">
+                <p className="text-[11px] uppercase tracking-[0.15em] text-[rgba(255,255,255,0.5)] font-geist font-semibold mb-1">Liên hệ cán bộ phụ trách</p>
+                <p className="text-[14px] font-semibold text-white font-geist">Đoàn Thị Huệ</p>
+                <p className="text-[13px] text-[#8ABF9E] font-geist">SĐT: 0979 010 382</p>
+                <a href="mailto:doanthihue@hmu.edu.vn" className="text-[13px] text-[#8ABF9E] hover:text-white font-geist transition-colors">doanthihue@hmu.edu.vn</a>
+              </div>
+
+              {/* Văn bản gốc */}
+              <p className="text-[12px] text-[#8A9E92] font-geist italic">
+                Thông báo số 14/TB-HTTHVN ngày 18/05/2026 — ký bởi PGS.TS. Nguyễn Văn Tuấn, Chủ tịch Hội Tâm Thần Học Việt Nam.
+              </p>
+            </div>
+
+            {/* Right — QR + nút đăng ký */}
+            <div className="w-full lg:w-[280px] flex flex-col items-center gap-5 shrink-0">
+              <div className="bg-white rounded-2xl border border-[#E5EBE8] p-6 flex flex-col items-center gap-4 w-full shadow-[0_4px_16px_rgba(13,60,31,0.06)]">
+                <p className="text-[11px] uppercase tracking-[0.15em] text-[#8A9E92] font-geist font-semibold">Quét mã QR để đăng ký</p>
+                <img src="/QR-Dangki.jpg" alt="QR đăng ký CME tDCS" className="w-48 h-48 object-contain rounded-lg" />
+                <p className="text-[11px] text-[#8A9E92] font-geist text-center">hoặc nhấn nút bên dưới</p>
+              </div>
+              <a
+                href="https://forms.gle/TcXJwfGCvt1eaRj28"
+                target="_blank"
+                rel="noreferrer"
+                className="w-full inline-flex items-center justify-center gap-2 bg-[#0D3C1F] hover:bg-[#155A2F] text-white px-6 py-3.5 rounded-lg text-[13px] font-semibold tracking-wide font-geist transition-all hover:-translate-y-0.5 shadow-[0_4px_14px_rgba(13,60,31,0.2)]"
+              >
+                <iconify-icon icon="solar:document-add-bold" width="16" height="16"></iconify-icon>
+                Đăng ký ngay
+              </a>
+              <p className="text-[11px] text-[#8A9E92] font-geist text-center">Số lượng giới hạn · Trên 50 học viên</p>
+            </div>
+
+          </div>
+
+          {/* Văn bản chính thức nhúng PDF */}
+          <div className="mt-10">
+            <div className="flex items-center gap-3 mb-4">
+              <iconify-icon icon="solar:document-text-bold" width="18" height="18" className="text-[#3D7F61]"></iconify-icon>
+              <p className="text-[13px] font-semibold text-[#0D3C1F] font-geist">Văn bản thông báo chính thức</p>
+            </div>
+            <div className="w-full rounded-2xl overflow-hidden border border-[#E5EBE8] shadow-[0_4px_16px_rgba(13,60,31,0.06)]">
+              <iframe
+                src="/TB%20tuy%E1%BB%83n%20sinh%20tDCS.pdf"
+                className="w-full"
+                style={{ height: '680px' }}
+                title="Thông báo tuyển sinh lớp tDCS"
+              />
+            </div>
+          </div>
+
+        </div>
+      </section>
+
       {/* Registration Section */}
       <section className="w-full bg-[#FAF9F6] py-24 md:py-[100px] px-6 flex justify-center relative z-20" id="dang-ky">
         <div className="max-w-[1100px] w-full flex flex-col md:flex-row gap-8 items-start reveal-up">
           <div className="w-full md:w-1/2">
             <h2 className="text-3xl md:text-5xl font-semibold text-[#0D3C1F] tracking-tight leading-tight" style={{ fontFamily: '"Playfair Display", serif' }}>
-              {isVi ? 'Đăng ký tham dự' : 'Registration'}
+              {isVi ? 'Đăng ký tham dự hội nghị ngày 31/5/2026' : 'Conference Registration – May 31, 2026'}
             </h2>
             <p className="mt-5 text-[16px] text-[#4A6B5A] leading-relaxed font-geist max-w-[52ch]">
               {isVi
@@ -614,9 +710,6 @@ export default function App() {
             <label className="text-[13px] text-[#4A6B5A] font-geist block mb-2">{isVi ? 'Nội dung tham dự *' : 'Participation content *'}</label>
             <select required name="Noi_Dung_Tham_Du" value={formData.Noi_Dung_Tham_Du} onChange={handleFormChange}
               className="w-full mb-6 px-4 py-3 rounded bg-[#F5F5F3] text-[#0D3C1F] outline-none focus:ring-2 focus:ring-[#3D7F61]">
-              <option value="">{isVi ? 'Chọn nội dung tham dự' : 'Select participation content'}</option>
-              <option value="Toàn bộ hội nghị (29-31/5)">Toàn bộ hội nghị (29-31/5)</option>
-              <option value="Phiên đào tạo CME (29-30/5)">Phiên đào tạo CME (29-30/5)</option>
               <option value="Phiên toàn thể và báo cáo khoa học (31/5)">Phiên toàn thể và báo cáo khoa học (31/5)</option>
             </select>
 
