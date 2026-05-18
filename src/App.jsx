@@ -628,14 +628,27 @@ export default function App() {
               <iconify-icon icon="solar:document-text-bold" width="18" height="18" className="text-[#3D7F61]"></iconify-icon>
               <p className="text-[13px] font-semibold text-[#0D3C1F] font-geist">Văn bản thông báo chính thức</p>
             </div>
-            <div className="w-full rounded-2xl border border-[#E5EBE8] shadow-[0_4px_16px_rgba(13,60,31,0.06)] overflow-hidden">
-              <div style={{ height: '75vh', minHeight: '500px', overflowY: 'auto', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
-                <iframe
-                  src="/TB%20tuy%E1%BB%83n%20sinh%20tDCS.pdf"
-                  style={{ width: '100%', height: '1500px', border: 'none', display: 'block' }}
-                  title="Thông báo tuyển sinh lớp tDCS"
-                />
-              </div>
+            {/* Mobile: 2 trang PDF render thành ảnh, xếp chồng */}
+            <div className="md:hidden w-full rounded-2xl border border-[#E5EBE8] overflow-hidden shadow-[0_4px_16px_rgba(13,60,31,0.06)] flex flex-col">
+              <img src="/tb-tdcs-trang-1.jpg" alt="Thông báo tuyển sinh tDCS – Trang 1" className="w-full block" />
+              <img src="/tb-tdcs-trang-2.jpg" alt="Thông báo tuyển sinh tDCS – Trang 2" className="w-full block" />
+              <a
+                href="/TB%20tuy%E1%BB%83n%20sinh%20tDCS.pdf"
+                download
+                className="flex items-center justify-center gap-2 bg-[#0D3C1F] hover:bg-[#155A2F] text-white py-3.5 text-[13px] font-semibold font-geist transition-all"
+              >
+                <iconify-icon icon="solar:download-bold" width="16" height="16"></iconify-icon>
+                Tải công văn chính thức (PDF)
+              </a>
+            </div>
+            {/* Desktop: iframe embed */}
+            <div className="hidden md:block w-full rounded-2xl overflow-hidden border border-[#E5EBE8] shadow-[0_4px_16px_rgba(13,60,31,0.06)]">
+              <iframe
+                src="/TB%20tuy%E1%BB%83n%20sinh%20tDCS.pdf"
+                className="w-full"
+                style={{ height: '680px' }}
+                title="Thông báo tuyển sinh lớp tDCS"
+              />
             </div>
           </div>
 
