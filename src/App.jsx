@@ -179,6 +179,14 @@ export default function App() {
             </div>
           </div>
 
+          {/* Full venue address */}
+          <div className="mt-3 animate-subtitle-intro flex items-start justify-center gap-1.5">
+            <iconify-icon icon="solar:map-point-line-duotone" width="14" height="14" className="text-white/50 shrink-0 mt-[1px]"></iconify-icon>
+            <p className="text-[12px] text-white/60 font-geist leading-snug text-center">
+              Trung tâm hội nghị Mường Thanh Hạ Long Centre, Khu 2, đường Hạ Long, phường Bãi Cháy, tỉnh Quảng Ninh
+            </p>
+          </div>
+
           {/* Register button */}
           <div className="mt-8 animate-btn-intro">
             <a href="#lich-trinh" className="inline-flex items-center justify-center gap-2 uppercase transition-all hover:opacity-90 text-xs font-medium text-white tracking-[0.15em] rounded px-8 py-4 shadow-[0_0_0_1px_rgba(255,255,255,0.2),0_4px_16px_rgba(0,0,0,0.3)] bg-[#0D3C1F] hover:bg-[#0D3C1F]/90">
