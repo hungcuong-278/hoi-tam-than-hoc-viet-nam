@@ -630,9 +630,9 @@ export default function App() {
             </div>
             <div className="w-full rounded-2xl overflow-hidden border border-[#E5EBE8] shadow-[0_4px_16px_rgba(13,60,31,0.06)]">
               <iframe
-                src="/TB%20tuy%E1%BB%83n%20sinh%20tDCS.pdf"
+                src="https://docs.google.com/viewer?url=https://hoinghitamthanhoctoanquoc.com/TB%20tuy%E1%BB%83n%20sinh%20tDCS.pdf&embedded=true"
                 className="w-full"
-                style={{ height: '680px' }}
+                style={{ height: '75vh', minHeight: '480px', maxHeight: '800px' }}
                 title="Thông báo tuyển sinh lớp tDCS"
               />
             </div>
